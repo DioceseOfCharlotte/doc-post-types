@@ -55,7 +55,6 @@ final class Doc_Posts_Plugin {
 			$instance->includes();
 			$instance->setup_actions();
 		}
-
 		return $instance;
 	}
 
@@ -93,6 +92,7 @@ final class Doc_Posts_Plugin {
 		require_once $this->dir_path . 'includes/post-types.php';
 		require_once $this->dir_path . 'includes/taxonomies.php';
 		require_once $this->dir_path . 'includes/bb-metaboxes.php';
+		require_once $this->dir_path . 'includes/functions.php';
 	}
 
 	/**
