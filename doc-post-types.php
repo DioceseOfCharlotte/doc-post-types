@@ -3,7 +3,7 @@
 Plugin Name: DOC Post Types
 Plugin URI: https://github.com/DioceseOfCharlotte/doc-post-types
 Description: DOC Content Types for WordPress.
-Version: 0.5.0
+Version: 0.6.0
 Author: Marty Helmick
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
