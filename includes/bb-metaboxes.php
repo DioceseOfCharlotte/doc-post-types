@@ -115,52 +115,6 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					)
 			);
 
-			$manager->register_control(
-					'doc_street',
-					array(
-						'type'        => 'text',
-						'section'     => 'doc_location_fields',
-						'attr'        => array( 'class' => 'widefat' ),
-						'label'       => 'Street',
-					)
-			);
-			$manager->register_control(
-					'doc_street_2',
-					array(
-						'type'        => 'text',
-						'section'     => 'doc_location_fields',
-						'attr'        => array( 'class' => 'widefat' ),
-						'label'       => 'Street 2',
-					)
-			);
-			$manager->register_control(
-					'doc_city',
-					array(
-						'type'        => 'text',
-						'section'     => 'doc_location_fields',
-						'attr'        => array( 'class' => 'widefat' ),
-						'label'       => 'City',
-					)
-			);
-			$manager->register_control(
-					'doc_state',
-					array(
-						'type'        => 'select',
-						'section'     => 'doc_location_fields',
-						'label'       => 'State',
-						'choices'     => array(
-							''=>'','AL'=>'Alabama','AK'=>'Alaska','AZ'=>'Arizona','AR'=>'Arkansas','CA'=>'California','CO'=>'Colorado','CT'=>'Connecticut','DE'=>'Delaware','FL'=>'Florida','GA'=>'Georgia','HI'=>'Hawaii','ID'=>'Idaho','IL'=>'Illinois','IN'=>'Indiana','IA'=>'Iowa','KS'=>'Kansas','KY'=>'Kentucky','LA'=>'Louisiana','ME'=>'Maine','MD'=>'Maryland','MA'=>'Massachusetts','MI'=>'Michigan','MN'=>'Minnesota','MS'=>'Mississippi','MO'=>'Missouri','MT'=>'Montana','NE'=>'Nebraska','NV'=>'Nevada','NH'=>'New Hampshire','NJ'=>'New Jersey','NM'=>'New Mexico','NY'=>'New York','NC'=>'North Carolina','ND'=>'North Dakota','OH'=>'Ohio','OK'=>'Oklahoma','OR'=>'Oregon','PA'=>'Pennsylvania','RI'=>'Rhode Island','SC'=>'South Carolina','SD'=>'South Dakota','TN'=>'Tennessee','TX'=>'Texas','UT'=>'Utah','VT'=>'Vermont','VA'=>'Virginia','WA'=>'Washington','WV'=>'West Virginia','WI'=>'Wisconsin','WY'=>'Wyoming'
-						)
-					)
-			);
-			$manager->register_control(
-					'doc_zip',
-					array(
-						'type'        => 'text',
-						'section'     => 'doc_location_fields',
-						'label'       => 'Zip',
-					)
-			);
 
 			if ( 'parish' === $post_type) {
 				$manager->register_control(
@@ -175,7 +129,26 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				);
 			}
 
+			$manager->register_control(
+			new ButterBean_Control_Address(
+				$manager,
+				'doc_address',
+				array(
+					'type'        => 'address',
+					'section'     => 'doc_location_fields',
+					'settings' => array(
+						'street' 	=> 'doc_street',
+						'street_2' 	=> 'doc_street_2',
+						'state'  	=> 'doc_state',
+						'zip_code' 	=> 'doc_zip'
+					)
+				)
+				)
+			);
+
 			/* === Register Settings === */
+
+
 			$manager->register_setting(
 				'doc_phone_number',
 				array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
@@ -215,7 +188,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 			);
 			$manager->register_setting(
 				'doc_zip',
-				array( 'sanitize_callback' => 'absint' )
+				array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
 			);
 
 if ( 'parish' === $post_type) {
