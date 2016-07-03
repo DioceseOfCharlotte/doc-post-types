@@ -50,14 +50,14 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				'doc_contact_fields',
 				array(
 					'label' => 'Contact',
-					'icon'  => 'dashicons-edit'
+					'icon'  => 'dashicons-format-status'
 				)
 			);
 			$manager->register_section(
 				'doc_location_fields',
 				array(
 					'label' => 'Location',
-					'icon'  => 'dashicons-admin-generic'
+					'icon'  => 'dashicons-location-alt'
 				)
 			);
 
@@ -66,7 +66,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					'doc_mass_fields',
 					array(
 						'label' => 'Mass',
-						'icon'  => 'dashicons-star-filled'
+						'icon'  => 'dashicons-clock'
 					)
 				);
 			}
