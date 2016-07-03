@@ -39,6 +39,33 @@ final class Doc_Posts_Plugin {
 	public $dir_uri = '';
 
 	/**
+	 * Plugin CSS directory URI.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @var    string
+	 */
+	public $css_uri = '';
+
+	/**
+	 * Plugin JS directory URI.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @var    string
+	 */
+	public $js_uri = '';
+
+	/**
+	 * Plugin Image directory URI.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @var    string
+	 */
+	public $img_uri = '';
+
+	/**
 	 * Returns the instance.
 	 *
 	 * @since  1.0.0
@@ -77,6 +104,11 @@ final class Doc_Posts_Plugin {
 	private function setup() {
 		$this->dir_path = trailingslashit( plugin_dir_path( __FILE__ ) );
 		$this->dir_uri  = trailingslashit( plugin_dir_url( __FILE__ ) );
+
+		// Plugin assets URIs.
+		$this->css_uri = trailingslashit( $this->dir_uri . 'assets/styles' );
+		$this->js_uri  = trailingslashit( $this->dir_uri . 'assets/scripts' );
+		$this->img_uri  = trailingslashit( $this->dir_uri . 'assets/images' );
 	}
 
 	/**
@@ -89,10 +121,11 @@ final class Doc_Posts_Plugin {
 	private function includes() {
 		require_once $this->dir_path . 'lib/extended-cpts.php';
 		require_once $this->dir_path . 'lib/extended-taxos.php';
-		require_once $this->dir_path . 'includes/post-types.php';
-		require_once $this->dir_path . 'includes/taxonomies.php';
-		require_once $this->dir_path . 'includes/bb-metaboxes.php';
-		require_once $this->dir_path . 'includes/functions.php';
+		require_once $this->dir_path . 'inc/bb-controls/class-control-address.php';
+		require_once $this->dir_path . 'inc/post-types.php';
+		require_once $this->dir_path . 'inc/taxonomies.php';
+		require_once $this->dir_path . 'inc/metaboxes.php';
+		require_once $this->dir_path . 'inc/functions.php';
 	}
 
 	/**
@@ -104,6 +137,18 @@ final class Doc_Posts_Plugin {
 	 */
 	private function setup_actions() {
 		register_activation_hook( __FILE__, array( $this, 'activation' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+	}
+
+	/**
+	 * Register scripts and styles.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
+	public function admin_scripts() {
+		wp_enqueue_style( 'arch-admin-styles', trailingslashit( $this->css_uri ) . "dpt.css" );
 	}
 
 	public function activation() {

@@ -139,6 +139,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					'settings' => array(
 						'street' 	=> 'doc_street',
 						'street_2' 	=> 'doc_street_2',
+						'city'  	=> 'doc_city',
 						'state'  	=> 'doc_state',
 						'zip_code' 	=> 'doc_zip'
 					)
