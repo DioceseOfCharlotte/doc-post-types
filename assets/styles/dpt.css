@@ -3,6 +3,34 @@
 	white-space: normal;
 }
 
+.u-flex {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.u-flex-wrap {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.u-flex-ja {
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+}
+
+.u-flex-jb {
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.u-caps {
+    text-transform: uppercase;
+}
+
 .u-width-auto {
 	width: auto;
 }
@@ -12,95 +40,80 @@
 }
 
 .u-1of2 {
-	width: calc(50% - 1px);
+	width: calc(50% - 1em);
 }
 
 .u-1of3 {
-	width: calc(33.33% - 1px);
+	width: calc(33.33% - 1em);
 }
 
 .u-2of3 {
-	width: calc(66.66% - 1px);
+	width: calc(66.66% - 1em);
 }
 
 .u-1of4 {
-	width: calc(25% - 1px);
+	width: calc(25% - 1em);
 }
 
 .u-3of4 {
-	width: calc(75% - 1px);
+	width: calc(75% - 1em);
 }
 
 .u-1of5 {
-	width: calc(20% - 1px);
+	width: calc(20% - 1em);
 }
 
 .u-2of5 {
-	width: calc(40% - 1px);
+	width: calc(40% - 1em);
 }
 
 .u-3of5 {
-	width: calc(60% - 1px);
+	width: calc(60% - 1em);
 }
 
 .u-4of5 {
-	width: calc(80% - 1px);
+	width: calc(80% - 1em);
 }
 
-@media only screen and ( min-width: 850px ) {
+@media (min-width: 48em) {
 	.u-1of1-md {
 		width: 100%;
 	}
 
 	.u-1of2-md {
-		width: calc(50% - 1px);
-
-		&:last-of-type {
-			max-width: calc(50% - 1px);
-		}
+		width: calc(50% - 1em);
 	}
 
 	.u-1of3-md {
-		width: calc(33.33% - 1px);
-
-		&:last-of-type,
-		&:nth-last-child(2) {
-			max-width: calc(33.33% - 1px);
-		}
+		width: calc(33.33% - 1em);
 	}
 
 	.u-2of3-md {
-		width: calc(66.66% - 1px);
+		width: calc(66.66% - 1em);
 	}
 
 	.u-1of4-md {
-		width: calc(25% - 1px);
-
-		&:last-of-type,
-		&:nth-last-child(2),
-		&:nth-last-child(3) {
-			max-width: calc(25% - 1px);
-		}
+		width: calc(25% - 1em);
 	}
 
 	.u-3of4-md {
-		width: calc(75% - 1px);
+		width: calc(75% - 1em);
 	}
 
 	.u-1of5-md {
-		width: calc(20% - 1px);
+		width: calc(20% - 1em);
 	}
 
 	.u-2of5-md {
-		width: calc(40% - 1px);
+		width: calc(40% - 1em);
 	}
 
 	.u-3of5-md {
-		width: calc(60% - 1px);
+		width: calc(60% - 1em);
 	}
 
 	.u-4of5-md {
-		width: calc(80% - 1px);
+		width: calc(80% - 1em);
 	}
 
 	.u-width-auto-md {
@@ -116,6 +129,6 @@
 	}
 
 	.u-1of2-sm {
-		width: calc(50% - 1px);
+		width: calc(50% - 1em);
 	}
 }

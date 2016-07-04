@@ -72,49 +72,6 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 			}
 
 			/* === Register Controls === */
-			$manager->register_control(
-					'doc_phone_number',
-					array(
-						'type'        => 'text',
-						'section'     => 'doc_contact_fields',
-						'label'       => 'Phone',
-					)
-			);
-			$manager->register_control(
-					'doc_phone_b',
-					array(
-						'type'        => 'text',
-						'section'     => 'doc_contact_fields',
-						'label'       => 'Phone 2',
-					)
-			);
-			$manager->register_control(
-					'doc_fax',
-					array(
-						'type'        => 'text',
-						'section'     => 'doc_contact_fields',
-						'label'       => 'Fax',
-					)
-			);
-			$manager->register_control(
-					'doc_email',
-					array(
-						'type'        => 'text',
-						'section'     => 'doc_contact_fields',
-						'attr'        => array( 'class' => 'widefat' ),
-						'label'       => 'Email',
-					)
-			);
-			$manager->register_control(
-					'doc_website',
-					array(
-						'type'        => 'text',
-						'section'     => 'doc_contact_fields',
-						'attr'        => array( 'class' => 'widefat' ),
-						'label'       => 'Website',
-					)
-			);
-
 
 			if ( 'parish' === $post_type) {
 				$manager->register_control(
@@ -130,6 +87,23 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 			}
 
 			$manager->register_control(
+			new ButterBean_Control_Contact(
+				$manager,
+				'doc_contact',
+				array(
+					'type'        => 'contact',
+					'section'     => 'doc_contact_fields',
+					'settings' => array(
+						'phone' 	=> 'doc_phone_number',
+						'fax'  		=> 'doc_fax',
+						'email'  	=> 'doc_email',
+						'website' 	=> 'doc_website'
+					)
+				)
+				)
+			);
+
+			$manager->register_control(
 			new ButterBean_Control_Address(
 				$manager,
 				'doc_address',
@@ -138,10 +112,11 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					'section'     => 'doc_location_fields',
 					'settings' => array(
 						'street' 	=> 'doc_street',
-						'street_2' 	=> 'doc_street_2',
 						'city'  	=> 'doc_city',
 						'state'  	=> 'doc_state',
-						'zip_code' 	=> 'doc_zip'
+						'zip_code' 	=> 'doc_zip',
+						'lat' 	=> 'geo_latitude',
+						'lng' 	=> 'geo_longitude'
 					)
 				)
 				)
@@ -152,10 +127,6 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 
 			$manager->register_setting(
 				'doc_phone_number',
-				array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
-			);
-			$manager->register_setting(
-				'doc_phone_b',
 				array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
 			);
 			$manager->register_setting(
@@ -176,10 +147,6 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
 			);
 			$manager->register_setting(
-				'doc_street_2',
-				array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
-			);
-			$manager->register_setting(
 				'doc_city',
 				array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
 			);
@@ -189,7 +156,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 			);
 			$manager->register_setting(
 				'doc_zip',
-				array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
+				array( 'sanitize_callback' => 'absint' )
 			);
 
 if ( 'parish' === $post_type) {
