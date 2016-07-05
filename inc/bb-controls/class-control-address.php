@@ -36,12 +36,6 @@ class ButterBean_Control_Address extends ButterBean_Control {
 			'field_name' => $this->get_field_name( 'zip_code' ),
 		);
 
-		$this->json['addresss'] = array(
-			'label'      => 'Address',
-			'value'      => $this->get_value( 'address' ),
-			'field_name' => $this->get_field_name( 'address' ),
-		);
-
 		$this->json['lat_lon'] = array(
 			'label'      => 'Coordinates',
 			'value'      => $this->get_value( 'lat_lon' ),
@@ -86,9 +80,9 @@ class ButterBean_Control_Address extends ButterBean_Control {
 			</div>
 		</div>
 
-		<div class="row u-flex u-flex-wrap u-flex-jb">
+		<div class="row">
 
-			<div class="map_canvas u-1of1 u-p1"></div>
+			<div id="map_canvas"></div>
 
 			<div class="u-1of1 u-p1">
 				<label>

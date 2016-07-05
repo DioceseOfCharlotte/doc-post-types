@@ -3,7 +3,7 @@
 Plugin Name: DOC Post Types
 Plugin URI: https://github.com/DioceseOfCharlotte/doc-post-types
 Description: DOC Content Types for WordPress.
-Version: 0.6.0
+Version: 0.6.5
 Author: Marty Helmick
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -150,7 +150,7 @@ final class Doc_Posts_Plugin {
 	 */
 	public function admin_scripts() {
 		wp_enqueue_style( 'arch-admin-styles', trailingslashit( $this->css_uri ) . 'dpt.css' );
-		wp_enqueue_script( 'gplaces', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBaZXRmZU4v95wWc14Lj_ylEE2110a2EcQ&libraries=places', array(), false, true );
+		wp_enqueue_script( 'gplaces', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBaZXRmZU4v95wWc14Lj_ylEE2110a2EcQ&libraries=places', false, true );
 		wp_enqueue_script( 'geocomplete', trailingslashit( $this->js_uri ) . 'jquery.geocomplete.min.js', array( 'jquery', 'gplaces' ), false, true );
 	}
 

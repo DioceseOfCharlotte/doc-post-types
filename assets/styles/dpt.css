@@ -137,7 +137,7 @@
 	}
 }
 
-.map_canvas {
+#map_canvas {
 	height: 300px;
-	max-width: 100%;
+	width: 300px;
 }
