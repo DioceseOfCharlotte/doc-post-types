@@ -3,6 +3,10 @@
 	white-space: normal;
 }
 
+.u-p1 {
+	padding: .5em;
+}
+
 .u-flex {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -131,4 +135,9 @@
 	.u-1of2-sm {
 		width: calc(50% - 1em);
 	}
+}
+
+.map_canvas {
+	height: 300px;
+	max-width: 100%;
 }

@@ -32,8 +32,8 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 		 * @return void
 		 */
 		public function register( $butterbean, $post_type ) {
-			if ( 'parish' !== $post_type && 'school' !== $post_type && 'department' !== $post_type )
-				return;
+			if ( 'parish' !== $post_type && 'school' !== $post_type && 'department' !== $post_type ) {
+				return; }
 			/* === Register Managers === */
 			$butterbean->register_manager(
 				'doc_contact_info',
@@ -41,7 +41,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					'label'     => 'Doc Info',
 					'post_type' => array( 'parish', 'school', 'department' ),
 					'context'   => 'normal',
-					'priority'  => 'high'
+					'priority'  => 'high',
 				)
 			);
 			$manager  = $butterbean->get_manager( 'doc_contact_info' );
@@ -50,30 +50,30 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				'doc_contact_fields',
 				array(
 					'label' => 'Contact',
-					'icon'  => 'dashicons-format-status'
+					'icon'  => 'dashicons-format-status',
 				)
 			);
 			$manager->register_section(
 				'doc_location_fields',
 				array(
 					'label' => 'Location',
-					'icon'  => 'dashicons-location-alt'
+					'icon'  => 'dashicons-location-alt',
 				)
 			);
 
-			if ( 'parish' === $post_type) {
+			if ( 'parish' === $post_type ) {
 				$manager->register_section(
 					'doc_mass_fields',
 					array(
 						'label' => 'Mass',
-						'icon'  => 'dashicons-clock'
+						'icon'  => 'dashicons-clock',
 					)
 				);
 			}
 
 			/* === Register Controls === */
 
-			if ( 'parish' === $post_type) {
+			if ( 'parish' === $post_type ) {
 				$manager->register_control(
 					'doc_mass_schedule',
 					array(
@@ -81,33 +81,33 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 						'section'     => 'doc_mass_fields',
 						'attr'        => array( 'class' => 'widefat' ),
 						'label'       => 'Mass Schedule',
-						'description' => 'Example description.'
+						'description' => 'Example description.',
 					)
 				);
 			}
 
 			$manager->register_control(
-			new ButterBean_Control_Contact(
-				$manager,
-				'doc_contact',
-				array(
+				new ButterBean_Control_Contact(
+					$manager,
+					'doc_contact',
+					array(
 					'type'        => 'contact',
 					'section'     => 'doc_contact_fields',
 					'settings' => array(
 						'phone' 	=> 'doc_phone_number',
 						'fax'  		=> 'doc_fax',
 						'email'  	=> 'doc_email',
-						'website' 	=> 'doc_website'
+						'website' 	=> 'doc_website',
+					),
 					)
-				)
 				)
 			);
 
 			$manager->register_control(
-			new ButterBean_Control_Address(
-				$manager,
-				'doc_address',
-				array(
+				new ButterBean_Control_Address(
+					$manager,
+					'doc_address',
+					array(
 					'type'        => 'address',
 					'section'     => 'doc_location_fields',
 					'settings' => array(
@@ -115,15 +115,13 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 						'city'  	=> 'doc_city',
 						'state'  	=> 'doc_state',
 						'zip_code' 	=> 'doc_zip',
-						'lat' 	=> 'geo_latitude',
-						'lng' 	=> 'geo_longitude'
+						'lat_lon' 	=> 'geo_coordinates',
+					),
 					)
-				)
 				)
 			);
 
 			/* === Register Settings === */
-
 
 			$manager->register_setting(
 				'doc_phone_number',
@@ -159,12 +157,17 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				array( 'sanitize_callback' => 'absint' )
 			);
 
-if ( 'parish' === $post_type) {
 			$manager->register_setting(
-				'doc_mass_schedule',
-				array( 'sanitize_callback' => 'wp_kses_post' )
+				'geo_coordinates',
+				array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
 			);
-		}
+
+			if ( 'parish' === $post_type ) {
+				$manager->register_setting(
+					'doc_mass_schedule',
+					array( 'sanitize_callback' => 'wp_kses_post' )
+				);
+			}
 		}
 		/**
 		 * Returns the instance.
