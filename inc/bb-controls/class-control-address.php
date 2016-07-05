@@ -51,6 +51,8 @@ class ButterBean_Control_Address extends ButterBean_Control {
 
     public function get_template() { ?>
 
+<div class="map_canvas"></div>
+<form>
 		<div class="row">
 			<p class="u-1of1">
 		        <label>
@@ -83,19 +85,21 @@ class ButterBean_Control_Address extends ButterBean_Control {
 
 		<div class="row u-flex u-flex-wrap u-flex-jb">
 
-<?= '<a href="https://maps.googleapis.com/maps/api/geocode/json?address=',
-    rawurlencode('{{ data.street.value }}'), '&key=AIzaSyBaZXRmZU4v95wWc14Lj_ylEE2110a2EcQ">'; ?>
-
+<p class="u-1of1">
+	<input id="geocomplete" type="text" placeholder="Type in an address" value="Empire State Bldg" />
+    <input id="find" type="button" value="find" />
+</p>
 			<p class="u-1of2">
 		        <label>
-		            <input type="text" placeholder="Latitude" class="u-1of1" value="{{ data.lat.value }}" name="{{ data.lat.field_name }}" disabled>
+		            <input name="lat" type="text" placeholder="Latitude" class="u-1of1" value="{{ data.lat.value }}">
 		        </label>
 			</p>
 			<p class="u-1of2-md">
 				<label>
-		            <input type="text" placeholder="Longitude" class="u-1of1" value="{{ data.lng.value }}" name="{{ data.lng.field_name }}" disabled>
+		            <input name="lng" type="text" placeholder="Longitude" class="u-1of1" value="{{ data.lng.value }}">
 		        </label>
 			</p>
 		</div>
+</form>
     <?php }
 }
