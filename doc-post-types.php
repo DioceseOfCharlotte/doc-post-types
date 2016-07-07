@@ -150,7 +150,7 @@ final class Doc_Posts_Plugin {
 	 */
 	public function admin_scripts() {
 		wp_enqueue_style( 'arch-admin-styles', trailingslashit( $this->css_uri ) . 'dpt.css' );
-		wp_enqueue_script( 'gplaces', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBaZXRmZU4v95wWc14Lj_ylEE2110a2EcQ&libraries=places', false, true );
+		wp_enqueue_script( 'gplaces', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAWH6M9ymO6A5wEtB_DQa3866F80KZC2Ck&libraries=places', false, true );
 		wp_enqueue_script( 'geocomplete', trailingslashit( $this->js_uri ) . 'jquery.geocomplete.min.js', array( 'jquery', 'gplaces' ), false, true );
 	}
 
