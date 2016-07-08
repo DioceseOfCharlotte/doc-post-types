@@ -139,6 +139,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
 				);
 
+				// Parishes
 				if ( 'parish' === $post_type ) {
 
 					$manager->register_section(
@@ -162,6 +163,53 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					$manager->register_setting(
 						'doc_mass_schedule',
 						array( 'sanitize_callback' => 'wp_kses_post' )
+					);
+				}
+
+				// Schools
+				if ( 'school' === $post_type ) {
+
+					$manager->register_section(
+						'doc_grade_level_fields',
+						array(
+							'label' => 'Grade Levels',
+							'icon'  => 'dashicons-chart-bar',
+						)
+					);
+
+					$manager->register_control(
+						'doc_grade_level',
+						array(
+							'type'        => 'checkboxes',
+							'section'     => 'doc_grade_level_fields',
+							'label'       => 'Grades',
+							'description' => 'Select all that apply.',
+							'choices'     => array(
+								'0-pk'=> 'Pre-K',
+								'0-tk'=> 'Transitional-K',
+								'0-k'=> 'Kindergarten',
+								'1' => '1',
+								'2' => '2',
+								'3' => '3',
+								'4' => '4',
+								'5' => '5',
+								'6' => '6',
+								'7' => '7',
+								'8' => '8',
+								'9' => '9',
+								'10' => '10',
+								'11' => '11',
+								'12' => '12',
+							)
+						)
+					);
+
+					$manager->register_setting(
+						new Doc_Setting_ValueArray(
+							$manager,
+							'doc_grade_level',
+							array( 'sanitize_callback' => 'sanitize_key' )
+						)
 					);
 				}
 

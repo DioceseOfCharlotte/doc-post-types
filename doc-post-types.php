@@ -121,6 +121,7 @@ final class Doc_Posts_Plugin {
 	private function includes() {
 		require_once $this->dir_path . 'lib/extended-cpts.php';
 		require_once $this->dir_path . 'lib/extended-taxos.php';
+		require_once $this->dir_path . 'inc/bb-settings/class-setting-value-array.php';
 		require_once $this->dir_path . 'inc/bb-controls/class-control-address.php';
 		require_once $this->dir_path . 'inc/bb-controls/class-control-contact.php';
 		require_once $this->dir_path . 'inc/post-types.php';
