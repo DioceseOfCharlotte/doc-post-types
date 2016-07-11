@@ -161,6 +161,12 @@ function doc_register_post_types() {
 					'featured_image' => 'abe-icon',
 				),
 			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
+			),
 			'menu_icon'           => 'dashicons-shield',
 			'supports'            => $doc_post_supports,
 			'capability_type'     => 'bishop',
@@ -181,6 +187,12 @@ function doc_register_post_types() {
 					'title'          => 'Image',
 					'featured_image' => 'abe-icon',
 				),
+			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
 			),
 			'menu_icon'           => 'dashicons-flag',
 			'supports'            => $doc_post_supports,
@@ -203,6 +215,12 @@ function doc_register_post_types() {
 					'featured_image' => 'abe-icon',
 				),
 			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
+			),
 			'menu_icon'           => 'dashicons-shield-alt',
 			'supports'            => $doc_post_supports,
 			'capability_type'     => 'deacon',
@@ -223,6 +241,12 @@ function doc_register_post_types() {
 					'title'          => 'Image',
 					'featured_image' => 'abe-icon',
 				),
+			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
 			),
 			'menu_icon'           => 'dashicons-chart-bar',
 			'supports'            => $doc_post_supports,
@@ -245,6 +269,12 @@ function doc_register_post_types() {
 					'featured_image' => 'abe-icon',
 				),
 			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
+			),
 			'menu_icon'           => 'dashicons-image-filter',
 			'supports'            => $doc_post_supports,
 			'capability_type'     => 'education',
@@ -265,6 +295,12 @@ function doc_register_post_types() {
 					'title'          => 'Image',
 					'featured_image' => 'abe-icon',
 				),
+			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
 			),
 			'menu_icon'           => 'dashicons-portfolio',
 			'supports'            => $doc_post_supports,
@@ -287,6 +323,12 @@ function doc_register_post_types() {
 					'featured_image' => 'abe-icon',
 				),
 			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
+			),
 			'menu_icon'           => 'dashicons-share-alt',
 			'supports'            => $doc_post_supports,
 			'capability_type'     => 'hispanic_ministry',
@@ -307,6 +349,12 @@ function doc_register_post_types() {
 					'title'          => 'Image',
 					'featured_image' => 'abe-icon',
 				),
+			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
 			),
 			'menu_icon'           => 'dashicons-admin-multisite',
 			'supports'            => $doc_post_supports,
@@ -329,6 +377,12 @@ function doc_register_post_types() {
 					'featured_image' => 'abe-icon',
 				),
 			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
+			),
 			'menu_icon'           => 'dashicons-universal-access-alt',
 			'supports'            => $doc_post_supports,
 			'capability_type'     => 'human_resources',
@@ -349,6 +403,12 @@ function doc_register_post_types() {
 					'title'          => 'Image',
 					'featured_image' => 'abe-icon',
 				),
+			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
 			),
 			'menu_icon'           => 'dashicons-desktop',
 			'supports'            => $doc_post_supports,
@@ -371,6 +431,12 @@ function doc_register_post_types() {
 					'featured_image' => 'abe-icon',
 				),
 			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
+			),
 			'menu_icon'           => 'dashicons-book',
 			'supports'            => $doc_post_supports,
 			'capability_type'     => 'liturgy',
@@ -391,6 +457,12 @@ function doc_register_post_types() {
 					'title'          => 'Image',
 					'featured_image' => 'abe-icon',
 				),
+			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
 			),
 			'menu_icon'           => 'dashicons-awards',
 			'supports'            => $doc_post_supports,
@@ -413,6 +485,12 @@ function doc_register_post_types() {
 					'featured_image' => 'abe-icon',
 				),
 			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
+			),
 			'menu_icon'           => 'dashicons-translation',
 			'supports'            => $doc_post_supports,
 			'capability_type'     => 'multicultural',
@@ -433,6 +511,12 @@ function doc_register_post_types() {
 					'title'          => 'Image',
 					'featured_image' => 'abe-icon',
 				),
+			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
 			),
 			'menu_icon'           => 'dashicons-networking',
 			'supports'            => $doc_post_supports,
@@ -455,6 +539,12 @@ function doc_register_post_types() {
 					'featured_image' => 'abe-icon',
 				),
 			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
+			),
 			'menu_icon'           => 'dashicons-building',
 			'supports'            => $doc_post_supports,
 			'capability_type'     => 'property',
@@ -476,6 +566,12 @@ function doc_register_post_types() {
 					'featured_image' => 'abe-icon',
 				),
 			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
+			),
 			'menu_icon'           => 'dashicons-analytics',
 			'supports'            => $doc_post_supports,
 			'capability_type'     => 'tribunal',
@@ -496,6 +592,12 @@ function doc_register_post_types() {
 					'title'          => 'Image',
 					'featured_image' => 'abe-icon',
 				),
+			),
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
 			),
 			'menu_icon'           => 'dashicons-businessman',
 			'supports'            => $doc_post_supports,
