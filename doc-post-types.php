@@ -157,6 +157,123 @@ final class Doc_Posts_Plugin {
 
 	public function activation() {
 		flush_rewrite_rules();
+
+		// Get the administrator role.
+		$role = get_role( 'administrator' );
+		// If the administrator role exists, add required capabilities for the plugin.
+		if ( ! is_null( $role ) ) {
+
+			// Remove old caps.
+			$role->remove_cap( 'create_parishes' );
+			$role->remove_cap( 'create_schools' );
+			$role->remove_cap( 'create_departments' );
+			$role->remove_cap( 'create_archive_posts' );
+			$role->remove_cap( 'create_bishop_posts' );
+			$role->remove_cap( 'create_deacon_posts' );
+			$role->remove_cap( 'create_development_posts' );
+			$role->remove_cap( 'create_education_posts' );
+			$role->remove_cap( 'create_finance_posts' );
+			$role->remove_cap( 'create_hisp_min_posts' );
+			$role->remove_cap( 'create_housing_posts' );
+			$role->remove_cap( 'create_hr_posts' );
+			$role->remove_cap( 'create_it_posts' );
+			$role->remove_cap( 'create_liturgy_posts' );
+			$role->remove_cap( 'create_macs_posts' );
+			$role->remove_cap( 'create_multicultural_posts' );
+			$role->remove_cap( 'create_planning_posts' );
+			$role->remove_cap( 'create_properties_posts' );
+			$role->remove_cap( 'create_tribunal_posts' );
+			$role->remove_cap( 'create_vocations_posts' );
+			$role->remove_cap( 'create_statistics_reports' );
+
+			$role->remove_cap( 'manage_parishes' );
+			$role->remove_cap( 'manage_schools' );
+			$role->remove_cap( 'manage_departments' );
+			$role->remove_cap( 'manage_archive_posts' );
+			$role->remove_cap( 'manage_bishop_posts' );
+			$role->remove_cap( 'manage_deacon_posts' );
+			$role->remove_cap( 'manage_development_posts' );
+			$role->remove_cap( 'manage_education_posts' );
+			$role->remove_cap( 'manage_finance_posts' );
+			$role->remove_cap( 'manage_hisp_min_posts' );
+			$role->remove_cap( 'manage_housing_posts' );
+			$role->remove_cap( 'manage_hr_posts' );
+			$role->remove_cap( 'manage_it_posts' );
+			$role->remove_cap( 'manage_liturgy_posts' );
+			$role->remove_cap( 'manage_macs_posts' );
+			$role->remove_cap( 'manage_multicultural_posts' );
+			$role->remove_cap( 'manage_planning_posts' );
+			$role->remove_cap( 'manage_properties_posts' );
+			$role->remove_cap( 'manage_tribunal_posts' );
+			$role->remove_cap( 'manage_vocations_posts' );
+			$role->remove_cap( 'manage_statistics_reports' );
+
+			$role->remove_cap( 'edit_parishes' );
+			$role->remove_cap( 'edit_schools' );
+			$role->remove_cap( 'edit_departments' );
+			$role->remove_cap( 'edit_archive_posts' );
+			$role->remove_cap( 'edit_bishop_posts' );
+			$role->remove_cap( 'edit_deacon_posts' );
+			$role->remove_cap( 'edit_development_posts' );
+			$role->remove_cap( 'edit_education_posts' );
+			$role->remove_cap( 'edit_finance_posts' );
+			$role->remove_cap( 'edit_hisp_min_posts' );
+			$role->remove_cap( 'edit_housing_posts' );
+			$role->remove_cap( 'edit_hr_posts' );
+			$role->remove_cap( 'edit_it_posts' );
+			$role->remove_cap( 'edit_liturgy_posts' );
+			$role->remove_cap( 'edit_macs_posts' );
+			$role->remove_cap( 'edit_multicultural_posts' );
+			$role->remove_cap( 'edit_planning_posts' );
+			$role->remove_cap( 'edit_properties_posts' );
+			$role->remove_cap( 'edit_tribunal_posts' );
+			$role->remove_cap( 'edit_vocations_posts' );
+			$role->remove_cap( 'edit_statistics_reports' );
+
+			$cpt_names = array(
+				'school',
+				'parish',
+				'department',
+				'archive_post',
+				'bishop',
+				'schools_office',
+				'deacon',
+				'development',
+				'education',
+				'finance',
+				'hispanic_ministry',
+				'housing',
+				'human_resources',
+				'info_tech',
+				'liturgy',
+				'macs',
+				'multicultural',
+				'planning',
+				'property',
+				'tribunal',
+				'vocation',
+				'statistics_report',
+			);
+
+			foreach ($cpt_names as $name ) {
+				// Taxonomy caps.
+				// $role->add_cap( 'manage_{$name}_categories' );
+				// $role->add_cap( 'manage_{$name}_tags' );
+
+				// Post type caps.
+				$role->add_cap( "create_{$name}s" );
+				$role->add_cap( "edit_{$name}s" );
+				$role->add_cap( "edit_others_{$name}s" );
+				$role->add_cap( "publish_{$name}s" );
+				$role->add_cap( "read_private_{$name}s" );
+				$role->add_cap( "delete_{$name}s" );
+				$role->add_cap( "delete_private_{$name}s" );
+				$role->add_cap( "delete_published_{$name}s" );
+				$role->add_cap( "delete_others_{$name}s" );
+				$role->add_cap( "edit_private_{$name}s" );
+				$role->add_cap( "edit_published_{$name}s" );
+			}
+		}
 	}
 }
 
