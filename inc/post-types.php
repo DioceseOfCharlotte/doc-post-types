@@ -201,8 +201,8 @@ function doc_register_post_types() {
 			'capabilities'        => doc_get_capabilities( 'schools_office' ),
 		),
 		array(
-			'singular' => 'Schools Office',
-			'plural'   => 'Schools Office',
+			'singular' => 'Schools Office Post',
+			'plural'   => 'Schools Office Posts',
 			'slug'     => 'schools-office',
 		)
 	);
