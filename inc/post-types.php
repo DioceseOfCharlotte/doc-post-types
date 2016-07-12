@@ -71,14 +71,15 @@ function doc_register_post_types() {
 			'delete_published_posts' => "delete_published_{$name}s",
 			'delete_others_posts'    => "delete_others_{$name}s",
 			'edit_private_posts'     => "edit_private_{$name}s",
-			'edit_published_posts'   => "edit_published_{$name}s"
+			'edit_published_posts'   => "edit_published_{$name}s",
 		);
 
 		return apply_filters( 'doc_get_capabilities', $caps );
 	}
 
 	register_extended_post_type( 'school',
-		array( 'admin_cols' => array(
+		array(
+		'admin_cols' => array(
 				'featured_image' => array(
 				    'title'          => 'Logo',
 				    'featured_image' => 'abe-icon',
