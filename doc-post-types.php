@@ -156,7 +156,6 @@ final class Doc_Posts_Plugin {
 	}
 
 	public function activation() {
-		flush_rewrite_rules();
 
 		// Get the administrator role.
 		$role = get_role( 'administrator' );
@@ -225,6 +224,8 @@ final class Doc_Posts_Plugin {
 				);
 			}
 		}
+
+		flush_rewrite_rules();
 	}
 }
 
