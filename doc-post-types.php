@@ -220,6 +220,7 @@ final class Doc_Posts_Plugin {
 						"delete_others_{$name}s" => true,
 						"edit_private_{$name}s" => true,
 						"edit_published_{$name}s" => true,
+						'upload_files' => true,
 					)
 				);
 			}
