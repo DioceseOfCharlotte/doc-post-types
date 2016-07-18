@@ -157,6 +157,9 @@ final class Doc_Posts_Plugin {
 
 	public function activation() {
 
+		doc_register_post_types();
+		doc_register_taxonomies();
+
 		// Get the administrator role.
 		$role = get_role( 'administrator' );
 		// If the administrator role exists, add required capabilities for the plugin.
