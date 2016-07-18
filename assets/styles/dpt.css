@@ -3,6 +3,18 @@
 	white-space: normal;
 }
 
+.v-icon {
+	fill: currentColor;
+	font-size: 22px;
+    margin: 2px 0;
+	width: 1em;
+	height: 1em;
+}
+
+.u-align-middle {
+	vertical-align: middle;
+}
+
 .u-p1 {
 	padding: .5em;
 }
