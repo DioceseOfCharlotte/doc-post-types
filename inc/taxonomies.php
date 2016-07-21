@@ -86,43 +86,4 @@ function doc_register_taxonomies() {
 			'assign_terms' => 'edit_statistics_reports',
 		),
 	) );
-
-	register_extended_taxonomy( 'filetype', 'document', array(
-
-		'meta_box' => 'radio',
-		'dashboard_glance' => true,
-
-		'capabilities' => array(
-			'manage_terms' => 'manage_options',
-			'edit_terms'   => 'manage_options',
-			'delete_terms' => 'manage_options',
-			'assign_terms' => 'edit_documents',
-		),
-	) );
-
-	register_extended_taxonomy( 'document_category', 'document', array(
-
-		'meta_box' => 'radio',
-		'dashboard_glance' => true,
-
-		'capabilities' => array(
-			'manage_terms' => 'manage_options',
-			'edit_terms'   => 'manage_options',
-			'delete_terms' => 'manage_options',
-			'assign_terms' => 'edit_documents',
-		),
-	) );
-
-	register_extended_taxonomy( 'document_type', 'document', array(
-
-		'meta_box' => 'radio',
-		'dashboard_glance' => true,
-
-		'capabilities' => array(
-			'manage_terms' => 'manage_options',
-			'edit_terms'   => 'manage_options',
-			'delete_terms' => 'manage_options',
-			'assign_terms' => 'edit_documents',
-		),
-	) );
 }
