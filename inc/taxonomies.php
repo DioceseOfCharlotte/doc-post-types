@@ -63,6 +63,23 @@ function doc_register_taxonomies() {
 		),
 	) );
 
+	register_extended_taxonomy('development_cat', 'development', array(
+		'meta_box' => 'radio',
+		'dashboard_glance' => true,
+
+		'capabilities' => array(
+			'manage_terms' => 'edit_published_developments',
+			'edit_terms'   => 'edit_published_developments',
+			'delete_terms' => 'edit_published_developments',
+			'assign_terms' => 'edit_published_developments',
+		),
+	),
+	array(
+		'singular' => 'Category',
+		'plural'   => 'Categories',
+		'slug'     => 'categories',
+	) );
+
 	register_extended_taxonomy( 'agency', doc_home_tiles(),
 		array(
 			'meta_box' => 'radio',
