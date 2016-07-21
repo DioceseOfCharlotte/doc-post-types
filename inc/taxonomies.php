@@ -77,7 +77,7 @@ function doc_register_taxonomies() {
 	array(
 		'singular' => 'Category',
 		'plural'   => 'Categories',
-		'slug'     => 'categories',
+		'slug'     => 'development-section',
 	) );
 
 	register_extended_taxonomy( 'agency', doc_home_tiles(),
