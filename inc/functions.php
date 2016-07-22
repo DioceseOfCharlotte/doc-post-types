@@ -2,9 +2,33 @@
 
 add_action( 'pre_get_posts', 'doc_custom_queries', 1 );
 
+/**
+ * Post Groups.
+ */
+function doc_department_cpts() {
+   $cpts = array( 'archive_post','bishop', 'deacon', 'development', 'education', 'finance', 'human_resources', 'hispanic_ministry', 'housing', 'info_tech', 'liturgy', 'macs', 'multicultural', 'planning', 'property', 'tribunal', 'vocation' );
+   return $cpts;
+}
+
+function doc_place_cpts() {
+   $cpts = array(
+	   'department',
+	   'parish',
+	   'school',
+   );
+   return $cpts;
+}
+
+function doc_home_tiles() {
+   $cpts = array(
+	   'department',
+	   'cpt_archive',
+   );
+   return array_merge( $cpts, doc_department_cpts() );
+}
 
 /**
- * Register taxonomies.
+ * Custom queries.
  *
  * @since  0.1.0
  * @access public
@@ -30,7 +54,9 @@ function doc_custom_queries( $query ) {
 
 	} elseif ( is_post_type_archive( doc_place_cpts() ) ) {
 			$query->set( 'order', 'ASC' );
-			$query->set( 'post_parent', 0 );
 			$query->set( 'orderby', 'name' );
+
+			if ( is_post_type_archive( 'department' ) )
+				$query->set( 'post_parent', 0 );
 	}
 }
