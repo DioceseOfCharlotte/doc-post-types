@@ -1,6 +1,7 @@
 <?php
 
 add_action( 'pre_get_posts', 'doc_custom_queries', 1 );
+add_filter( 'hybrid_content_template_hierarchy', 'article_format_template', 20 );
 
 /**
  * Post Groups.
@@ -8,6 +9,27 @@ add_action( 'pre_get_posts', 'doc_custom_queries', 1 );
 function doc_department_cpts() {
    $cpts = array( 'archive_post','bishop', 'deacon', 'development', 'education', 'finance', 'human_resources', 'hispanic_ministry', 'housing', 'info_tech', 'liturgy', 'macs', 'multicultural', 'planning', 'property', 'tribunal', 'vocation' );
    return $cpts;
+}
+
+/**
+ * Add templates to hybrid_get_content_template()
+ */
+function article_format_template( $templates ) {
+	$terms = get_the_terms( get_the_ID(), 'article_format' );
+
+	if ( $terms && ! is_wp_error( $terms ) ) {
+		foreach ( $terms as $term ) {
+			$article_format[] = $term->name;
+		}
+
+		$templates = array_merge(
+			array(
+				"content/single-document.php",
+			), $templates
+		);
+	}
+
+	return $templates;
 }
 
 function doc_place_cpts() {
