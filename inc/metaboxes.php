@@ -71,10 +71,10 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 						'type'        => 'contact',
 						'section'     => 'doc_contact_fields',
 						'settings' => array(
-						'phone' 	=> 'doc_phone_number',
-						'fax'  		=> 'doc_fax',
-						'email'  	=> 'doc_email',
-						'website' 	=> 'doc_website',
+							'phone' 	=> 'doc_phone_number',
+							'fax'  		=> 'doc_fax',
+							'email'  	=> 'doc_email',
+							'website' 	=> 'doc_website',
 						),
 						)
 					)
