@@ -32,9 +32,44 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 		* @return void
 		*/
 		public function register( $butterbean, $post_type ) {
-			if ( 'parish' !== $post_type && 'school' !== $post_type && 'department' !== $post_type ) {
+			if ( 'parish' !== $post_type && 'school' !== $post_type && 'department' !== $post_type && 'document' !== $post_type ) {
 				return; }
 				/* === Register Managers === */
+				$butterbean->register_manager(
+					'doc_documents',
+					array(
+					'label'     => 'Documents',
+					'post_type' => array( 'document' ),
+					'context'   => 'normal',
+					'priority'  => 'high',
+					)
+				);
+				$doc_manager = $butterbean->get_manager( 'doc_documents' );
+
+				$doc_manager->register_section(
+					'doc_file_fields',
+					array(
+					'label' => 'File',
+					'icon'  => 'dashicons-welcome-add-page',
+					)
+				);
+
+				// require_once doc_posts_plugin()->dir_path . 'inc/bb-controls/class-control-file.php';
+
+				$doc_manager->register_control(
+					'doc_file',
+					array(
+						'type'        => 'image',
+						'section'     => 'doc_file_fields',
+						'label'       => 'Upload file',
+					)
+				);
+
+				$doc_manager->register_setting(
+					'doc_file',
+					array( 'sanitize_callback' => 'absint' )
+				);
+
 				$butterbean->register_manager(
 					'doc_contact_info',
 					array(
@@ -44,6 +79,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					'priority'  => 'high',
 					)
 				);
+
 				$manager  = $butterbean->get_manager( 'doc_contact_info' );
 				/* === Register Sections === */
 				$manager->register_section(

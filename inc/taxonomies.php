@@ -38,21 +38,21 @@ function doc_register_taxonomies() {
 		),
 	) );
 
-	register_extended_taxonomy('article_format', doc_department_cpts(), array(
+	register_extended_taxonomy('document_category', 'document', array(
 		'meta_box' => 'radio',
 		'dashboard_glance' => true,
 
 		// 'capabilities' => array(
-		// 	'manage_terms' => 'edit_published_developments',
-		// 	'edit_terms'   => 'edit_published_developments',
-		// 	'delete_terms' => 'edit_published_developments',
-		// 	'assign_terms' => 'edit_published_developments',
+		// 	'manage_terms' => 'upload_files',
+		// 	'edit_terms'   => 'upload_files',
+		// 	'delete_terms' => 'upload_files',
+		// 	'assign_terms' => 'upload_files',
 		// ),
 	),
 	array(
-		'singular' => 'Article Format',
-		'plural'   => 'Article Formats',
-		'slug'     => 'format-type',
+		'singular' => 'Document Category',
+		'plural'   => 'Document Categories',
+		'slug'     => 'document-category',
 	) );
 
 	register_extended_taxonomy( 'agency', doc_home_tiles(),
