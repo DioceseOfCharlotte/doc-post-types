@@ -634,7 +634,7 @@ function doc_register_post_types() {
 
 		'enter_title_here'     => 'Enter document title here',
 		'menu_icon'            => 'dashicons-media-document',
-		'supports'             => array( 'title', 'archive', revisions ),
+		'supports'             => array( 'title', 'archive', 'revisions' ),
 
 		/* Capabilities. */
 		// 'capabilities' => array(

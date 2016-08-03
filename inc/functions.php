@@ -11,6 +11,26 @@ function doc_department_cpts() {
    return $cpts;
 }
 
+add_action( 'post_edit_form_tag' , 'post_edit_form_tag' );
+
+function post_edit_form_tag( ) {
+
+	global $post;
+
+	//  if invalid $post object, return
+	if(!$post)
+		return;
+
+	//  get the current post type
+	$post_type = get_post_type($post->ID);
+
+	//  if post type is not 'post', return
+	if('document' != $post_type)
+		return;
+
+    echo ' enctype="multipart/form-data"';
+}
+
 /**
  * Add templates to hybrid_get_content_template()
  */

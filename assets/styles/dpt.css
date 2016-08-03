@@ -1,3 +1,32 @@
+.dpt-video-embed {
+	max-width: 600px;
+}
+
+.FlexEmbed {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.FlexEmbed-ratio {
+  display: block;
+  padding-bottom: 100%;
+  width: 100%;
+}
+
+.FlexEmbed-ratio--16by9 {
+  padding-bottom: 56.25%;
+}
+
+.FlexEmbed>iframe {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
 .u-fit {
 	max-width: 100%;
 	white-space: normal;
@@ -6,7 +35,7 @@
 .v-icon {
 	fill: currentColor;
 	font-size: 22px;
-    margin: 2px 0;
+	margin: 2px 0;
 	width: 1em;
 	height: 1em;
 }
@@ -20,31 +49,31 @@
 }
 
 .u-flex {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
 }
 
 .u-flex-wrap {
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 
 .u-flex-ja {
-    -webkit-justify-content: space-around;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
+	-webkit-justify-content: space-around;
+	-ms-flex-pack: distribute;
+	justify-content: space-around;
 }
 
 .u-flex-jb {
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
 }
 
 .u-caps {
-    text-transform: uppercase;
+	text-transform: uppercase;
 }
 
 .u-width-auto {

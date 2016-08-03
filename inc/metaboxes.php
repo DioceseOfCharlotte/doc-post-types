@@ -54,20 +54,23 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					)
 				);
 
-				// require_once doc_posts_plugin()->dir_path . 'inc/bb-controls/class-control-file.php';
+				require_once doc_posts_plugin()->dir_path . 'inc/bb-controls/class-control-file.php';
 
 				$doc_manager->register_control(
+				new ButterBean_Control_File(
+					$doc_manager,
 					'doc_file',
 					array(
-						'type'        => 'image',
+						'type'        => 'file',
 						'section'     => 'doc_file_fields',
 						'label'       => 'Upload file',
+					)
 					)
 				);
 
 				$doc_manager->register_setting(
 					'doc_file',
-					array( 'sanitize_callback' => 'absint' )
+					array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
 				);
 
 				$butterbean->register_manager(
