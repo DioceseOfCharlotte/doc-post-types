@@ -1,7 +1,7 @@
 <?php
 /**
-* Metaboxes for parish cpt
-*/
+ * Metaboxes for parish cpt
+ */
 
 if ( ! class_exists( 'Doc_Meta' ) ) {
 	/**
@@ -12,62 +12,62 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 	*/
 	final class Doc_Meta {
 		/**
-		* Sets up initial actions.
-		*
-		* @since  1.0.0
-		* @access private
-		* @return void
-		*/
+		 * Sets up initial actions.
+		 *
+		 * @since  1.0.0
+		 * @access private
+		 * @return void
+		 */
 		private function setup_actions() {
 			// Call the register function.
 			add_action( 'butterbean_register', array( $this, 'register' ), 10, 2 );
 		}
 		/**
-		* Registers managers, sections, controls, and settings.
-		*
-		* @since  1.0.0
-		* @access public
-		* @param  object  $butterbean  Instance of the `ButterBean` object.
-		* @param  string  $post_type
-		* @return void
-		*/
+		 * Registers managers, sections, controls, and settings.
+		 *
+		 * @since  1.0.0
+		 * @access public
+		 * @param  object $butterbean  Instance of the `ButterBean` object.
+		 * @param  string $post_type
+		 * @return void
+		 */
 		public function register( $butterbean, $post_type ) {
-			if ( 'parish' !== $post_type && 'school' !== $post_type && 'department' !== $post_type && 'document' !== $post_type ) {
+			if ( 'parish' !== $post_type && 'school' !== $post_type && 'department' !== $post_type ) {
 				return; }
-				/* === Register Managers === */
-				$butterbean->register_manager(
-					'doc_documents',
-					array(
-					'label'     => 'Documents',
-					'post_type' => array( 'document' ),
-					'context'   => 'normal',
-					'priority'  => 'high',
-					)
-				);
-				$doc_manager = $butterbean->get_manager( 'doc_documents' );
-
-				$doc_manager->register_section(
-					'doc_file_fields',
-					array(
-					'label' => 'File',
-					'icon'  => 'dashicons-welcome-add-page',
-					)
-				);
-
-				require_once doc_posts_plugin()->dir_path . 'inc/bb-controls/class-control-file.php';
-
-				$doc_manager->register_control(
-				new ButterBean_Control_File(
-					$doc_manager,
-					'doc_file',
-					array(
-						'type'        => 'file',
-						'section'     => 'doc_file_fields',
-						'label'       => 'Upload file',
-					)
-					)
-				);
-
+				/*
+			=== Register Managers === */
+				// $butterbean->register_manager(
+				// 'doc_documents',
+				// array(
+				// 'label'     => 'Documents',
+				// 'post_type' => array( 'document' ),
+				// 'context'   => 'normal',
+				// 'priority'  => 'high',
+				// )
+				// );
+				// $doc_manager = $butterbean->get_manager( 'doc_documents' );
+				//
+				// $doc_manager->register_section(
+				// 'doc_file_fields',
+				// array(
+				// 'label' => 'File',
+				// 'icon'  => 'dashicons-welcome-add-page',
+				// )
+				// );
+				//
+				// require_once doc_posts_plugin()->dir_path . 'inc/bb-controls/class-control-file.php';
+				//
+				// $doc_manager->register_control(
+				// new ButterBean_Control_File(
+				// $doc_manager,
+				// 'doc_file',
+				// array(
+				// 'type'        => 'file',
+				// 'section'     => 'doc_file_fields',
+				// 'label'       => 'Upload file',
+				// )
+				// )
+				// );
 				$doc_manager->register_setting(
 					'doc_file',
 					array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
@@ -224,9 +224,9 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 							'label'       => 'Grades',
 							'description' => 'Select all that apply.',
 							'choices'     => array(
-								'0-pk'=> 'Pre-K',
-								'0-tk'=> 'Transitional-K',
-								'0-k'=> 'Kindergarten',
+								'0-pk' => 'Pre-K',
+								'0-tk' => 'Transitional-K',
+								'0-k' => 'Kindergarten',
 								'1' => '1st',
 								'2' => '2nd',
 								'3' => '3rd',
@@ -239,7 +239,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 								'10' => '10th',
 								'11' => '11th',
 								'12' => '12th',
-							)
+							),
 						)
 					);
 
@@ -254,12 +254,12 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 
 		}
 		/**
-* Returns the instance.
-*
-* @since  1.0.0
-* @access public
-* @return object
-*/
+		 * Returns the instance.
+		 *
+		 * @since  1.0.0
+		 * @access public
+		 * @return object
+		 */
 		public static function get_instance() {
 			static $instance = null;
 			if ( is_null( $instance ) ) {
@@ -269,13 +269,50 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 			return $instance;
 		}
 		/**
-* Constructor method.
-*
-* @since  1.0.0
-* @access private
-* @return void
-*/
+		 * Constructor method.
+		 *
+		 * @since  1.0.0
+		 * @access private
+		 * @return void
+		 */
 		private function __construct() {}
 	}
 	Doc_Meta::get_instance();
+}
+
+
+add_action( 'cmb2_admin_init', 'dpt_register_metabox' );
+/**
+ * Hook in and add a demo metabox. Can only happen on the 'cmb2_admin_init' or 'cmb2_init' hook.
+ */
+function dpt_register_metabox() {
+	$prefix = 'dpt_';
+	/**
+	 * Sample metabox to demonstrate each field type included
+	 */
+	$dpt_cmb = new_cmb2_box( array(
+		'id'            => $prefix . 'docs',
+		'title'         => __( 'Document', 'cmb2' ),
+		'object_types'  => array( 'document' ), // Post type
+		// 'show_on_cb' => 'yourprefix_show_if_front_page', // function should return a bool value
+		// 'context'    => 'normal',
+		// 'priority'   => 'high',
+		// 'show_names' => true, // Show field names on the left
+		// 'cmb_styles' => false, // false to disable the CMB stylesheet
+		// 'closed'     => true, // true to keep the metabox closed by default
+		// 'classes'    => 'extra-class', // Extra cmb2-wrap classes
+		// 'classes_cb' => 'yourprefix_add_some_classes', // Add classes through a callback.
+	) );
+
+	$dpt_cmb->add_field( array(
+		'name' => __( 'File Upload', 'cmb2' ),
+		'id'   => $prefix . 'document',
+		'type' => 'file',
+		'options' => array(
+	        'url' => false, // Hide the text input for the url
+	    ),
+	    'text'    => array(
+	        'add_upload_file_text' => 'Add File' // Change upload button text. Default: "Add or Upload File"
+	    ),
+	) );
 }
