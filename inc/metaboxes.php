@@ -34,8 +34,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 		public function register( $butterbean, $post_type ) {
 			if ( 'parish' !== $post_type && 'school' !== $post_type && 'department' !== $post_type ) {
 				return; }
-				/*
-			=== Register Managers === */
+				/* === Register Managers === */
 				// $butterbean->register_manager(
 				// 'doc_documents',
 				// array(
