@@ -68,10 +68,10 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				// )
 				// )
 				// );
-				$doc_manager->register_setting(
-					'doc_file',
-					array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
-				);
+				// $doc_manager->register_setting(
+				// 	'doc_file',
+				// 	array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
+				// );
 
 				$butterbean->register_manager(
 					'doc_contact_info',
