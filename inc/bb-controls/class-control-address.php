@@ -47,7 +47,13 @@ class ButterBean_Control_Address extends ButterBean_Control {
 		wp_enqueue_script( 'gplaces' ); ?>
 
 		<div class="u-1of1 u-p1">
-			<input id="autocomplete" class="u-1of1" placeholder="Begin typing your address" onFocus="geolocate()" type="text"></input>
+			<?php if ( get_theme_mod( 'google_maps_api' ) ) : ?>
+				<p class="form-group">
+					<input id="autocomplete" class="widefat" placeholder="Begin typing your address" onFocus="geolocate()" type="text"></input>
+				</p>
+			<?php else : ?>
+				<p><code><span class="dashicons dashicons-info"></span> To use the address autofill and geolocation features, enter your Google Maps API key in the "Owner Info and APIs" Customizer control.</code></p>
+			<?php endif; ?>
 		</div>
 		<div class="row">
 			<div class="u-1of1 u-p1">
@@ -82,7 +88,7 @@ class ButterBean_Control_Address extends ButterBean_Control {
 		<div class="row u-p1">
 
 			<iframe width="100%" height="350" frameborder="0" style="border:0"
-src="https://www.google.com/maps/embed/v1/streetview?location={{ data.lat_lon.value }}&key=<?php echo doc_posts_plugin()->maps_api ?>">Save your post to see the embeded map.</iframe>
+src="https://www.google.com/maps/embed/v1/streetview?location={{ data.lat_lon.value }}&key=<?php echo doc_posts_plugin()->maps_api ?>"></iframe>
 
 			<div class="u-1of1 u-p1">
 				<label>
