@@ -66,6 +66,15 @@ final class Doc_Posts_Plugin {
 	public $img_uri = '';
 
 	/**
+	 * Google maps api key.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @var    string
+	 */
+	public $maps_api = '';
+
+	/**
 	 * Returns the instance.
 	 *
 	 * @since  1.0.0
@@ -109,6 +118,8 @@ final class Doc_Posts_Plugin {
 		$this->css_uri = trailingslashit( $this->dir_uri . 'assets/styles' );
 		$this->js_uri  = trailingslashit( $this->dir_uri . 'assets/scripts' );
 		$this->img_uri  = trailingslashit( $this->dir_uri . 'assets/images' );
+
+		$this->maps_api = get_theme_mod( 'google_maps_api' );
 	}
 
 	/**
@@ -121,6 +132,7 @@ final class Doc_Posts_Plugin {
 	private function includes() {
 		require_once $this->dir_path . 'lib/extended-cpts.php';
 		require_once $this->dir_path . 'lib/extended-taxos.php';
+		require_once $this->dir_path . 'inc/customizer.php';
 		require_once $this->dir_path . 'inc/bb-settings/class-setting-value-array.php';
 		require_once $this->dir_path . 'inc/bb-controls/class-control-address.php';
 		require_once $this->dir_path . 'inc/bb-controls/class-control-contact.php';
@@ -152,8 +164,8 @@ final class Doc_Posts_Plugin {
 	public function admin_scripts() {
 		wp_enqueue_media();
 		wp_enqueue_style( 'dpt-admin-styles', trailingslashit( $this->css_uri ) . 'dpt.css' );
-		wp_enqueue_script( 'gplaces', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAWH6M9ymO6A5wEtB_DQa3866F80KZC2Ck&libraries=places', false, true );
-		wp_enqueue_script( 'geocomplete', trailingslashit( $this->js_uri ) . 'jquery.geocomplete.min.js', array( 'jquery', 'gplaces' ), false, true );
+		wp_register_script( 'geocomplete', trailingslashit( $this->js_uri ) . 'address-autocomplete.js', false, false, true );
+		wp_register_script( 'gplaces', "https://maps.googleapis.com/maps/api/js?key={$this->maps_api}&libraries=places&callback=initAutocomplete", array( 'geocomplete' ), false, true );
 	}
 
 	public function activation() {

@@ -44,17 +44,16 @@ class ButterBean_Control_Address extends ButterBean_Control {
 	}
 
 	public function get_template() {
-		?>
+		wp_enqueue_script( 'gplaces' ); ?>
 
 		<div class="u-1of1 u-p1">
-			<input class="u-1of1 u-1of2-md" id="geocomplete" type="text" placeholder="Start typing an address" value="" />
-			<button id="find" class="button" type="button"/><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="v-icon"><path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0 0 13 3.06V1h-2v2.06A8.994 8.994 0 0 0 3.06 11H1v2h2.06A8.994 8.994 0 0 0 11 20.94V23h2v-2.06A8.994 8.994 0 0 0 20.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg></button>
+			<input id="autocomplete" class="u-1of1" placeholder="Begin typing your address" onFocus="geolocate()" type="text"></input>
 		</div>
 		<div class="row">
 			<div class="u-1of1 u-p1">
 				<label>
 					<span class="butterbean-label">{{ data.street.label }}</span>
-					<input type="text" placeholder="1123 South Church Street" autocomplete="shipping street-address" class="u-1of1" value="{{ data.street.value }}" name="{{ data.street.field_name }}" />
+					<input id="address1" type="text" placeholder="1123 South Church Street" autocomplete="shipping street-address" class="u-1of1" value="{{ data.street.value }}" name="{{ data.street.field_name }}" />
 				</label>
 			</div>
 		</div>
@@ -63,31 +62,32 @@ class ButterBean_Control_Address extends ButterBean_Control {
 			<div class="u-1of1 u-p1 u-1of2-md">
 				<label>
 					<span class="butterbean-label">{{ data.city.label }}</span>
-					<input type="text" class="u-1of1" placeholder="Charlotte" autocomplete="shipping address-level2" value="{{ data.city.value }}" name="{{ data.city.field_name }}" />
+					<input id="locality" type="text" class="u-1of1" placeholder="Charlotte" autocomplete="shipping address-level2" value="{{ data.city.value }}" name="{{ data.city.field_name }}" />
 				</label>
 			</div>
 			<div class="u-1of1 u-p1 u-1of4-md">
 				<label>
 					<span class="butterbean-label">{{ data.state.label }}</span>
-					<input type="text" class="u-1of1 u-caps" placeholder="NC" maxlength="2" autocomplete="shipping address-level1" value="{{ data.state.value }}" name="{{ data.state.field_name }}" />
+					<input id="administrative_area_level_1" type="text" class="u-1of1 u-caps" placeholder="NC" maxlength="2" autocomplete="shipping address-level1" value="{{ data.state.value }}" name="{{ data.state.field_name }}" />
 				</label>
 			</div>
 			<div class="u-1of1 u-p1 u-1of4-md">
 				<label>
 					<span class="butterbean-label">{{ data.zip.label }}</span>
-					<input type="text" pattern="[0-9]*" class="u-1of1" maxlength="5" placeholder="28203" autocomplete="shipping postal-code" value="{{ data.zip.value }}" name="{{ data.zip.field_name }}" />
+					<input id="postal_code" type="text" pattern="[0-9]*" class="u-1of1" maxlength="5" placeholder="28203" autocomplete="shipping postal-code" value="{{ data.zip.value }}" name="{{ data.zip.field_name }}" />
 				</label>
 			</div>
 		</div>
 
-		<div class="row">
+		<div class="row u-p1">
 
-			<div id="map_canvas"></div>
+			<iframe width="100%" height="350" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/streetview?location={{ data.lat_lon.value }}&key=<?php echo doc_posts_plugin()->maps_api ?>">Save your post to see the embeded map.</iframe>
 
 			<div class="u-1of1 u-p1">
 				<label>
 					<span class="butterbean-label">{{ data.lat_lon.label }}</span>
-					<input data-geo="location" name="{{ data.lat_lon.field_name }}" type="text" placeholder="geo-coordinates" class="u-1of1" value="{{ data.lat_lon.value }}">
+					<input id="geolocation" name="{{ data.lat_lon.field_name }}" type="text" placeholder="geo-coordinates" class="u-1of1" value="{{ data.lat_lon.value }}">
 				</label>
 			</div>
 		</div>
