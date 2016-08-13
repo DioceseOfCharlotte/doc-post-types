@@ -39,7 +39,7 @@ function doc_register_taxonomies() {
 	) );
 
 	register_extended_taxonomy('document_category', 'document', array(
-		'meta_box' => 'radio',
+		//'meta_box' => 'radio',
 		'dashboard_glance' => true,
 
 		// 'capabilities' => array(
