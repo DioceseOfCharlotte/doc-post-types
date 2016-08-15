@@ -1,6 +1,7 @@
 <?php
 
 add_action( 'pre_get_posts', 'doc_custom_queries', 1 );
+add_action('omnisearch_add_providers', 'doc_omnisearch_add_providers');
 
 /**
  * Post Groups.
@@ -9,24 +10,6 @@ function doc_department_cpts() {
    $cpts = array( 'archive_post','bishop', 'deacon', 'development', 'education', 'finance', 'human_resources', 'hispanic_ministry', 'housing', 'info_tech', 'liturgy', 'macs', 'multicultural', 'planning', 'property', 'tribunal', 'vocation' );
    return $cpts;
 }
-
-//add_action( 'post_edit_form_tag' , 'post_edit_form_tag' );
-
-// allow file upload form
-// function post_edit_form_tag( ) {
-//
-// 	global $post;
-//
-// 	if(!$post)
-// 		return;
-//
-// 	$post_type = get_post_type($post->ID);
-//
-// 	if('document' != $post_type)
-// 		return;
-//
-//     echo ' enctype="multipart/form-data"';
-// }
 
 function doc_place_cpts() {
    $cpts = array(
@@ -76,5 +59,42 @@ function doc_custom_queries( $query ) {
 
 			if ( is_post_type_archive( 'department' ) )
 				$query->set( 'post_parent', 0 );
+	}
+}
+
+
+//Jetpack_Omnisearch
+function doc_omnisearch_add_providers() {
+    if ( ! class_exists( 'Jetpack_Omnisearch_Posts' ) ) {
+		return;
+	}
+
+	$cpt_names = array(
+		'school',
+		'parish',
+		'department',
+		'archive_post',
+		'bishop',
+		'schools_office',
+		'deacon',
+		'development',
+		'education',
+		'finance',
+		'hispanic_ministry',
+		'housing',
+		'human_resources',
+		'info_tech',
+		'liturgy',
+		'macs',
+		'multicultural',
+		'planning',
+		'property',
+		'tribunal',
+		'vocation',
+		'statistics_report',
+	);
+
+	foreach ( $cpt_names as $name ) {
+        new Jetpack_Omnisearch_Posts( "{$name}" );
 	}
 }
