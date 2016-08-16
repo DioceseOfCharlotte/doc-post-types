@@ -13,7 +13,23 @@ add_action( 'init', 'doc_register_taxonomies' );
  * @since  0.1.0
  * @access public
  */
+
 function doc_register_taxonomies() {
+
+	// register_taxonomy_for_object_type( 'category', 'finance' );
+
+	register_extended_taxonomy( 'attachment_category', 'attachment',
+		array(
+			'show_admin_column' => true,
+			'sort' => true,
+		),
+
+		array(
+			'singular' => 'Media Category',
+			'plural'   => 'Media Categories',
+		)
+	);
+
 	register_extended_taxonomy('school_system', 'school', array(
 		'meta_box' => 'radio',
 		'dashboard_glance' => true,
