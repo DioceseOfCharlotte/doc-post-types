@@ -4,59 +4,6 @@ add_action( 'pre_get_posts', 'doc_custom_queries', 1 );
 add_filter( 'post_mime_types', 'modify_post_mime_types' );
 add_action('omnisearch_add_providers', 'doc_omnisearch_add_providers');
 
-function modify_post_mime_types( $post_mime_types ) {
-
-$post_mime_types['application/pdf'] = array( __( 'PDFs' ), __( 'Manage PDFs' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
-
-// then we return the $post_mime_types variable
-return $post_mime_types;
-
-}
-
-add_action( 'wp_enqueue_media', function() {
-	wp_enqueue_script( 'media-library-taxonomy-filter', doc_posts_plugin()->js_uri . 'collection-filter.js', array( 'media-editor', 'media-views' ) );
-	// Load 'terms' into a JavaScript variable that collection-filter.js has access to
-	wp_localize_script( 'media-library-taxonomy-filter', 'MediaLibraryTaxonomyFilterData', array(
-		'terms'     => get_terms( 'attachment_category', array( 'hide_empty' => false ) ),
-	) );
-	// Overrides code styling to accommodate for a third dropdown filter
-	add_action( 'admin_footer', function(){
-		?>
-		<style>
-		.media-modal-content .media-frame select.attachment-filters {
-			max-width: -webkit-calc(33% - 12px);
-			max-width: calc(33% - 12px);
-		}
-		</style>
-		<?php
-	});
-});
-
-/**
- * Post Groups.
- */
-function doc_department_cpts() {
-   $cpts = array( 'archive_post','bishop', 'deacon', 'development', 'education', 'finance', 'human_resources', 'hispanic_ministry', 'housing', 'info_tech', 'liturgy', 'macs', 'multicultural', 'planning', 'property', 'tribunal', 'vocation' );
-   return $cpts;
-}
-
-function doc_place_cpts() {
-   $cpts = array(
-	   'department',
-	   'parish',
-	   'school',
-   );
-   return $cpts;
-}
-
-function doc_home_tiles() {
-   $cpts = array(
-	   'department',
-	   'cpt_archive',
-   );
-   return array_merge( $cpts, doc_department_cpts() );
-}
-
 /**
  * Custom queries.
  *
@@ -91,6 +38,41 @@ function doc_custom_queries( $query ) {
 	}
 }
 
+function modify_post_mime_types( $post_mime_types ) {
+
+	$post_mime_types['application/pdf'] = array(
+		__( 'PDFs' ),
+		__( 'Manage PDFs' ),
+		_n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' )
+	);
+
+	return $post_mime_types;
+}
+
+/**
+ * Post Groups.
+ */
+function doc_department_cpts() {
+   $cpts = array( 'archive_post','bishop', 'deacon', 'development', 'education', 'finance', 'human_resources', 'hispanic_ministry', 'housing', 'info_tech', 'liturgy', 'macs', 'multicultural', 'planning', 'property', 'tribunal', 'vocation' );
+   return $cpts;
+}
+
+function doc_place_cpts() {
+   $cpts = array(
+	   'department',
+	   'parish',
+	   'school',
+   );
+   return $cpts;
+}
+
+function doc_home_tiles() {
+   $cpts = array(
+	   'department',
+	   'cpt_archive',
+   );
+   return array_merge( $cpts, doc_department_cpts() );
+}
 
 //Jetpack_Omnisearch
 function doc_omnisearch_add_providers() {

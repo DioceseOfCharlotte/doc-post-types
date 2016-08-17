@@ -14,19 +14,18 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 		/**
 		 * Sets up initial actions.
 		 *
-		 * @since  1.0.0
 		 * @access private
 		 * @return void
 		 */
 		private function setup_actions() {
 			// Call the register function.
 			add_action( 'butterbean_register', array( $this, 'register' ), 10, 2 );
+			add_action( 'butterbean_register', array( $this, 'register_post_options' ), 10, 2 );
 		}
+
 		/**
 		 * Registers managers, sections, controls, and settings.
 		 *
-		 * @since  1.0.0
-		 * @access public
 		 * @param  object $butterbean  Instance of the `ButterBean` object.
 		 * @param  string $post_type
 		 * @return void
@@ -34,43 +33,6 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 		public function register( $butterbean, $post_type ) {
 			if ( 'parish' !== $post_type && 'school' !== $post_type && 'department' !== $post_type ) {
 				return; }
-				/* === Register Managers === */
-				// $butterbean->register_manager(
-				// 'doc_documents',
-				// array(
-				// 'label'     => 'Documents',
-				// 'post_type' => array( 'document' ),
-				// 'context'   => 'normal',
-				// 'priority'  => 'high',
-				// )
-				// );
-				// $doc_manager = $butterbean->get_manager( 'doc_documents' );
-				//
-				// $doc_manager->register_section(
-				// 'doc_file_fields',
-				// array(
-				// 'label' => 'File',
-				// 'icon'  => 'dashicons-welcome-add-page',
-				// )
-				// );
-				//
-				// require_once doc_posts_plugin()->dir_path . 'inc/bb-controls/class-control-file.php';
-				//
-				// $doc_manager->register_control(
-				// new ButterBean_Control_File(
-				// $doc_manager,
-				// 'doc_file',
-				// array(
-				// 'type'        => 'file',
-				// 'section'     => 'doc_file_fields',
-				// 'label'       => 'Upload file',
-				// )
-				// )
-				// );
-				// $doc_manager->register_setting(
-				// 	'doc_file',
-				// 	array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
-				// );
 
 				$butterbean->register_manager(
 					'doc_contact_info',
@@ -252,6 +214,75 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				}
 
 		}
+
+		/**
+		 * Registers managers, sections, controls, and settings.
+		 */
+		public function register_post_options( $butterbean, $post_type ) {
+			$doc_po = array(
+			   'department',
+			   'parish',
+			   'school',
+			   'cpt_archive',
+		   	);
+
+			if ( ! in_array( $post_type, $doc_po, true ) ) {
+				return; }
+
+			$butterbean->register_manager(
+				'doc_accents',
+				array(
+				'label'     => 'Section Styles',
+				'post_type' => array(
+			 	   'department',
+			 	   'parish',
+			 	   'school',
+				   'cpt_archive',
+			   	),
+				'context'   => 'normal',
+				'priority'  => 'high',
+				)
+			);
+
+			$manager = $butterbean->get_manager( 'doc_accents' );
+
+			$manager->register_section(
+				'doc_post_colors',
+				array(
+					'label' => 'Colors',
+					'icon'  => 'dashicons-art',
+				)
+			);
+
+			$manager->register_control(
+				'doc_page_primary_color',
+				array(
+					'type'        => 'color',
+					'section'     => 'doc_post_colors',
+					'label'       => 'Primary color',
+				)
+			);
+
+			$manager->register_control(
+				'doc_page_secondary_color',
+				array(
+					'type'        => 'color',
+					'section'     => 'doc_post_colors',
+					'label'       => 'Secondary color',
+				)
+			);
+
+			$manager->register_setting(
+				'doc_page_primary_color',
+				array( 'sanitize_callback' => 'sanitize_hex_color_no_hash' )
+			);
+
+			$manager->register_setting(
+				'doc_page_secondary_color',
+				array( 'sanitize_callback' => 'sanitize_hex_color_no_hash' )
+			);
+		}
+
 		/**
 		 * Returns the instance.
 		 *
