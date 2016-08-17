@@ -20,7 +20,6 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 		private function setup_actions() {
 			// Call the register function.
 			add_action( 'butterbean_register', array( $this, 'register' ), 10, 2 );
-			add_action( 'butterbean_register', array( $this, 'register_post_options' ), 10, 2 );
 		}
 
 		/**
@@ -221,67 +220,64 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					);
 				}
 
-
-
-			$manager->register_section(
-				'doc_post_colors',
-				array(
+				$manager->register_section(
+					'doc_post_colors',
+					array(
 					'label' => 'Colors',
 					'icon'  => 'dashicons-art',
-				)
-			);
+					)
+				);
 
-			$manager->register_control(
-				'doc_page_primary_color',
-				array(
+				$manager->register_control(
+					'doc_page_primary_color',
+					array(
 					'type'        => 'color',
 					'section'     => 'doc_post_colors',
 					'label'       => 'Primary color',
-				)
-			);
+					)
+				);
 
-			$manager->register_control(
-				'doc_page_secondary_color',
-				array(
+				$manager->register_control(
+					'doc_page_secondary_color',
+					array(
 					'type'        => 'color',
 					'section'     => 'doc_post_colors',
 					'label'       => 'Secondary color',
-				)
-			);
+					)
+				);
 
-			$manager->register_setting(
-				'doc_page_primary_color',
-				array( 'sanitize_callback' => 'sanitize_hex_color_no_hash' )
-			);
+				$manager->register_setting(
+					'doc_page_primary_color',
+					array( 'sanitize_callback' => 'sanitize_hex_color_no_hash' )
+				);
 
-			$manager->register_setting(
-				'doc_page_secondary_color',
-				array( 'sanitize_callback' => 'sanitize_hex_color_no_hash' )
-			);
+				$manager->register_setting(
+					'doc_page_secondary_color',
+					array( 'sanitize_callback' => 'sanitize_hex_color_no_hash' )
+				);
 
-			// Image
-			$manager->register_section(
-				'header_fields',
-				array(
+				// Image
+				$manager->register_section(
+					'header_fields',
+					array(
 					'label' => 'Header',
-					'icon'  => 'dashicons-star-filled'
-				)
-			);
+					'icon'  => 'dashicons-star-filled',
+					)
+				);
 
-			$manager->register_control(
-				'header_image',
-				array(
+				$manager->register_control(
+					'header_image',
+					array(
 					'type'        => 'image',
 					'section'     => 'header_fields',
 					'label'       => 'Header Image',
-					'description' => 'Example description.'
-				)
-			);
+					)
+				);
 
-			$manager->register_setting(
-				'header_image',
-				array( 'sanitize_callback' => 'absint' )
-			);
+				$manager->register_setting(
+					'header_image',
+					array( 'sanitize_callback' => 'absint' )
+				);
 		}
 
 		/**
@@ -340,10 +336,10 @@ function dpt_register_metabox() {
 		'id'   => $prefix . 'document',
 		'type' => 'file',
 		'options' => array(
-	        'url' => false, // Hide the text input for the url
+		'url' => false, // Hide the text input for the url
 	    ),
 	    'text'    => array(
-	        'add_upload_file_text' => 'Add File' // Change upload button text. Default: "Add or Upload File"
+		'add_upload_file_text' => 'Add File',// Change upload button text. Default: "Add or Upload File"
 	    ),
 	) );
 }
