@@ -62,6 +62,7 @@ function doc_place_cpts() {
 	   'department',
 	   'parish',
 	   'school',
+	   'cpt_archive',
    );
    return $cpts;
 }

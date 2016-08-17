@@ -31,14 +31,22 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 		 * @return void
 		 */
 		public function register( $butterbean, $post_type ) {
-			if ( 'parish' !== $post_type && 'school' !== $post_type && 'department' !== $post_type ) {
+
+			$doc_po = array(
+			   'department',
+			   'parish',
+			   'school',
+			   'cpt_archive',
+		   	);
+
+			if ( ! in_array( $post_type, $doc_po, true ) ) {
 				return; }
 
 				$butterbean->register_manager(
 					'doc_contact_info',
 					array(
 					'label'     => 'Doc Info',
-					'post_type' => array( 'parish', 'school', 'department' ),
+					'post_type' => $doc_po,
 					'context'   => 'normal',
 					'priority'  => 'high',
 					)
@@ -213,38 +221,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					);
 				}
 
-		}
 
-		/**
-		 * Registers managers, sections, controls, and settings.
-		 */
-		public function register_post_options( $butterbean, $post_type ) {
-			$doc_po = array(
-			   'department',
-			   'parish',
-			   'school',
-			   'cpt_archive',
-		   	);
-
-			if ( ! in_array( $post_type, $doc_po, true ) ) {
-				return; }
-
-			$butterbean->register_manager(
-				'doc_accents',
-				array(
-				'label'     => 'Section Styles',
-				'post_type' => array(
-			 	   'department',
-			 	   'parish',
-			 	   'school',
-				   'cpt_archive',
-			   	),
-				'context'   => 'normal',
-				'priority'  => 'high',
-				)
-			);
-
-			$manager = $butterbean->get_manager( 'doc_accents' );
 
 			$manager->register_section(
 				'doc_post_colors',
@@ -280,6 +257,30 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 			$manager->register_setting(
 				'doc_page_secondary_color',
 				array( 'sanitize_callback' => 'sanitize_hex_color_no_hash' )
+			);
+
+			// Image
+			$manager->register_section(
+				'header_fields',
+				array(
+					'label' => 'Header',
+					'icon'  => 'dashicons-star-filled'
+				)
+			);
+
+			$manager->register_control(
+				'header_image',
+				array(
+					'type'        => 'image',
+					'section'     => 'header_fields',
+					'label'       => 'Header Image',
+					'description' => 'Example description.'
+				)
+			);
+
+			$manager->register_setting(
+				'header_image',
+				array( 'sanitize_callback' => 'absint' )
 			);
 		}
 
