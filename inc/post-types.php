@@ -634,18 +634,18 @@ function doc_register_post_types() {
 
 		'enter_title_here'     => 'Enter document title here',
 		'menu_icon'            => 'dashicons-media-document',
-		'supports'             => array( 'title', 'archive' ),
+		'supports'             => array( 'title', 'author', 'archive' ),
 
 		/* Capabilities. */
-		// 'capabilities' => array(
-		// 	'edit_post'             => 'upload_files',
-		// 	'read_post'             => 'read_posts',
-		// 	'delete_post'           => 'upload_files',
-		// 	'edit_posts'            => 'upload_files',
-		// 	'edit_others_posts'     => 'edit_others_posts',
-		// 	'publish_posts'         => 'upload_files',
-		// 	'read_private_posts'    => 'read_private_posts',
-		// ),
+		'capabilities' => array(
+			'edit_post'             => 'upload_files',
+			'read_post'             => 'read',
+			'delete_post'           => 'upload_files',
+			'edit_posts'            => 'upload_files',
+			'edit_others_posts'     => 'edit_others_posts',
+			'publish_posts'         => 'upload_files',
+			'read_private_posts'    => 'read_private_posts',
+		),
 
 	    # Show all posts on the post type archive:
 	    'archive' => array(

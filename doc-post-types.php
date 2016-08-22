@@ -224,6 +224,7 @@ final class Doc_Posts_Plugin {
 				add_role( $name, "{$name} Administrator",
 					array(
 						'read' => true,
+						'upload_files' => true,
 						'level_0' => true,
 						"create_{$name}s" => true,
 						"edit_{$name}s" => true,
@@ -236,7 +237,6 @@ final class Doc_Posts_Plugin {
 						"delete_others_{$name}s" => true,
 						"edit_private_{$name}s" => true,
 						"edit_published_{$name}s" => true,
-						'upload_files' => true,
 					)
 				);
 			}
