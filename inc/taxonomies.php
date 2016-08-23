@@ -16,6 +16,22 @@ add_action( 'init', 'doc_register_taxonomies' );
 
 function doc_register_taxonomies() {
 
+	register_extended_taxonomy('document_department', 'document', array(
+		'meta_box' => 'radio',
+		'dashboard_glance' => true,
+		'capabilities' => array(
+			'manage_terms' => 'manage_options',
+			'edit_terms'   => 'manage_options',
+			'delete_terms' => 'manage_options',
+			'assign_terms' => 'upload_files',
+		),
+	),
+	array(
+		'singular' => 'Department',
+		'plural'   => 'Departments',
+		'slug'     => 'document-department',
+	) );
+
 	register_extended_taxonomy('document_category', 'document', array(
 		//'meta_box' => 'radio',
 		'dashboard_glance' => true,
@@ -45,22 +61,6 @@ function doc_register_taxonomies() {
 		'singular' => 'Tag',
 		'plural'   => 'Tags',
 		'slug'     => 'document-tag',
-	) );
-
-	register_extended_taxonomy('document_department', 'document', array(
-		'meta_box' => 'radio',
-		'dashboard_glance' => true,
-		'capabilities' => array(
-			'manage_terms' => 'manage_options',
-			'edit_terms'   => 'manage_options',
-			'delete_terms' => 'manage_options',
-			'assign_terms' => 'upload_files',
-		),
-	),
-	array(
-		'singular' => 'Department',
-		'plural'   => 'Departments',
-		'slug'     => 'document-department',
 	) );
 
 	// register_taxonomy_for_object_type( 'category', 'finance' );
