@@ -53,7 +53,7 @@ function modify_post_mime_types( $post_mime_types ) {
  * Post Groups.
  */
 function doc_department_cpts() {
-   $cpts = array( 'archive_post','bishop', 'deacon', 'development', 'education', 'finance', 'human_resources', 'hispanic_ministry', 'housing', 'info_tech', 'liturgy', 'macs', 'multicultural', 'planning', 'property', 'tribunal', 'vocation' );
+   $cpts = array( 'archive_post','bishop', 'deacon', 'development', 'education', 'finance', 'human_resources', 'hispanic_ministry', 'housing', 'info_tech', 'liturgy', 'macs', 'multicultural', 'planning', 'property', 'schools_office', 'tribunal', 'vocation' );
    return $cpts;
 }
 
