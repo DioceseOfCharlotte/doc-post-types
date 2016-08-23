@@ -117,7 +117,7 @@ function doc_register_post_types() {
 
 	    # Add a dropdown filter to the admin screen:
 	    'admin_filters' => array(
-			'document_category' => array(
+			'document_department' => array(
 	            'taxonomy' => 'document_department'
 	        ),
 	        'document_category' => array(
