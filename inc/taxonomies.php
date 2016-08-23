@@ -32,6 +32,21 @@ function doc_register_taxonomies() {
 		'slug'     => 'document-category',
 	) );
 
+	register_extended_taxonomy('document_tag', 'document', array(
+		'hierarchical' => false,
+		'capabilities' => array(
+			'manage_terms' => 'manage_options',
+			'edit_terms'   => 'manage_options',
+			'delete_terms' => 'manage_options',
+			'assign_terms' => 'upload_files',
+		),
+	),
+	array(
+		'singular' => 'Tag',
+		'plural'   => 'Tags',
+		'slug'     => 'document-tag',
+	) );
+
 	register_extended_taxonomy('document_department', 'document', array(
 		'meta_box' => 'radio',
 		'dashboard_glance' => true,
