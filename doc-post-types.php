@@ -225,6 +225,7 @@ final class Doc_Posts_Plugin {
 					array(
 						'read' => true,
 						'upload_files' => true,
+						'restrict_content' => true,
 						'level_0' => true,
 						"create_{$name}s" => true,
 						"edit_{$name}s" => true,
