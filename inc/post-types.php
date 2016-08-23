@@ -78,6 +78,55 @@ function doc_register_post_types() {
 		return apply_filters( 'doc_get_capabilities', $caps );
 	}
 
+	register_extended_post_type( 'document',
+	array(
+
+		'enter_title_here'     => 'Enter document title here',
+		'menu_icon'            => 'dashicons-media-document',
+		'supports'             => array( 'title', 'author', 'archive' ),
+
+		/* Capabilities. */
+		'capabilities' => array(
+			'edit_post'             => 'upload_files',
+			'read_post'             => 'read',
+			'delete_post'           => 'upload_files',
+			'edit_posts'            => 'upload_files',
+			'edit_others_posts'     => 'edit_others_posts',
+			'publish_posts'         => 'upload_files',
+			'read_private_posts'    => 'read_private_posts',
+		),
+
+	    # Show all posts on the post type archive:
+	    'archive' => array(
+	        'nopaging' => true
+	    ),
+
+	    # Add some custom columns to the admin screen:
+	    'admin_cols' => array(
+			'document_department' => array(
+	            'taxonomy' => 'document_department'
+	        ),
+	        'document_category' => array(
+	            'taxonomy' => 'document_category'
+	        ),
+			'published' => array(
+	            'title'       => 'Published',
+				'post_field' => 'post_date',
+	        ),
+	    ),
+
+	    # Add a dropdown filter to the admin screen:
+	    'admin_filters' => array(
+			'document_category' => array(
+	            'taxonomy' => 'document_department'
+	        ),
+	        'document_category' => array(
+	            'taxonomy' => 'document_category'
+	        ),
+	    )
+
+	) );
+
 	register_extended_post_type( 'school',
 		array(
 		'admin_cols' => array(
@@ -630,47 +679,4 @@ function doc_register_post_types() {
 		)
 	);
 
-	register_extended_post_type( 'document',
-	array(
-
-		'enter_title_here'     => 'Enter document title here',
-		'menu_icon'            => 'dashicons-media-document',
-		'supports'             => array( 'title', 'author', 'archive' ),
-
-		/* Capabilities. */
-		'capabilities' => array(
-			'edit_post'             => 'upload_files',
-			'read_post'             => 'read',
-			'delete_post'           => 'upload_files',
-			'edit_posts'            => 'upload_files',
-			'edit_others_posts'     => 'edit_others_posts',
-			'publish_posts'         => 'upload_files',
-			'read_private_posts'    => 'read_private_posts',
-		),
-
-	    # Show all posts on the post type archive:
-	    'archive' => array(
-	        'nopaging' => true
-	    ),
-
-	    # Add some custom columns to the admin screen:
-	    'admin_cols' => array(
-	        'published' => array(
-	            'title'       => 'Published',
-	            'meta_key'    => 'published_date',
-	            'date_format' => 'd/m/Y'
-	        ),
-	        'document_category' => array(
-	            'taxonomy' => 'document_category'
-	        )
-	    ),
-
-	    # Add a dropdown filter to the admin screen:
-	    'admin_filters' => array(
-	        'document_category' => array(
-	            'taxonomy' => 'document_category'
-	        )
-	    )
-
-	) );
 }
