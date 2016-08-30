@@ -78,6 +78,22 @@ function doc_register_post_types() {
 		return apply_filters( 'doc_get_capabilities', $caps );
 	}
 
+	register_extended_post_type( 'schools-blog',
+		array(
+			'menu_icon'           => 'dashicons-networking',
+			'supports'            => $doc_post_supports,
+			'show_in_menu'		=> 'edit.php?post_type=schools_office',
+			// 'capability_type'     => 'schools-blog',
+			// 'map_meta_cap'        => true,
+			// 'capabilities'        => doc_get_capabilities( 'schools-blog' ),
+		),
+		array(
+			'singular' => 'Schools Blog',
+			'plural'   => 'Schools Blog',
+			'slug'     => 'schools-blog',
+		)
+	);
+
 	register_extended_post_type( 'document',
 	array(
 
