@@ -91,7 +91,6 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					)
 				);
 
-
 				$manager->register_control(
 					new ButterBean_Control_Address(
 						$manager,
@@ -236,6 +235,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					'type'        => 'color',
 					'section'     => 'doc_post_colors',
 					'label'       => 'Primary color',
+					'options' => array( 'palettes' => array( '#34495E', '#2980b9', '#39CCCC', '#16a085', '#FFC107', '#F44336' ) ),
 					)
 				);
 
@@ -245,6 +245,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					'type'        => 'color',
 					'section'     => 'doc_post_colors',
 					'label'       => 'Secondary color',
+					'options' => array( 'palettes' => array( '#34495E', '#2980b9', '#39CCCC', '#16a085', '#FFC107', '#F44336' ) ),
 					)
 				);
 

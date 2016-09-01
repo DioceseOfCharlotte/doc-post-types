@@ -2,7 +2,7 @@
 
 add_action( 'pre_get_posts', 'doc_custom_queries', 1 );
 add_filter( 'post_mime_types', 'modify_post_mime_types' );
-add_action('omnisearch_add_providers', 'doc_omnisearch_add_providers');
+add_action( 'omnisearch_add_providers', 'doc_omnisearch_add_providers' );
 
 /**
  * Custom queries.
@@ -12,8 +12,8 @@ add_action('omnisearch_add_providers', 'doc_omnisearch_add_providers');
  * @param array $query Main Query.
  */
 function doc_custom_queries( $query ) {
-	if ( ! $query->is_main_query() || is_admin() )
-		return;
+	if ( ! $query->is_main_query() || is_admin() ) {
+		return; }
 
 	if ( is_tax( 'agency' ) ) {
 		$post_type = $query->get( 'post_type' );
@@ -33,8 +33,8 @@ function doc_custom_queries( $query ) {
 			$query->set( 'order', 'ASC' );
 			$query->set( 'orderby', 'name' );
 
-			if ( is_post_type_archive( 'department' ) )
-				$query->set( 'post_parent', 0 );
+		if ( is_post_type_archive( 'department' ) ) {
+			$query->set( 'post_parent', 0 ); }
 	}
 }
 
@@ -43,7 +43,7 @@ function modify_post_mime_types( $post_mime_types ) {
 	$post_mime_types['application/pdf'] = array(
 		__( 'PDFs' ),
 		__( 'Manage PDFs' ),
-		_n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' )
+		_n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ),
 	);
 
 	return $post_mime_types;
@@ -53,31 +53,31 @@ function modify_post_mime_types( $post_mime_types ) {
  * Post Groups.
  */
 function doc_department_cpts() {
-   $cpts = array( 'archive_post','bishop', 'deacon', 'development', 'education', 'finance', 'human_resources', 'hispanic_ministry', 'housing', 'info_tech', 'liturgy', 'macs', 'multicultural', 'planning', 'property', 'schools_office', 'tribunal', 'vocation' );
-   return $cpts;
+	$cpts = array( 'archive_post','bishop', 'deacon', 'development', 'education', 'finance', 'human_resources', 'hispanic_ministry', 'housing', 'info_tech', 'liturgy', 'macs', 'multicultural', 'planning', 'property', 'schools_office', 'tribunal', 'vocation' );
+	return $cpts;
 }
 
 function doc_place_cpts() {
-   $cpts = array(
+	$cpts = array(
 	   'department',
 	   'parish',
 	   'school',
 	   'cpt_archive',
-   );
-   return $cpts;
+	);
+	return $cpts;
 }
 
 function doc_home_tiles() {
-   $cpts = array(
+	$cpts = array(
 	   'department',
 	   'cpt_archive',
-   );
-   return array_merge( $cpts, doc_department_cpts() );
+	);
+	return array_merge( $cpts, doc_department_cpts() );
 }
 
 //Jetpack_Omnisearch
 function doc_omnisearch_add_providers() {
-    if ( ! class_exists( 'Jetpack_Omnisearch_Posts' ) ) {
+	if ( ! class_exists( 'Jetpack_Omnisearch_Posts' ) ) {
 		return;
 	}
 
@@ -107,6 +107,6 @@ function doc_omnisearch_add_providers() {
 	);
 
 	foreach ( $cpt_names as $name ) {
-        new Jetpack_Omnisearch_Posts( "{$name}" );
+		new Jetpack_Omnisearch_Posts( "{$name}" );
 	}
 }
