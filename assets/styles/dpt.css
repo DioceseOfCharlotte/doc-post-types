@@ -1,3 +1,14 @@
+.butterbean-checkbox-list,
+.butterbean-radio-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.butterbean-checkbox-list > li,
+.butterbean-radio-list > li {
+    margin-right: 1rem;
+}
+
 .dpt-video-embed {
 	max-width: 600px;
 }

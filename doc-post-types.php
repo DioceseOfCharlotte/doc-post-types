@@ -133,10 +133,9 @@ final class Doc_Posts_Plugin {
 		require_once $this->dir_path . 'lib/extended-cpts.php';
 		require_once $this->dir_path . 'lib/extended-taxos.php';
 		require_once $this->dir_path . 'inc/customizer.php';
-		require_once $this->dir_path . 'inc/bb-settings/class-setting-value-array.php';
-		require_once $this->dir_path . 'inc/bb-controls/class-control-address.php';
-		require_once $this->dir_path . 'inc/bb-controls/class-control-contact.php';
+		require_once $this->dir_path . 'inc/cpts-location.php';
 		require_once $this->dir_path . 'inc/post-types.php';
+		require_once $this->dir_path . 'inc/cpts-blog.php';
 		require_once $this->dir_path . 'inc/taxonomies.php';
 		require_once $this->dir_path . 'inc/metaboxes.php';
 		require_once $this->dir_path . 'inc/functions.php';
@@ -168,8 +167,48 @@ final class Doc_Posts_Plugin {
 		wp_register_script( 'gplaces', "https://maps.googleapis.com/maps/api/js?key={$this->maps_api}&libraries=places&callback=initAutocomplete", array( 'geocomplete' ), false, true );
 	}
 
+	/**
+	 * Returns the capabilities for the post types.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return array
+	 */
+	public function doc_get_capabilities( $name ) {
+
+		$caps = array(
+
+			// meta caps (don't assign these to roles)
+			'edit_post'              => "edit_{$name}",
+			'read_post'              => "read_{$name}",
+			'delete_post'            => "delete_{$name}",
+
+			// primitive/meta caps
+			'create_posts'           => "create_{$name}s",
+
+			// primitive caps used outside of map_meta_cap()
+			'edit_posts'             => "edit_{$name}s",
+			'edit_others_posts'      => "edit_others_{$name}s",
+			'publish_posts'          => "publish_{$name}s",
+			'read_private_posts'     => "read_private_{$name}s",
+
+			// primitive caps used inside of map_meta_cap()
+			'read'                   => 'read',
+			'delete_posts'           => "delete_{$name}s",
+			'delete_private_posts'   => "delete_private_{$name}s",
+			'delete_published_posts' => "delete_published_{$name}s",
+			'delete_others_posts'    => "delete_others_{$name}s",
+			'edit_private_posts'     => "edit_private_{$name}s",
+			'edit_published_posts'   => "edit_published_{$name}s",
+		);
+
+		return apply_filters( 'doc_get_capabilities', $caps );
+	}
+
 	public function activation() {
 
+		doc_register_blog_cpts();
+		doc_register_location_cpts();
 		doc_register_post_types();
 		doc_register_taxonomies();
 
@@ -179,12 +218,11 @@ final class Doc_Posts_Plugin {
 		if ( ! is_null( $role ) ) {
 
 			$cpt_names = array(
-				'school',
-				'parish',
 				'department',
+				'parish',
+				'school',
 				'archive_post',
 				'bishop',
-				'schools_office',
 				'deacon',
 				'development',
 				'education',
@@ -198,6 +236,8 @@ final class Doc_Posts_Plugin {
 				'multicultural',
 				'planning',
 				'property',
+				'schools_office',
+				'school-posts',
 				'tribunal',
 				'vocation',
 				'statistics_report',

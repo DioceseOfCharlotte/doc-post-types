@@ -4,6 +4,7 @@
  */
 
 if ( ! class_exists( 'Doc_Meta' ) ) {
+
 	/**
 	* Main ButterBean class.  Runs the show.
 	*
@@ -40,6 +41,9 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 
 			if ( ! in_array( $post_type, $doc_po, true ) ) {
 				return; }
+
+			require_once doc_posts_plugin()->dir_path . 'inc/bb-controls/class-control-contact.php';
+			require_once doc_posts_plugin()->dir_path . 'inc/bb-controls/class-control-address.php';
 
 				$butterbean->register_manager(
 					'doc_contact_info',
@@ -86,6 +90,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 						)
 					)
 				);
+
 
 				$manager->register_control(
 					new ButterBean_Control_Address(
@@ -212,11 +217,8 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					);
 
 					$manager->register_setting(
-						new Doc_Setting_ValueArray(
-							$manager,
-							'doc_grade_level',
-							array( 'sanitize_callback' => 'sanitize_key' )
-						)
+						'doc_grade_level',
+						array( 'type' => 'array', 'sanitize_callback' => 'sanitize_key' )
 					);
 				}
 
