@@ -34,6 +34,9 @@ function doc_register_blog_cpts() {
 			'capability_type'     => 'school_post',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'school_post' ),
+			'labels' => array(
+				'all_items'          => __( 'School Posts', 'doc' ),
+			),
 		),
 		array(
 			'slug'     => 'school-posts',
@@ -50,10 +53,11 @@ function doc_register_blog_cpts() {
 			'capability_type'     => 'hr_post',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'hr_post' ),
+			'labels' => array(
+				'all_items'          => __( 'HR Posts', 'doc' ),
+			)
 		),
 		array(
-			'singular' => 'HR Post',
-			'plural'   => 'HR Posts',
 			'slug'     => 'hr-posts',
 		)
 	);
@@ -66,10 +70,11 @@ function doc_register_blog_cpts() {
 			'capability_type'     => 'development_post',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'development_post' ),
+			'labels' => array(
+				'all_items'          => __( 'Development Posts', 'doc' ),
+			)
 		),
 		array(
-			'singular' => 'Development Post',
-			'plural'   => 'Development Posts',
 			'slug'     => 'development-posts',
 		)
 	);
