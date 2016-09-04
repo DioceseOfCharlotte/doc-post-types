@@ -39,7 +39,7 @@ function doc_register_blog_cpts() {
 			'slug'     => 'school-posts',
 		)
 	);
-	$school_post->add_taxonomy( 'post_school', array( 'meta_box' => 'radio', ) );
+	$school_post->add_taxonomy( 'post_school' );
 
 
 	register_extended_post_type( 'hr_post',
