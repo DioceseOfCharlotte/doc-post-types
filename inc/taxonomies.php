@@ -18,7 +18,7 @@ function doc_register_taxonomies() {
 
 	register_extended_taxonomy('document_department', 'document', array(
 		'meta_box' => 'radio',
-		'dashboard_glance' => true,
+
 		'capabilities' => array(
 			'manage_terms' => 'manage_options',
 			'edit_terms'   => 'manage_options',
@@ -34,7 +34,7 @@ function doc_register_taxonomies() {
 
 	register_extended_taxonomy('document_category', 'document', array(
 		//'meta_box' => 'radio',
-		'dashboard_glance' => true,
+
 		'capabilities' => array(
 			'manage_terms' => 'manage_options',
 			'edit_terms'   => 'manage_options',
@@ -67,7 +67,6 @@ function doc_register_taxonomies() {
 
 	register_extended_taxonomy('school_system', 'school', array(
 		'meta_box' => 'radio',
-		'dashboard_glance' => true,
 
 		'capabilities' => array(
 			'manage_terms' => 'manage_options',
@@ -79,7 +78,6 @@ function doc_register_taxonomies() {
 
 	register_extended_taxonomy('vicariate', 'parish', array(
 		'meta_box' => 'radio',
-		'dashboard_glance' => true,
 
 		'capabilities' => array(
 			'manage_terms' => 'manage_options',
@@ -92,7 +90,6 @@ function doc_register_taxonomies() {
 	register_extended_taxonomy( 'agency', doc_home_tiles(),
 		array(
 			'meta_box' => 'radio',
-			'dashboard_glance' => true,
 		),
 		array(
 			'singular' => 'Agency',
@@ -103,7 +100,6 @@ function doc_register_taxonomies() {
 
 	register_extended_taxonomy( 'statistics_type', 'statistics_report', array(
 		'meta_box' => 'radio',
-		'dashboard_glance' => true,
 
 		'capabilities' => array(
 			'manage_terms' => 'manage_options',

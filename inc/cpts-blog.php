@@ -26,7 +26,7 @@ function doc_register_blog_cpts() {
 		'theme-layouts',
 	);
 
-	register_extended_post_type( 'school_post',
+	$school_post = register_extended_post_type( 'school_post',
 		array(
 			'supports' 			=> $supports,
 			'show_in_menu'	 	=> 'edit.php?post_type=schools_office',
@@ -36,11 +36,11 @@ function doc_register_blog_cpts() {
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'school_post' ),
 		),
 		array(
-			'singular' => 'School Post',
-			'plural'   => 'School Posts',
 			'slug'     => 'school-posts',
 		)
 	);
+	$school_post->add_taxonomy( 'post_school', array( 'meta_box' => 'radio', ) );
+
 
 	register_extended_post_type( 'hr_post',
 		array(
