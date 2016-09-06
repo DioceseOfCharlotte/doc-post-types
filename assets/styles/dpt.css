@@ -2,11 +2,12 @@
 .butterbean-radio-list {
     display: flex;
     flex-wrap: wrap;
+	max-width: 700px;
 }
 
 .butterbean-checkbox-list > li,
 .butterbean-radio-list > li {
-    margin-right: 1rem;
+    margin: 0 1rem 1rem 0;
 }
 
 .dpt-video-embed {
