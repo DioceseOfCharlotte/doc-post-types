@@ -153,6 +153,21 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				// Parishes
 				if ( 'parish' === $post_type ) {
 
+					if ( current_user_can( 'manage_options' ) ) {
+						$manager->register_control(
+							'doc_parish_id',
+							array(
+								'type'        => 'text',
+								'section'     => 'doc_contact_fields',
+								'label'       => 'Parish ID',
+							)
+						);
+						$manager->register_setting(
+							'doc_parish_id',
+							array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
+						);
+					}
+
 					$manager->register_section(
 						'doc_mass_fields',
 						array(

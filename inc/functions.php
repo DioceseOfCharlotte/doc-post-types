@@ -4,6 +4,17 @@ add_action( 'pre_get_posts', 'doc_custom_queries', 1 );
 add_filter( 'post_mime_types', 'modify_post_mime_types' );
 add_action( 'omnisearch_add_providers', 'doc_omnisearch_add_providers' );
 
+// Register User Contact Methods
+function doc_user_parish_id( $user_contact_method ) {
+
+	$user_contact_method['doc_parish_id'] = __( 'Parish ID', 'doc' );
+
+	if ( ! current_user_can( 'manage_options' ) ) { return; }
+	return $user_contact_method;
+
+}
+add_filter( 'user_contactmethods', 'doc_user_parish_id' );
+
 /**
  * Custom queries.
  *

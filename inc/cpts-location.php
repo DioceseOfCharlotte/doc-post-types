@@ -48,9 +48,21 @@ function doc_register_location_cpts() {
 	register_extended_post_type( 'parish',
 		array(
 			'admin_cols' => array(
+				'city' => array(
+					'title'    => 'City',
+					'meta_key' => 'doc_city',
+				),
 				'featured_image' => array(
 					'title'          => 'Image',
 					'featured_image' => 'abe-icon',
+				),
+				'vicariate' => array(
+				    'title'    => 'Vicariate',
+				    'taxonomy' => 'vicariate',
+				),
+				'parish_id' => array(
+				    'title'    => 'Parish ID',
+				    'meta_key' => 'doc_parish_id',
 				),
 			),
 			'menu_icon'           => 'dashicons-book-alt',

@@ -20,7 +20,6 @@ function doc_register_post_types() {
 		'editor',
 		'author',
 		'thumbnail',
-		// 'arch-home',
 		'arch-post',
 		'excerpt',
 		'post-formats',
