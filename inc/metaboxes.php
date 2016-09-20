@@ -361,3 +361,92 @@ function dpt_register_metabox() {
 	    ),
 	) );
 }
+
+
+
+class Doc_Version_Meta_Box {
+
+	public function __construct() {
+
+		if ( is_admin() ) {
+			add_action( 'load-post.php',     array( $this, 'init_metabox' ) );
+			add_action( 'load-post-new.php', array( $this, 'init_metabox' ) );
+		}
+
+	}
+
+	public function init_metabox() {
+
+		add_action( 'add_meta_boxes',        array( $this, 'add_metabox' ) );
+		add_action( 'save_post',             array( $this, 'save_metabox' ), 10, 2 );
+
+	}
+
+	public function add_metabox() {
+
+		add_meta_box(
+			'doc-version',
+			__( 'Document Version', 'doc' ),
+			array( $this, 'doc_render_metabox' ),
+			'document',
+			'advanced',
+			'high'
+		);
+
+	}
+
+	public function doc_render_metabox( $post ) {
+
+		// Add nonce for security and authentication.
+		wp_nonce_field( 'nonce_action', 'nonce' );
+
+		// Retrieve an existing value from the database.
+		$title_doc_version = get_post_meta( $post->ID, 'title-doc-version', true );
+
+		// Set default values.
+		if ( empty( $title_doc_version ) ) { $title_doc_version = ''; }
+
+		// Form fields.
+		echo '<table class="form-table">';
+
+		echo '	<tr>';
+		echo '		<th><label for="title-doc-version" class="title-doc-version_label">' . __( 'date, revision, or language', 'doc' ) . '</label></th>';
+		echo '		<td>';
+		echo '			<input type="text" id="title_doc_version" name="title-doc-version" class="title_doc_version_field" placeholder="' . esc_attr__( '', 'doc' ) . '" value="' . esc_attr__( $title_doc_version ) . '">';
+		echo '			<p class="description">' . __( 'Optional', 'doc' ) . '</p>';
+		echo '		</td>';
+		echo '	</tr>';
+
+		echo '</table>';
+
+	}
+
+	public function save_metabox( $post_id, $post ) {
+
+		// Add nonce for security and authentication.
+		$nonce_name   = isset( $_POST['nonce'] ) ? $_POST['nonce'] : '';
+		$nonce_action = 'nonce_action';
+
+		// Check if a nonce is set.
+		if ( ! isset( $nonce_name ) ) {
+			return; }
+
+		// Check if a nonce is valid.
+		if ( ! wp_verify_nonce( $nonce_name, $nonce_action ) ) {
+			return; }
+
+		// Check if the user has permissions to save data.
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return; }
+
+		// Sanitize user input.
+		$new_title_doc_version = isset( $_POST['title-doc-version'] ) ? sanitize_text_field( $_POST['title-doc-version'] ) : '';
+
+		// Update the meta field in the database.
+		update_post_meta( $post_id, 'title-doc-version', $new_title_doc_version );
+
+	}
+
+}
+
+new Doc_Version_Meta_Box;

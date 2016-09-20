@@ -36,16 +36,32 @@ function doc_register_post_types() {
 		'enter_title_here'     => 'Enter document title here',
 		'menu_icon'            => 'dashicons-media-document',
 		'supports'             => array( 'title', 'author', 'archive' ),
+		'capability_type'     => 'doc_document',
+		'map_meta_cap'        => true,
 
 		/* Capabilities. */
 		'capabilities' => array(
-			'edit_post'             => 'upload_files',
-			'read_post'             => 'read',
-			'delete_post'           => 'upload_files',
-			'edit_posts'            => 'upload_files',
-			'edit_others_posts'     => 'edit_others_posts',
-			'publish_posts'         => 'upload_files',
-			'read_private_posts'    => 'read_private_posts',
+			'edit_post'              => 'edit_doc_document',
+			'read_post'              => 'read_doc_document',
+			'delete_post'            => 'delete_doc_document',
+
+			// primitive/meta caps
+			'create_posts'           => 'create_doc_documents',
+
+			// primitive caps used outside of map_meta_cap()
+			'edit_posts'             => 'edit_doc_documents',
+			'edit_others_posts'      => 'manage_doc_documents',
+			'publish_posts'          => 'manage_doc_documents',
+			'read_private_posts'     => 'read',
+
+			// primitive caps used inside of map_meta_cap()
+			'read'                   => 'read',
+			'delete_posts'           => 'manage_doc_documents',
+			'delete_private_posts'   => 'manage_doc_documents',
+			'delete_published_posts' => 'manage_doc_documents',
+			'delete_others_posts'    => 'manage_doc_documents',
+			'edit_private_posts'     => 'edit_doc_documents',
+			'edit_published_posts'   => 'edit_doc_documents'
 		),
 
 	    # Show all posts on the post type archive:

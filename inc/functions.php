@@ -98,6 +98,7 @@ function doc_omnisearch_providers() {
 		'school',
 		'parish',
 		'department',
+		'document',
 		'archive_post',
 		'bishop',
 		'schools_office',

@@ -75,6 +75,41 @@ final class Doc_Posts_Plugin {
 	public $maps_api = '';
 
 	/**
+	 * Custom post types registered.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @var    string
+	 */
+	public $cpt_names = array(
+			'department',
+			'parish',
+			'school',
+			'archive_post',
+			'bishop',
+			'deacon',
+			'development',
+			'development_post',
+			'education',
+			'finance',
+			'hispanic_ministry',
+			'housing',
+			'human_resources',
+			'hr_post',
+			'info_tech',
+			'liturgy',
+			'macs',
+			'multicultural',
+			'planning',
+			'property',
+			'schools_office',
+			'school_post',
+			'tribunal',
+			'vocation',
+			'statistics_report',
+		);
+
+	/**
 	 * Returns the instance.
 	 *
 	 * @since  1.0.0
@@ -211,44 +246,21 @@ final class Doc_Posts_Plugin {
 		doc_register_location_cpts();
 		doc_register_post_types();
 		doc_register_taxonomies();
+		$this->add_roles();
+
+		flush_rewrite_rules();
+
+	}
+
+	public function add_roles() {
 
 		// Get the administrator role.
 		$role = get_role( 'administrator' );
-		// If the administrator role exists, add required capabilities for the plugin.
+
+		// Add required capabilities for the administrator role.
 		if ( ! is_null( $role ) ) {
 
-			$cpt_names = array(
-				'department',
-				'parish',
-				'school',
-				'archive_post',
-				'bishop',
-				'deacon',
-				'development',
-				'development_post',
-				'education',
-				'finance',
-				'hispanic_ministry',
-				'housing',
-				'human_resources',
-				'hr_post',
-				'info_tech',
-				'liturgy',
-				'macs',
-				'multicultural',
-				'planning',
-				'property',
-				'schools_office',
-				'school_post',
-				'tribunal',
-				'vocation',
-				'statistics_report',
-			);
-
-			foreach ( $cpt_names as $name ) {
-				// Taxonomy caps.
-				// $role->add_cap( 'manage_{$name}_categories' );
-				// $role->add_cap( 'manage_{$name}_tags' );
+			foreach ( $this->cpt_names as $name ) {
 
 				// Post type caps.
 				$role->add_cap( "create_{$name}s" );
@@ -262,13 +274,18 @@ final class Doc_Posts_Plugin {
 				$role->add_cap( "delete_others_{$name}s" );
 				$role->add_cap( "edit_private_{$name}s" );
 				$role->add_cap( "edit_published_{$name}s" );
+				$role->add_cap( 'create_doc_documents' );
+				$role->add_cap( 'edit_doc_documents' );
+				$role->add_cap( 'manage_doc_documents' );
 
 				add_role( $name, "{$name} Administrator",
 					array(
 						'read' => true,
+						'create_doc_documents' => true, // documents
+						'edit_doc_documents' => true, // documents
+						'manage_doc_documents' => true, // documents
+						'restrict_content' => true, // members
 						'upload_files' => true,
-						'restrict_content' => true,
-						'level_0' => true,
 						"create_{$name}s" => true,
 						"edit_{$name}s" => true,
 						"edit_others_{$name}s" => true,
@@ -284,8 +301,6 @@ final class Doc_Posts_Plugin {
 				);
 			}
 		}
-
-		flush_rewrite_rules();
 	}
 }
 
