@@ -71,6 +71,10 @@ function doc_register_post_types() {
 
 	    # Add some custom columns to the admin screen:
 	    'admin_cols' => array(
+			'document-version' => array(
+			    'title'    => 'Version',
+			    'meta_key' => 'document-version',
+			),
 			'document_department' => array(
 	            'taxonomy' => 'document_department'
 	        ),

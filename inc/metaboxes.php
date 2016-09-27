@@ -401,18 +401,18 @@ class Doc_Version_Meta_Box {
 		wp_nonce_field( 'nonce_action', 'nonce' );
 
 		// Retrieve an existing value from the database.
-		$title_doc_version = get_post_meta( $post->ID, 'title-doc-version', true );
+		$document_version = get_post_meta( $post->ID, 'document-version', true );
 
 		// Set default values.
-		if ( empty( $title_doc_version ) ) { $title_doc_version = ''; }
+		if ( empty( $document_version ) ) { $document_version = ''; }
 
 		// Form fields.
 		echo '<table class="form-table">';
 
 		echo '	<tr>';
-		echo '		<th><label for="title-doc-version" class="title-doc-version_label">' . __( 'date, revision, or language', 'doc' ) . '</label></th>';
+		echo '		<th><label for="document-version" class="document-version_label">' . __( 'date, revision, or language', 'doc' ) . '</label></th>';
 		echo '		<td>';
-		echo '			<input type="text" id="title_doc_version" name="title-doc-version" class="title_doc_version_field" placeholder="' . esc_attr__( '', 'doc' ) . '" value="' . esc_attr__( $title_doc_version ) . '">';
+		echo '			<input type="text" id="document_version" name="document-version" class="document_version_field" placeholder="' . esc_attr__( '', 'doc' ) . '" value="' . esc_attr__( $document_version ) . '">';
 		echo '			<p class="description">' . __( 'Optional', 'doc' ) . '</p>';
 		echo '		</td>';
 		echo '	</tr>';
@@ -440,10 +440,10 @@ class Doc_Version_Meta_Box {
 			return; }
 
 		// Sanitize user input.
-		$new_title_doc_version = isset( $_POST['title-doc-version'] ) ? sanitize_text_field( $_POST['title-doc-version'] ) : '';
+		$new_document_version = isset( $_POST['document-version'] ) ? sanitize_text_field( $_POST['document-version'] ) : '';
 
 		// Update the meta field in the database.
-		update_post_meta( $post_id, 'title-doc-version', $new_title_doc_version );
+		update_post_meta( $post_id, 'document-version', $new_document_version );
 
 	}
 

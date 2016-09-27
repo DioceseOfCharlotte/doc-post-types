@@ -17,6 +17,23 @@ function doc_user_parish_id( $user_contact_method ) {
 }
 
 
+function doc_title_version( $title, $id ) {
+
+	$doc_version = get_post_meta( $id, 'document-version', true );
+
+    if ( get_post_type( $id ) === 'document' && $doc_version ) {
+
+		if ( ! is_admin ) {
+			return $title . ' <em class="u-f-minus u-opacity">' . $doc_version . '</em>';
+		} else {
+			return $title . ' -' . $doc_version;
+		}
+    }
+
+    return $title;
+}
+add_filter( 'the_title', 'doc_title_version', 10, 2 );
+
 /**
  * Custom queries.
  *
