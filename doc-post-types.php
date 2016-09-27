@@ -173,6 +173,7 @@ final class Doc_Posts_Plugin {
 		require_once $this->dir_path . 'inc/cpts-blog.php';
 		require_once $this->dir_path . 'inc/taxonomies.php';
 		require_once $this->dir_path . 'inc/metaboxes.php';
+		require_once $this->dir_path . 'inc/documents-meta.php';
 		require_once $this->dir_path . 'inc/functions.php';
 	}
 
@@ -197,8 +198,9 @@ final class Doc_Posts_Plugin {
 	 */
 	public function admin_scripts() {
 		wp_enqueue_media();
-		wp_enqueue_style( 'dpt-admin-styles', trailingslashit( $this->css_uri ) . 'dpt.css' );
-		wp_register_script( 'geocomplete', trailingslashit( $this->js_uri ) . 'address-autocomplete.js', false, false, true );
+		wp_enqueue_style( 'dpt-admin-styles', $this->css_uri . 'dpt.css' );
+		//wp_register_script( 'bb-file', $this->dir_uri . 'butterbean-media-file.js', array( 'backbone', 'wp-util' ), '', true );
+		wp_register_script( 'geocomplete', $this->js_uri . 'address-autocomplete.js', false, false, true );
 		wp_register_script( 'gplaces', "https://maps.googleapis.com/maps/api/js?key={$this->maps_api}&libraries=places&callback=initAutocomplete", array( 'geocomplete' ), false, true );
 	}
 
@@ -285,6 +287,7 @@ final class Doc_Posts_Plugin {
 						'edit_doc_documents' => true, // documents
 						'manage_doc_documents' => true, // documents
 						'restrict_content' => true, // members
+						'level_1' => true, // for the author dropdown
 						'upload_files' => true,
 						"create_{$name}s" => true,
 						"edit_{$name}s" => true,
