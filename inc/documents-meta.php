@@ -1,16 +1,6 @@
 <?php
 /**
- * Plugin Name: DPT Lesson #1
- * Plugin URI:  https://github.com/justintadlock/butterbean
- * Description: DPT Lesson #1 example plugin.
- * Version:     1.0.0
- * Author:      Justin Tadlock
- * Author URI:  http://themehybrid.com
- *
- * @author     Justin Tadlock <justin@justintadlock.com>
- * @copyright  Copyright (c) 2016, Justin Tadlock
- * @link       https://github.com/justintadlock/butterbean
- * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * Documents metaboxes
  */
 
 if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
@@ -48,15 +38,15 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 		public function register( $butterbean, $post_type ) {
 
 			// Only run this on the `document` post type.
-			if ( 'document' !== $post_type )
-				return;
+			if ( 'document' !== $post_type ) {
+				return; }
 
 			// Register our custom manager.
 			$butterbean->register_manager(
 				'dpt_document',
 				array(
 					'label'     => 'Document',
-					'post_type' => 'document'
+					'post_type' => 'document',
 				)
 			);
 
@@ -68,34 +58,34 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 				'dpt_document_id_section',
 				array(
 					'label'    => 'Upload',
-					'icon' => 'dashicons-upload'
+					'icon' => 'dashicons-upload',
 				)
 			);
 
 			// Register a control.
-			$manager->register_control(
-				'dpt_document_id',
-				array(
-					'type'    => 'image',
-					'section' => 'dpt_document_id_section',
-					'label'   => '',
-				)
-			);
+			// $manager->register_control(
+			// 	'dpt_document_id',
+			// 	array(
+			// 		'type'    => 'image',
+			// 		'section' => 'dpt_document_id_section',
+			// 		'label'   => '',
+			// 	)
+			// );
 
 			// Register a setting.
-			$manager->register_setting(
-				'dpt_document_id',
-				array(
-					'sanitize_callback' => array( $this, 'sanitize_absint' )
-				)
-			);
+			// $manager->register_setting(
+			// 	'dpt_document_id',
+			// 	array(
+			// 		'sanitize_callback' => array( $this, 'sanitize_absint' )
+			// 	)
+			// );
 
 			// Register a section.
 			$manager->register_section(
 				'dpt_document_v_section',
 				array(
 					'label'    => 'Version',
-					'icon' => 'dashicons-tag'
+					'icon' => 'dashicons-tag',
 				)
 			);
 
@@ -106,7 +96,7 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 					'type'    => 'text',
 					'section' => 'dpt_document_v_section',
 					'label'   => '',
-					'description' => 'date, revision, language, etc. <em>(optional)</em>'
+					'description' => 'date, revision, language, etc. <em>(optional)</em>',
 				)
 			);
 
@@ -114,7 +104,7 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 			$manager->register_setting(
 				'document-version',
 				array(
-					'sanitize_callback' => 'sanitize_text_field'
+					'sanitize_callback' => 'sanitize_text_field',
 				)
 			);
 
@@ -123,7 +113,7 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 				'dpt_document_parent_section',
 				array(
 					'label'    => 'Parent Document',
-					'icon' => 'dashicons-paperclip'
+					'icon' => 'dashicons-paperclip',
 				)
 			);
 
@@ -134,7 +124,7 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 					'type'    => 'parent',
 					'section' => 'dpt_document_parent_section',
 					'label'   => 'Is this file an appendix?',
-					'description' => 'Choose the Document to append to.'
+					'description' => 'Choose the Document to append to.',
 				)
 			);
 		}

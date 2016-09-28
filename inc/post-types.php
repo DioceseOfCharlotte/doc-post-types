@@ -28,10 +28,8 @@ function doc_register_post_types() {
 		'archive',
 	);
 
-
-
 	register_extended_post_type( 'document',
-	array(
+		array(
 
 		'enter_title_here'     => 'Enter document title here',
 		'menu_icon'            => 'dashicons-media-document',
@@ -61,12 +59,12 @@ function doc_register_post_types() {
 			'delete_published_posts' => 'manage_doc_documents',
 			'delete_others_posts'    => 'manage_doc_documents',
 			'edit_private_posts'     => 'edit_doc_documents',
-			'edit_published_posts'   => 'edit_doc_documents'
+			'edit_published_posts'   => 'edit_doc_documents',
 		),
 
 	    # Show all posts on the post type archive:
 	    'archive' => array(
-	        'nopaging' => true
+	        'nopaging' => true,
 	    ),
 
 	    # Add some custom columns to the admin screen:
@@ -76,10 +74,10 @@ function doc_register_post_types() {
 			    'meta_key' => 'document-version',
 			),
 			'document_department' => array(
-	            'taxonomy' => 'document_department'
+	            'taxonomy' => 'document_department',
 	        ),
 	        'document_category' => array(
-	            'taxonomy' => 'document_category'
+	            'taxonomy' => 'document_category',
 	        ),
 			'published' => array(
 	            'title'       => 'Published',
@@ -90,17 +88,17 @@ function doc_register_post_types() {
 	    # Add a dropdown filter to the admin screen:
 	    'admin_filters' => array(
 			'document_department' => array(
-	            'taxonomy' => 'document_department'
+	            'taxonomy' => 'document_department',
 	        ),
 	        'document_category' => array(
-	            'taxonomy' => 'document_category'
+	            'taxonomy' => 'document_category',
 	        ),
-	    )
+	    ),
 
-	) );
+    ) );
 
-	register_extended_post_type( 'archive_post',
-		array(
+		register_extended_post_type( 'archive_post',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -112,11 +110,11 @@ function doc_register_post_types() {
 			'capability_type'     => 'archive_post',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'archive_post' ),
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'bishop',
-		array(
+		register_extended_post_type( 'bishop',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -134,16 +132,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'bishop',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'bishop' ),
-		),
-		array(
+			),
+			array(
 	        'singular' => 'Bishop',
 	        'plural'   => 'Bishop',
 	        'slug'     => 'bishop',
-	    )
-	);
+			)
+		);
 
-	register_extended_post_type( 'deacon',
-		array(
+		register_extended_post_type( 'deacon',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -161,16 +159,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'deacon',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'deacon' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'Deacon',
 			'plural'   => 'Deacon',
 			'slug'     => 'deacon',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'development',
-		array(
+		register_extended_post_type( 'development',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -188,16 +186,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'development',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'development' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'Development post',
 			'plural'   => 'Development',
 			'slug'     => 'development',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'education',
-		array(
+		register_extended_post_type( 'education',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -215,16 +213,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'education',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'education' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'Education post',
 			'plural'   => 'Education Vicariate',
 			'slug'     => 'education-vicariate',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'finance',
-		array(
+		register_extended_post_type( 'finance',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -242,16 +240,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'finance',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'finance' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'Finance post',
 			'plural'   => 'Finance',
 			'slug'     => 'finance',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'hispanic_ministry',
-		array(
+		register_extended_post_type( 'hispanic_ministry',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -269,16 +267,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'hispanic_ministry',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'hispanic_ministry' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'Hispanic Ministry post',
 			'plural'   => 'Hispanic Ministry',
 			'slug'     => 'hispanic-ministry',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'housing',
-		array(
+		register_extended_post_type( 'housing',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -296,16 +294,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'housing',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'housing' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'Housing post',
 			'plural'   => 'Housing',
 			'slug'     => 'housing',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'human_resources',
-		array(
+		register_extended_post_type( 'human_resources',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -323,16 +321,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'human_resources',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'human_resources' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'HR post',
 			'plural'   => 'Human Resources',
 			'slug'     => 'human-resources',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'info_tech',
-		array(
+		register_extended_post_type( 'info_tech',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -350,16 +348,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'info_tech',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'info_tech' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'IT post',
 			'plural'   => 'IT',
 			'slug'     => 'information-tech',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'liturgy',
-		array(
+		register_extended_post_type( 'liturgy',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -377,16 +375,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'liturgy',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'liturgy' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'Liturgy & Worship post',
 			'plural'   => 'Liturgy & Worship',
 			'slug'     => 'liturgy-worship',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'macs',
-		array(
+		register_extended_post_type( 'macs',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -404,16 +402,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'macs',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'macs' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'MACS post',
 			'plural'   => 'MACS',
 			'slug'     => 'macs',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'multicultural',
-		array(
+		register_extended_post_type( 'multicultural',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -431,16 +429,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'multicultural',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'multicultural' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'Multicultural post',
 			'plural'   => 'Multicultural',
 			'slug'     => 'multicultural',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'planning',
-		array(
+		register_extended_post_type( 'planning',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -458,16 +456,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'planning',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'planning' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'Planning post',
 			'plural'   => 'Planning',
 			'slug'     => 'planning',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'property',
-		array(
+		register_extended_post_type( 'property',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -485,16 +483,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'property',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'property' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'Properties post',
 			'plural'   => 'Properties',
 			'slug'     => 'properties',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'schools_office',
-		array(
+		register_extended_post_type( 'schools_office',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -512,16 +510,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'schools_office',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'schools_office' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'Schools Office',
 			'plural'   => 'Schools Office',
 			'slug'     => 'schools-office',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'tribunal',
-		array(
+		register_extended_post_type( 'tribunal',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -539,16 +537,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'tribunal',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'tribunal' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'Tribunal post',
 			'plural'   => 'Tribunal',
 			'slug'     => 'tribunal',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'vocation',
-		array(
+		register_extended_post_type( 'vocation',
+			array(
 			'admin_cols' => array(
 				'featured_image' => array(
 					'title'          => 'Image',
@@ -566,16 +564,16 @@ function doc_register_post_types() {
 			'capability_type'     => 'vocation',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'vocation' ),
-		),
-		array(
+			),
+			array(
 			'singular' => 'Vocations post',
 			'plural'   => 'Vocations',
 			'slug'     => 'vocations',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'statistics_report',
-		array(
+		register_extended_post_type( 'statistics_report',
+			array(
 			'admin_cols' => array(
 				'statistics_type' => array(
 					'taxonomy' => 'statistics_type',
@@ -587,7 +585,7 @@ function doc_register_post_types() {
 			'capability_type'      => 'statistics_report',
 			'map_meta_cap'         => true,
 			'capabilities'         => doc_posts_plugin()->doc_get_capabilities( 'statistics_report' ),
-		)
-	);
+			)
+		);
 
 }

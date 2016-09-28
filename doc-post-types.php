@@ -173,7 +173,7 @@ final class Doc_Posts_Plugin {
 		require_once $this->dir_path . 'inc/cpts-blog.php';
 		require_once $this->dir_path . 'inc/taxonomies.php';
 		require_once $this->dir_path . 'inc/metaboxes.php';
-		require_once $this->dir_path . 'inc/documents-meta.php';
+		//require_once $this->dir_path . 'inc/documents-meta.php';
 		require_once $this->dir_path . 'inc/functions.php';
 	}
 
@@ -244,6 +244,7 @@ final class Doc_Posts_Plugin {
 
 	public function activation() {
 
+		$this->doc_get_capabilities( $name );
 		doc_register_blog_cpts();
 		doc_register_location_cpts();
 		doc_register_post_types();
@@ -256,11 +257,40 @@ final class Doc_Posts_Plugin {
 
 	public function add_roles() {
 
+		foreach ( $this->cpt_names as $name ) {
+			add_role( $name, "{$name} Administrator",
+				array(
+					'read' => true,
+					'create_doc_documents' => true, // documents
+					'edit_doc_documents' => true, // documents
+					'manage_doc_documents' => true, // documents
+					'restrict_content' => true, // members
+					'level_1' => true, // for the author dropdown
+					'upload_files' => true,
+					"create_{$name}s" => true,
+					"edit_{$name}s" => true,
+					"edit_others_{$name}s" => true,
+					"publish_{$name}s" => true,
+					"read_private_{$name}s" => true,
+					"delete_{$name}s" => true,
+					"delete_private_{$name}s" => true,
+					"delete_published_{$name}s" => true,
+					"delete_others_{$name}s" => true,
+					"edit_private_{$name}s" => true,
+					"edit_published_{$name}s" => true,
+				)
+			);
+		}
+
 		// Get the administrator role.
 		$role = get_role( 'administrator' );
 
 		// Add required capabilities for the administrator role.
 		if ( ! is_null( $role ) ) {
+
+			$role->add_cap( 'create_doc_documents' );
+			$role->add_cap( 'edit_doc_documents' );
+			$role->add_cap( 'manage_doc_documents' );
 
 			foreach ( $this->cpt_names as $name ) {
 
@@ -276,32 +306,6 @@ final class Doc_Posts_Plugin {
 				$role->add_cap( "delete_others_{$name}s" );
 				$role->add_cap( "edit_private_{$name}s" );
 				$role->add_cap( "edit_published_{$name}s" );
-				$role->add_cap( 'create_doc_documents' );
-				$role->add_cap( 'edit_doc_documents' );
-				$role->add_cap( 'manage_doc_documents' );
-
-				add_role( $name, "{$name} Administrator",
-					array(
-						'read' => true,
-						'create_doc_documents' => true, // documents
-						'edit_doc_documents' => true, // documents
-						'manage_doc_documents' => true, // documents
-						'restrict_content' => true, // members
-						'level_1' => true, // for the author dropdown
-						'upload_files' => true,
-						"create_{$name}s" => true,
-						"edit_{$name}s" => true,
-						"edit_others_{$name}s" => true,
-						"publish_{$name}s" => true,
-						"read_private_{$name}s" => true,
-						"delete_{$name}s" => true,
-						"delete_private_{$name}s" => true,
-						"delete_published_{$name}s" => true,
-						"delete_others_{$name}s" => true,
-						"edit_private_{$name}s" => true,
-						"edit_published_{$name}s" => true,
-					)
-				);
 			}
 		}
 	}

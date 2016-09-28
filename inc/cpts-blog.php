@@ -26,11 +26,12 @@ function doc_register_blog_cpts() {
 		'theme-layouts',
 	);
 
-	$school_post = register_extended_post_type( 'school_post',
+	register_extended_post_type( 'school_post',
 		array(
 			'supports' 			=> $supports,
-			'show_in_menu'	 	=> 'edit.php?post_type=schools_office',
+			//'show_in_menu'	 	=> 'edit.php?post_type=schools_office',
 			'hierarchical'        => false,
+			'menu_icon'           => 'dashicons-pressthis',
 			'capability_type'     => 'school_post',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'school_post' ),
@@ -42,41 +43,52 @@ function doc_register_blog_cpts() {
 			'slug'     => 'school-posts',
 		)
 	);
-	$school_post->add_taxonomy( 'post_school' );
 
-
-	register_extended_post_type( 'hr_post',
+	register_extended_taxonomy( 'post_school', 'school_post',
 		array(
+		'meta_box' => 'radio',
+		'dashboard_glance' => true,
+		),
+		array(
+	    'singular' => 'School',
+	    'plural'   => 'Schools',
+		)
+	);
+
+		register_extended_post_type( 'hr_post',
+			array(
 			'supports' 			=> $supports,
-			'show_in_menu'	 	=> 'edit.php?post_type=human_resources',
+			//'show_in_menu'	 	=> 'edit.php?post_type=human_resources',
+			'menu_icon'           => 'dashicons-pressthis',
 			'hierarchical'        => false,
 			'capability_type'     => 'hr_post',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'hr_post' ),
 			'labels' => array(
 				'all_items'          => __( 'HR Posts', 'doc' ),
-			)
-		),
-		array(
+			),
+			),
+			array(
 			'slug'     => 'hr-posts',
-		)
-	);
+			)
+		);
 
-	register_extended_post_type( 'development_post',
-		array(
+		register_extended_post_type( 'development_post',
+			array(
 			'supports' 			=> $supports,
-			'show_in_menu'	 	=> 'edit.php?post_type=development',
+			//'show_in_menu'	 	=> 'edit.php?post_type=development',
+			'menu_icon'           => 'dashicons-pressthis',
 			'hierarchical'        => false,
 			'capability_type'     => 'development_post',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'development_post' ),
 			'labels' => array(
 				'all_items'          => __( 'Development Posts', 'doc' ),
-			)
-		),
-		array(
+			),
+			),
+			array(
 			'slug'     => 'development-posts',
-		)
-	);
+			)
+		);
 
 }
