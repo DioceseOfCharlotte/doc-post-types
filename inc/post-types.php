@@ -18,7 +18,7 @@ function doc_register_post_types() {
 	$supports = array(
 		'title',
 		'editor',
-		'author',
+		//'author',
 		'thumbnail',
 		'arch-post',
 		'excerpt',
@@ -33,7 +33,7 @@ function doc_register_post_types() {
 
 		'enter_title_here'     => 'Enter document title here',
 		'menu_icon'            => 'dashicons-media-document',
-		'supports'             => array( 'title', 'author', 'archive' ),
+		'supports'             => array( 'title', 'archive' ),
 		'capability_type'     => 'doc_document',
 		'map_meta_cap'        => true,
 

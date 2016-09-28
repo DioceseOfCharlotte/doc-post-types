@@ -47,6 +47,7 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 				array(
 					'label'     => 'Document',
 					'post_type' => 'document',
+					'priority' 	=> 'high',
 				)
 			);
 
