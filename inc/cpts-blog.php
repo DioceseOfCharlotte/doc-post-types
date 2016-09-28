@@ -47,7 +47,12 @@ function doc_register_blog_cpts() {
 	register_extended_taxonomy( 'post_school', 'school_post',
 		array(
 		'meta_box' => 'radio',
-		'dashboard_glance' => true,
+		'capabilities' => array(
+			'manage_terms' => 'manage_options',
+			'edit_terms'   => 'manage_options',
+			'delete_terms' => 'manage_options',
+			'assign_terms' => 'edit_school_posts',
+		),
 		),
 		array(
 	    'singular' => 'School',
