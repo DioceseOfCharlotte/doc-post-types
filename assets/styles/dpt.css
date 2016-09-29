@@ -1,3 +1,24 @@
+.butterbean-manager.butterbean-manager-default {
+    background: linear-gradient( 90deg, #F5F5F5 0%, #F5F5F5 180px, #fff 180px, #fff 100% );
+}
+
+.butterbean-manager.butterbean-manager-default .butterbean-nav {
+	background-color: #f5f5f5;
+}
+
+.butterbean-manager.butterbean-manager-default .butterbean-nav li a {
+    border-left: 3px solid transparent;
+	border-bottom: 1px solid #ddd;
+}
+
+.butterbean-manager.butterbean-manager-default .butterbean-nav li[aria-selected="true"] a {
+    position: relative;
+    font-weight: normal;
+    background-color: #ffffff;
+    border-left: 3px solid #00a0d2;
+    margin-right: -1px;
+}
+
 .butterbean-checkbox-list,
 .butterbean-radio-list {
     display: flex;

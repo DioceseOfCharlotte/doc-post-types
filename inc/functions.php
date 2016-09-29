@@ -21,16 +21,16 @@ function doc_title_version( $title, $id ) {
 
 	$doc_version = get_post_meta( $id, 'document-version', true );
 
-    if ( get_post_type( $id ) === 'document' && $doc_version ) {
+	if ( get_post_type( $id ) === 'document' && $doc_version ) {
 
 		if ( ! is_admin() ) {
 			return $title . ' <em class="u-f-minus u-opacity">' . $doc_version . '</em>';
 		} else {
 			return $title . ' -' . $doc_version;
 		}
-    }
+	}
 
-    return $title;
+	return $title;
 }
 add_filter( 'the_title', 'doc_title_version', 10, 2 );
 
@@ -44,6 +44,11 @@ add_filter( 'the_title', 'doc_title_version', 10, 2 );
 function doc_custom_queries( $query ) {
 	if ( ! $query->is_main_query() || is_admin() ) {
 		return; }
+
+	if ( is_post_type_archive( 'document' ) ) {
+		$query->set( 'order', 'ASC' );
+	  	$query->set( 'orderby', 'title' );
+	}
 
 	if ( is_tax( 'agency' ) ) {
 		$post_type = $query->get( 'post_type' );

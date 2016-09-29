@@ -1,7 +1,7 @@
 ( function( api ) {
 
 	// Image control view.
-	api.controls['bb2-video'] = api.controls.default.extend( {
+	api.controls['document'] = api.views.controls.default.extend( {
 		events : {
 			'click .butterbean-add-media'    : 'showmodal',
 			'click .butterbean-change-media' : 'showmodal',
@@ -22,7 +22,7 @@
 				multiple : false,
 				editing  : true,
 				title    : 'Choose',
-				library  : { type : 'video' },
+				library  : { type : 'image' },
 				button   : { text:  'Set Video' }
 			} );
 
