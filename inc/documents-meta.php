@@ -63,26 +63,26 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 				)
 			);
 
-			// require_once doc_posts_plugin()->dir_path . 'inc/bb-controls/class-control-file.php';
-			// $manager->register_control(
-			// 	new ButterBean_Control_File(
-			// 		$manager,
-			// 		'dpt_document_id',
-			// 		array(
-			// 			'type'        	=> 'document',
-			// 			'section'     	=> 'dpt_document_id_section',
-			// 			'label'       	=> 'Upload',
-			// 		)
-			// 	)
-			// );
-			//
-			// // Register a setting.
-			// $manager->register_setting(
-			// 	'dpt_document_id',
-			// 	array(
-			// 		'sanitize_callback' => array( $this, 'sanitize_absint' ),
-			// 	)
-			// );
+			require_once doc_posts_plugin()->dir_path . 'inc/bb-controls/class-control-file.php';
+			$manager->register_control(
+				new ButterBean_Control_File(
+					$manager,
+					'dpt_document_id',
+					array(
+						'type'        	=> 'document',
+						'section'     	=> 'dpt_document_id_section',
+						'label'       	=> 'Attached document',
+					)
+				)
+			);
+
+			// Register a setting.
+			$manager->register_setting(
+				'dpt_document_id',
+				array(
+					'sanitize_callback' => array( $this, 'sanitize_absint' ),
+				)
+			);
 
 			// Register a section.
 			$manager->register_section(

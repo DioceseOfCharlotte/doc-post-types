@@ -1,7 +1,7 @@
 ( function( api ) {
 
 	// Image control view.
-	api.controls['document'] = api.views.controls.default.extend( {
+	api.views.register_control( 'document', {
 		events : {
 			'click .butterbean-add-media'    : 'showmodal',
 			'click .butterbean-change-media' : 'showmodal',
@@ -22,8 +22,8 @@
 				multiple : false,
 				editing  : true,
 				title    : 'Choose',
-				library  : { type : 'image' },
-				button   : { text:  'Set Video' }
+				library  : { type : 'application' },
+				button   : { text:  'Use this document' }
 			} );
 
 			this.modal.on( 'select', function() {
@@ -31,7 +31,7 @@
 				var media = this.modal.state().get( 'selection' ).first().toJSON();
 
 				this.model.set( {
-					url   : media.url,
+					src   : media.url,
 					value : media.id
 				} );
 			}, this );
@@ -40,7 +40,7 @@
 		},
 		removemedia : function() {
 
-			this.model.set( { src : '', alt : '', value : '' } );
+			this.model.set( { src : '', value : '' } );
 		}
 	} );
 

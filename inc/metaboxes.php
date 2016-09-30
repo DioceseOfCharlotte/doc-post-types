@@ -326,7 +326,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 }
 
 
-add_action( 'cmb2_admin_init', 'dpt_register_metabox' );
+//add_action( 'cmb2_admin_init', 'dpt_register_metabox' );
 /**
  * Hook in and add a demo metabox. Can only happen on the 'cmb2_admin_init' or 'cmb2_init' hook.
  */

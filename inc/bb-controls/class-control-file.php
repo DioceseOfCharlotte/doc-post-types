@@ -23,24 +23,6 @@ class ButterBean_Control_File extends ButterBean_Control {
 	 */
 	public $type = 'document';
 
-	/**
-	 * Array of text labels to use for the media upload frame.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @var    string
-	 */
-	public $l10n = array();
-
-	/**
-	 * Image size to display.  If the size isn't found for the image,
-	 * the full size of the image will be output.
-	 *
-	 * @since  1.0.0
-	 * @access public
-	 * @var    string
-	 */
-	public $size = 'large';
 
 	/**
 	 * Creates a new control object.
@@ -52,21 +34,12 @@ class ButterBean_Control_File extends ButterBean_Control {
 	 * @param  array   $args
 	 * @return void
 	 */
-	public function __construct( $manager, $name, $args = array() ) {
-		parent::__construct( $manager, $name, $args );
-
-		$this->l10n = wp_parse_args(
-			$this->l10n,
-			array(
-			'upload'      => esc_html__( 'Add image',         'butterbean' ),
-			'set'         => esc_html__( 'Set as image',      'butterbean' ),
-			'choose'      => esc_html__( 'Choose image',      'butterbean' ),
-			'change'      => esc_html__( 'Change image',      'butterbean' ),
-			'remove'      => esc_html__( 'Remove image',      'butterbean' ),
-			'placeholder' => esc_html__( 'No image selected', 'butterbean' ),
-			)
-		);
-	}
+	public $upload = 'Add document';
+	public $set = 'Set as document';
+	public $choose = 'Choose document';
+	public $change = 'Change document';
+	public $remove = 'Remove document';
+	public $placeholder = 'No document selected';
 
 	/**
 	 * Enqueue scripts/styles for the control.
@@ -90,19 +63,23 @@ class ButterBean_Control_File extends ButterBean_Control {
 	public function to_json() {
 		parent::to_json();
 
-		$this->json['l10n'] = $this->l10n;
-		$this->json['size'] = $this->size;
+		$this->json['upload'] = $this->upload;
+		$this->json['set'] = $this->set;
+		$this->json['choose'] = $this->choose;
+		$this->json['change'] = $this->change;
+		$this->json['remove'] = $this->remove;
+		$this->json['placeholder'] = $this->placeholder;
+
+		$this->json['value'] = esc_html( $this->get_value() );
 
 		$value = $this->get_value();
-		$image = $alt = '';
+		// $image = $alt = '';
 
 		if ( $value ) {
-			$image = wp_get_attachment_image_src( absint( $value ), $this->size );
-			$alt   = get_post_meta( absint( $value ), '_wp_attachment_image_alt', true );
+			$image = wp_get_attachment_image_src( absint( $value ) );
 		}
 
 		$this->json['src'] = $image ? esc_url( $image[0] ) : '';
-		$this->json['alt'] = $alt   ? esc_attr( $alt )     : '';
 	}
 
 	public function get_template() {
@@ -120,15 +97,15 @@ class ButterBean_Control_File extends ButterBean_Control {
 	<# if ( data.src ) { #>
 		<img class="butterbean-img" src="{{ data.src }}" alt="{{ data.alt }}" />
 	<# } else { #>
-		<div class="butterbean-placeholder">{{ data.l10n.placeholder }}</div>
+		<div class="butterbean-placeholder">{{ data.placeholder }}</div>
 	<# } #>
 
 	<p>
 		<# if ( data.src ) { #>
-			<button type="button" class="button button-secondary butterbean-change-media">{{ data.l10n.change }}</button>
-			<button type="button" class="button button-secondary butterbean-remove-media">{{ data.l10n.remove }}</button>
+			<button type="button" class="button button-secondary butterbean-change-media">{{ data.change }}</button>
+			<button type="button" class="button button-secondary butterbean-remove-media">{{ data.remove }}</button>
 		<# } else { #>
-			<button type="button" class="button button-secondary butterbean-add-media">{{ data.l10n.upload }}</button>
+			<button type="button" class="button button-secondary butterbean-add-media">{{ data.upload }}</button>
 		<# } #>
 	</p>
 	<?php

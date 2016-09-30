@@ -199,7 +199,7 @@ final class Doc_Posts_Plugin {
 	public function admin_scripts() {
 		wp_enqueue_media();
 		wp_enqueue_style( 'dpt-admin-styles', $this->css_uri . 'dpt.css' );
-		wp_register_script( 'bb-file', $this->js_uri . 'butterbean-media-file.js', array( 'backbone', 'wp-util' ), '', true );
+		wp_register_script( 'bb-file', $this->js_uri . 'butterbean-media-file.js', array( 'backbone', 'wp-util', 'butterbean' ), '', true );
 		wp_register_script( 'geocomplete', $this->js_uri . 'address-autocomplete.js', false, false, true );
 		wp_register_script( 'gplaces', "https://maps.googleapis.com/maps/api/js?key={$this->maps_api}&libraries=places&callback=initAutocomplete", array( 'geocomplete' ), false, true );
 	}
