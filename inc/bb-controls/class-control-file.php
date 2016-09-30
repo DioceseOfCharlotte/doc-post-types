@@ -70,16 +70,20 @@ class ButterBean_Control_File extends ButterBean_Control {
 		$this->json['remove'] = $this->remove;
 		$this->json['placeholder'] = $this->placeholder;
 
-		$this->json['value'] = esc_html( $this->get_value() );
+		$this->json['value'] = $this->get_value();
 
 		$value = $this->get_value();
-		// $image = $alt = '';
+		//$file = $alt = '';
 
 		if ( $value ) {
-			$image = wp_get_attachment_image_src( absint( $value ) );
+			$file = wp_get_attachment_image_url( $value, $size = 'thumbnail', $icon = true );
+			$alt   = get_post_mime_type( $value );
+			$title   = get_the_title( $value );
 		}
 
-		$this->json['src'] = $image ? esc_url( $image[0] ) : '';
+		$this->json['src'] = $file ? esc_url( $file ) : '';
+		$this->json['title'] = $title  ? esc_attr( $title ) : '';
+		$this->json['alt'] = $alt  ? esc_attr( $alt ) : '';
 	}
 
 	public function get_template() {
@@ -94,20 +98,19 @@ class ButterBean_Control_File extends ButterBean_Control {
 
 	<input type="hidden" class="butterbean-attachment-id" name="{{ data.field_name }}" value="{{ data.value }}" />
 
-	<# if ( data.src ) { #>
-		<img class="butterbean-img" src="{{ data.src }}" alt="{{ data.alt }}" />
-	<# } else { #>
-		<div class="butterbean-placeholder">{{ data.placeholder }}</div>
-	<# } #>
-
-	<p>
 		<# if ( data.src ) { #>
-			<button type="button" class="button button-secondary butterbean-change-media">{{ data.change }}</button>
-			<button type="button" class="button button-secondary butterbean-remove-media">{{ data.remove }}</button>
+			<div class="u-flex u-flex-wrap u-flex-end u-mb1">
+				<img class="butterbean-img" src="{{ data.src }}" alt="{{ data.alt }}" />
+				<div class="u-p1"><strong>{{ data.title }}</strong></div>
+			</div>
+			<div class="u-flex u-flex-wrap u-flex-end">
+				<button type="button" class="button button-secondary u-mr1 butterbean-change-media">{{ data.change }}</button>
+				<button type="button" class="button button-secondary u-mr1 butterbean-remove-media">{{ data.remove }}</button>
+			</div>
 		<# } else { #>
+			<div class="butterbean-placeholder u-mb1">{{ data.placeholder }}</div>
 			<button type="button" class="button button-secondary butterbean-add-media">{{ data.upload }}</button>
 		<# } #>
-	</p>
 	<?php
 	}
 }

@@ -78,7 +78,28 @@
 }
 
 .u-p1 {
-	padding: .5em;
+	padding: 1em;
+}
+
+.u-m1 {
+	margin: 1em;
+}
+
+.u-mr1 {
+	margin-right: 1em!important;
+}
+
+.u-mb1 {
+	margin-bottom: 1em!important;
+}
+
+.u-mx1 {
+	margin-left: 1em!important;
+	margin-right: 1em!important;
+}
+
+.u-ml-auto {
+	margin-left: auto;
 }
 
 .u-flex {
@@ -103,6 +124,26 @@
 	-webkit-justify-content: space-between;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
+}
+
+.u-flex-jc {
+	justify-content: center;
+}
+
+.u-flex-center {
+	align-items: center;
+}
+
+.u-flex-start {
+	align-items: flex-start;
+}
+
+.u-flex-end {
+	align-items: flex-end;
+}
+
+.u-flexed-end {
+	align-self: flex-end;
 }
 
 .u-caps {

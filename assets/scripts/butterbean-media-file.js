@@ -1,47 +1,57 @@
-( function( api ) {
+(function(api) {
 
 	// Image control view.
-	api.views.register_control( 'document', {
-		events : {
-			'click .butterbean-add-media'    : 'showmodal',
-			'click .butterbean-change-media' : 'showmodal',
-			'click .butterbean-remove-media' : 'removemedia'
+	api.views.register_control('document', {
+		events: {
+			'click .butterbean-add-media': 'showmodal',
+			'click .butterbean-change-media': 'showmodal',
+			'click .butterbean-remove-media': 'removemedia'
 		},
-		showmodal : function() {
+		showmodal: function() {
 
-			console.log( this.model );
+			console.log(this.model);
 
-			if ( ! _.isUndefined( this.modal ) ) {
+			if (!_.isUndefined(this.modal)) {
 
 				this.modal.open();
 				return;
 			}
 
-			this.modal = wp.media( {
-				frame    : 'select',
-				multiple : false,
-				editing  : true,
-				title    : 'Choose',
-				library  : { type : 'application' },
-				button   : { text:  'Use this document' }
-			} );
+			this.modal = wp.media({
+				frame: 'select',
+				multiple: false,
+				editing: true,
+				title: 'Choose',
+				library: {
+					type: 'application'
+				},
+				button: {
+					text: 'Use this document'
+				}
+			});
 
-			this.modal.on( 'select', function() {
+			this.modal.on('select', function() {
 
-				var media = this.modal.state().get( 'selection' ).first().toJSON();
+				var media = this.modal.state().get('selection').first().toJSON();
 
-				this.model.set( {
-					src   : media.url,
-					value : media.id
-				} );
-			}, this );
+				this.model.set({
+					src: media.icon,
+					title: media.filename,
+					alt: media.mime,
+					value: media.id,
+					link: media.url
+				});
+			}, this);
 
 			this.modal.open();
 		},
-		removemedia : function() {
+		removemedia: function() {
 
-			this.model.set( { src : '', value : '' } );
+			this.model.set({
+				src: '',
+				value: ''
+			});
 		}
-	} );
+	});
 
-}( butterbean ) );
+}(butterbean));

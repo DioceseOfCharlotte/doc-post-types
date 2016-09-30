@@ -58,8 +58,8 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 			$manager->register_section(
 				'dpt_document_id_section',
 				array(
-					'label'    => 'Upload',
-					'icon' => 'dashicons-upload',
+					'label'    => 'Attached Document',
+					'icon' => 'dashicons-format-aside',
 				)
 			);
 
@@ -71,7 +71,7 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 					array(
 						'type'        	=> 'document',
 						'section'     	=> 'dpt_document_id_section',
-						'label'       	=> 'Attached document',
+						'label'       	=> '',
 					)
 				)
 			);
@@ -80,7 +80,7 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 			$manager->register_setting(
 				'dpt_document_id',
 				array(
-					'sanitize_callback' => array( $this, 'sanitize_absint' ),
+					array( 'sanitize_callback' => 'absint' )
 				)
 			);
 
@@ -117,7 +117,7 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 				'dpt_document_parent_section',
 				array(
 					'label'    => 'Parent Document',
-					'icon' => 'dashicons-paperclip',
+					'icon' => 'dashicons-networking',
 				)
 			);
 
