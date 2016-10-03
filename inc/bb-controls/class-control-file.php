@@ -76,14 +76,18 @@ class ButterBean_Control_File extends ButterBean_Control {
 		//$file = $alt = '';
 
 		if ( $value ) {
-			$file = wp_get_attachment_image_url( $value, $size = 'thumbnail', $icon = true );
-			$alt   = get_post_mime_type( $value );
-			$title   = get_the_title( $value );
+			$doc_mime = get_post_mime_type( $value );
+			//$doc_icon = wp_get_attachment_image_url( $value, $size = NULL, $icon = true );
+			$doc_url = wp_get_attachment_image_url( $value );
+			$doc_icon = wp_mime_type_icon( $doc_mime );
+			//$doc_icon = wp_check_filetype('image.jpg');
+			$doc_name = get_the_title( $value );
+			//$doc_name = wp_basename( $doc_url );
 		}
 
-		$this->json['src'] = $file ? esc_url( $file ) : '';
-		$this->json['title'] = $title  ? esc_attr( $title ) : '';
-		$this->json['alt'] = $alt  ? esc_attr( $alt ) : '';
+		$this->json['doc_icon'] = $doc_icon ? esc_url( $doc_icon ) : '';
+		$this->json['doc_name'] = $doc_name ? esc_attr( $doc_name ) : '';
+		$this->json['doc_mime'] = $doc_mime ? esc_attr( $doc_mime ) : '';
 	}
 
 	public function get_template() {
@@ -98,10 +102,10 @@ class ButterBean_Control_File extends ButterBean_Control {
 
 	<input type="hidden" class="butterbean-attachment-id" name="{{ data.field_name }}" value="{{ data.value }}" />
 
-		<# if ( data.src ) { #>
+		<# if ( data.value ) { #>
 			<div class="u-flex u-flex-wrap u-flex-end u-mb1">
-				<img class="butterbean-img" src="{{ data.src }}" alt="{{ data.alt }}" />
-				<div class="u-p1"><strong>{{ data.title }}</strong></div>
+				<img class="butterbean-img" src="{{ data.doc_icon }}" alt="{{ data.doc_mime }}" />
+				<div class="u-p1"><strong>{{ data.doc_name }}</strong></div>
 			</div>
 			<div class="u-flex u-flex-wrap u-flex-end">
 				<button type="button" class="button button-secondary u-mr1 butterbean-change-media">{{ data.change }}</button>

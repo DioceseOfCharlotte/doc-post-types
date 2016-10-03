@@ -35,11 +35,14 @@
 				var media = this.modal.state().get('selection').first().toJSON();
 
 				this.model.set({
-					src: media.icon,
-					title: media.filename,
-					alt: media.mime,
+					doc_icon: media.icon,
+					doc_name: media.filename,
+					doc_mime: media.mime,
 					value: media.id,
-					link: media.url
+					// src: media.icon,
+					// title: media.filename,
+					// alt: media.mime,
+					// value: media.id,
 				});
 			}, this);
 
@@ -55,3 +58,9 @@
 	});
 
 }(butterbean));
+
+
+// icon: media.icon,
+// name: media.filename,
+// mime: media.mime,
+// value: media.id,

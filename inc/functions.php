@@ -146,3 +146,19 @@ function doc_omnisearch_providers() {
 		new Jetpack_Omnisearch_Posts( "{$name}" );
 	}
 }
+
+function doc_mime_icon( $icon, $mime, $post_id ) {
+	$mime_dir = doc_posts_plugin()->img_uri . 'mimetypes/';
+
+	if ( 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' == $mime || 'application/vnd.ms-excel' == $mime ) {
+		$icon = $mime_dir . 'spreadsheet.svg'; }
+
+	if ( 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' == $mime || 'application/msword' == $mime ) {
+		$icon = $mime_dir . 'doc.svg'; }
+
+	if ( 'application/pdf' == $mime ) {
+		$icon = $mime_dir . 'pdf.svg'; }
+
+		return $icon;
+}
+add_filter( 'wp_mime_type_icon', 'doc_mime_icon', 10, 3 );
