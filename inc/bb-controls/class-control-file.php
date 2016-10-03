@@ -74,6 +74,11 @@ class ButterBean_Control_File extends ButterBean_Control {
 
 		$value = $this->get_value();
 		//$file = $alt = '';
+		$doc_mime = '';
+		$doc_url = '';
+		$doc_icon = '';
+		$doc_ext = '';
+		$doc_name = '';
 
 		if ( $value ) {
 			$doc_mime = get_post_mime_type( $value );
