@@ -38,8 +38,8 @@ class ButterBean_Control_File extends ButterBean_Control {
 	public $set = 'Set as document';
 	public $choose = 'Choose document';
 	public $change = 'Change document';
-	public $remove = 'Remove document';
-	public $placeholder = 'No document selected';
+	public $remove = '';
+	public $placeholder = 'Add document';
 
 	/**
 	 * Enqueue scripts/styles for the control.
@@ -80,14 +80,15 @@ class ButterBean_Control_File extends ButterBean_Control {
 			//$doc_icon = wp_get_attachment_image_url( $value, $size = NULL, $icon = true );
 			$doc_url = wp_get_attachment_image_url( $value );
 			$doc_icon = wp_mime_type_icon( $doc_mime );
-			//$doc_icon = wp_check_filetype('image.jpg');
-			$doc_name = get_the_title( $value );
-			//$doc_name = wp_basename( $doc_url );
+			$doc_ext = wp_check_filetype( get_attached_file( $value ) );
+			//$doc_name = get_the_title( $value );
+			$doc_name = wp_basename( get_attached_file( $value ) );
 		}
 
 		$this->json['doc_icon'] = $doc_icon ? esc_url( $doc_icon ) : '';
 		$this->json['doc_name'] = $doc_name ? esc_attr( $doc_name ) : '';
 		$this->json['doc_mime'] = $doc_mime ? esc_attr( $doc_mime ) : '';
+		$this->json['doc_ext'] = $doc_ext ? $doc_ext['ext'] : '';
 	}
 
 	public function get_template() {
@@ -103,17 +104,28 @@ class ButterBean_Control_File extends ButterBean_Control {
 	<input type="hidden" class="butterbean-attachment-id" name="{{ data.field_name }}" value="{{ data.value }}" />
 
 		<# if ( data.value ) { #>
-			<div class="u-flex u-flex-wrap u-flex-end u-mb1">
-				<img class="butterbean-img" src="{{ data.doc_icon }}" alt="{{ data.doc_mime }}" />
-				<div class="u-p1"><strong>{{ data.doc_name }}</strong></div>
-			</div>
-			<div class="u-flex u-flex-wrap u-flex-end">
-				<button type="button" class="button button-secondary u-mr1 butterbean-change-media">{{ data.change }}</button>
-				<button type="button" class="button button-secondary u-mr1 butterbean-remove-media">{{ data.remove }}</button>
+			<div class="u-flex u-flex-wrap u-flex-jc u-flex-center doc-file-label has-file {{ data.doc_ext }} u-mb1">
+				<div class="image-wrap butterbean-change-media">
+					<img class="mime-icon" src="{{ data.doc_icon }}" alt="{{ data.doc_mime }}" />
+				</div>
+				<div class="butterbean-change-media u-p1">{{ data.doc_name }}</div>
+
+				<div class="doc-actions u-flex u-flex-wrap u-flex-center">
+					<div class="change-file doc-actions-icon u-mr1 butterbean-change-media" title="change">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="v-icon icon-edit"><path d="M3 17.25V21h3.75L17.807 9.942l-3.75-3.75L3 17.251zM20.708 7.043a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+					</div>
+					<div class="remove-file u-mr1 doc-actions-icon butterbean-remove-media" title="remove">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="v-icon icon-remove"><path d="M22 4.014L19.986 2 12 9.986 4.014 2 2 4.014 9.986 12 2 19.986 4.014 22 12 14.014 19.986 22 22 19.986 14.014 12z"/></svg>
+					</div>
+				</div>
 			</div>
 		<# } else { #>
-			<div class="butterbean-placeholder u-mb1">{{ data.placeholder }}</div>
-			<button type="button" class="button button-secondary butterbean-add-media">{{ data.upload }}</button>
+			<div class="doc-file-label butterbean-add-media u-flex u-flex-wrap u-flex-center u-flex-jc no-file u-mb1">
+				<div class="add-file doc-actions-icon u-mr1">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="v-icon icon-add"><path d="M22 13.429h-8.571V22H10.57v-8.571H2V10.57h8.571V2h2.858v8.571H22v2.858z"/></svg>
+				</div>
+					{{ data.placeholder }}
+			</div>
 		<# } #>
 	<?php
 	}
