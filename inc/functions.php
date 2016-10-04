@@ -162,3 +162,19 @@ function doc_mime_icon( $icon, $mime, $post_id ) {
 		return $icon;
 }
 add_filter( 'wp_mime_type_icon', 'doc_mime_icon', 10, 3 );
+
+
+function doc_is_file( $type ) {
+	$attachment_id = get_post_meta( get_the_ID(), 'dpt_document_id', true );
+	$file = get_attached_file( $attachment_id );
+	$filetype = wp_check_filetype( $file );
+
+		if ( $type === 'pdf' )
+			return $filetype['ext'] == 'pdf';
+
+		if ( $type === 'sheet' )
+			return in_array( $filetype['ext'], array( 'xls', 'xlsx' ) );
+
+		if ( $type === 'doc' )
+			return in_array( $filetype['ext'], array( 'doc', 'docx' ) );
+}
