@@ -52,7 +52,7 @@ function doc_title_version( $title, $id ) {
 	if ( get_post_type( $id ) === 'document' && $doc_version ) {
 
 		if ( ! is_admin() ) {
-			return $title . ' <em class="u-f-minus u-opacity">' . $doc_version . '</em>';
+			return $title . ' <em class="u-f-minus u-text-read u-normal u-opacity">' . $doc_version . '</em>';
 		} else {
 			return $title . ' -' . $doc_version;
 		}
