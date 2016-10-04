@@ -123,13 +123,17 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 			);
 
 			// Register a control.
+			require_once doc_posts_plugin()->dir_path . 'inc/bb-controls/class-control-doc-parent.php';
 			$manager->register_control(
+				new ButterBean_Control_Doc_Parent(
+					$manager,
 				'document-parent',
 				array(
-					'type'    => 'parent',
+					'type'    => 'doc-parent',
 					'section' => 'dpt_document_parent_section',
 					'label'   => 'Is this file an appendix?',
 					'description' => 'Choose the Document to append to.',
+				)
 				)
 			);
 		}
