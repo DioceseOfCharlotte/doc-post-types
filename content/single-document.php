@@ -32,7 +32,7 @@
 
 			<?php } else { ?>
 
-				<iframe src="https://docs.google.com/viewer?url=<?php echo $doc_link ?>" width="100%" height="500px" style="border: none;"></iframe>
+				<iframe src="https://docs.google.com/viewer?url=<?php echo $doc_link ?>&amp;hl=en_US&amp;embedded=true" width="100%" height="500px" style="border: none;"></iframe>
 
 			<?php } ?>
 
