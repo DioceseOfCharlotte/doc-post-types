@@ -1,9 +1,37 @@
 <?php
 
+add_filter( 'hybrid_content_template', 'doc_content_template' );
 add_action( 'pre_get_posts', 'doc_custom_queries', 1 );
 add_filter( 'post_mime_types', 'modify_post_mime_types' );
 add_action( 'omnisearch_add_providers', 'doc_omnisearch_providers' );
 add_filter( 'user_contactmethods', 'doc_user_parish_id' );
+
+
+/**
+ * Add templates to hybrid_get_content_template()
+ */
+function doc_content_template( $template ) {
+	if ( is_admin() ) {
+		return $template; }
+
+	// If the post type isn't a document, bail.
+	if ( get_post_type( get_the_ID() ) !== 'document' || ! members_can_current_user_view_post() || is_search() ) {
+		return $template;
+	}
+
+	if ( is_single( get_the_ID() ) ) {
+
+		$template = trailingslashit( doc_posts_plugin()->dir_path ) . 'content/single-document.php';
+		$has_template = locate_template( array( 'content/single-document.php' ) );
+
+		if ( $has_template ) {
+			$template = $has_template;
+		}
+	}
+
+	return $template;
+}
+
 
 // Register User Contact Methods
 function doc_user_parish_id( $user_contact_method ) {
@@ -169,12 +197,15 @@ function doc_is_file( $type ) {
 	$file = get_attached_file( $attachment_id );
 	$filetype = wp_check_filetype( $file );
 
-		if ( $type === 'pdf' )
-			return $filetype['ext'] == 'pdf';
+	if ( $type === 'pdf' ) {
+		return $filetype['ext'] == 'pdf';
+	}
 
-		if ( $type === 'sheet' )
-			return in_array( $filetype['ext'], array( 'xls', 'xlsx' ) );
+	if ( $type === 'sheet' ) {
+		return in_array( $filetype['ext'], array( 'xls', 'xlsx' ) );
+	}
 
-		if ( $type === 'doc' )
-			return in_array( $filetype['ext'], array( 'doc', 'docx' ) );
+	if ( $type === 'doc' ) {
+		return in_array( $filetype['ext'], array( 'doc', 'docx' ) );
+	}
 }
