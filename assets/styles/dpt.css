@@ -1,5 +1,16 @@
 .butterbean-manager.butterbean-manager-default {
-    background: linear-gradient( 90deg, #F5F5F5 0%, #F5F5F5 180px, #fff 180px, #fff 100% );
+	background: linear-gradient( 90deg, #F5F5F5 0%, #F5F5F5 180px, #fff 180px, #fff 100% );
+	overflow: initial;
+}
+
+.butterbean-manager-default::before,
+.butterbean-manager-default::after {
+	content: "";
+	display: table;
+}
+
+.butterbean-manager-default::after {
+	clear: both;
 }
 
 .butterbean-manager.butterbean-manager-default .butterbean-nav {
@@ -7,28 +18,37 @@
 }
 
 .butterbean-manager.butterbean-manager-default .butterbean-nav li a {
-    border-left: 3px solid transparent;
+	border-left: 3px solid transparent;
 	border-bottom: 1px solid #ddd;
 }
 
 .butterbean-manager.butterbean-manager-default .butterbean-nav li[aria-selected="true"] a {
-    position: relative;
-    font-weight: normal;
-    background-color: #ffffff;
-    border-left: 3px solid #00a0d2;
-    margin-right: -1px;
+	position: relative;
+	font-weight: normal;
+	background-color: #ffffff;
+	border-left: 3px solid #00a0d2;
+	margin-right: -1px;
+}
+
+.butterbean-content .chosen-container {
+	min-width: 300px;
+	width: auto!important;
+}
+
+.butterbean-content .chosen-container > .chosen-drop {
+	box-shadow: 0 0 0 1px rgba(30, 45, 55, 0.15),0 2px 3px rgba(30, 45, 55, 0.2);
 }
 
 .butterbean-checkbox-list,
 .butterbean-radio-list {
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 	max-width: 700px;
 }
 
 .butterbean-checkbox-list > li,
 .butterbean-radio-list > li {
-    margin: 0 1rem 1rem 0;
+	margin: 0 1rem 1rem 0;
 }
 
 .doc-actions-icon {
@@ -36,15 +56,15 @@
 	color: inherit;
 	opacity: 0.7;
 	width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 1px solid #ddd;
-    padding: 3px;
+	height: 24px;
+	border-radius: 50%;
+	border: 1px solid #ddd;
+	padding: 3px;
 }
 
 .mime-icon {
-    padding: .75rem;
-    max-width: 38px;
+	padding: .75rem;
+	max-width: 38px;
 }
 
 .doc-actions {
@@ -54,11 +74,11 @@
 .doc-file-label,
 .add-icon {
 	-webkit-transition-property: all;
-    transition-property: all;
-    -webkit-transition-duration: .05s;
-    transition-duration: .05s;
-    -webkit-transition-timing-function: ease-in-out;
-    transition-timing-function: ease-in-out;
+	transition-property: all;
+	-webkit-transition-duration: .05s;
+	transition-duration: .05s;
+	-webkit-transition-timing-function: ease-in-out;
+	transition-timing-function: ease-in-out;
 }
 
 .doc-actions-icon:hover {
@@ -68,18 +88,18 @@
 
 .doc-file-label {
 	width: 100%;
-    position: relative;
-    text-align: center;
+	position: relative;
+	text-align: center;
 	font-size: 20px;
-    line-height: 0;
-    border: 1px solid #eee;
-    box-sizing: border-box;
+	line-height: 0;
+	border: 1px solid #eee;
+	box-sizing: border-box;
 	border-radius: 2px;
 	cursor: default;
 }
 
 .doc-file-label.no-file {
-    border: 2px dashed #ddd;
+	border: 2px dashed #ddd;
 	padding: 9px 0;
 	cursor: pointer;
 	background-color: #f7f7f7;
@@ -93,7 +113,7 @@
 	margin-left: -1px;
 }
 .no-file:hover > * {
-    opacity: 1;
+	opacity: 1;
 }
 
 .add-file.doc-actions-icon {
@@ -102,17 +122,17 @@
 }
 
 /*.has-file.pdf {
-    border-color: #E98D85;
+border-color: #E98D85;
 }
 
 .has-file.doc,
 .has-file.docx {
-    border-color: #8BB5F9;
+border-color: #8BB5F9;
 }
 
 .has-file.xls,
 .has-file.xlsx {
-    border-color: #6CC399;
+border-color: #6CC399;
 }*/
 
 .dpt-video-embed {
@@ -120,28 +140,28 @@
 }
 
 .FlexEmbed {
-  display: block;
-  overflow: hidden;
-  position: relative;
+	display: block;
+	overflow: hidden;
+	position: relative;
 }
 
 .FlexEmbed-ratio {
-  display: block;
-  padding-bottom: 100%;
-  width: 100%;
+	display: block;
+	padding-bottom: 100%;
+	width: 100%;
 }
 
 .FlexEmbed-ratio--16by9 {
-  padding-bottom: 56.25%;
+	padding-bottom: 56.25%;
 }
 
 .FlexEmbed>iframe {
-  bottom: 0;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
+	bottom: 0;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
 }
 
 .u-fit {
