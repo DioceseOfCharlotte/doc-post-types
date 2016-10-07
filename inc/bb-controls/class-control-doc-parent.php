@@ -84,29 +84,35 @@ class ButterBean_Control_Doc_Parent extends ButterBean_Control {
 				'posts_per_page' => -1,
 				'orderby'        => 'title',
 				'order'          => 'ASC',
-				'fields'         => array( 'ID', 'post_title' )
+				'fields'         => array( 'ID', 'post_title' ),
 			)
 		);
 
-		$this->json['choices'] = array( array( 'value' => 0, 'label' => '' ) );
+		$this->json['choices'] = array( array( 'value' => 0, 'class' => '', 'label' => '— Select —' ) );
 
-		foreach ( $posts as $post )
-			$this->json['choices'][] = array( 'value' => $post->ID, 'label' => get_the_title( $post ) );
+		foreach ( $posts as $post ) {
+			$is_child = '';
+
+			if ( 0 < absint( $post->post_parent ) ) {
+				$is_child = true;
+			}
+
+			$this->json['choices'][] = array( 'value' => $post->ID, 'class' => $is_child, 'label' => get_the_title( $post ) ); }
 	}
 
 	public function get_template() {
 ?>
 
-<label class="form-wrap">
+<div class="form-wrap">
 
 	<# if ( data.label ) { #>
-		<span class="butterbean-label">{{ data.label }}</span>
+		<label class="butterbean-label" for="{{ data.field_name }}">{{ data.label }}</label>
 	<# } #>
 
 	<select name="{{ data.field_name }}" id="{{ data.field_name }}">
 
 		<# _.each( data.choices, function( choice ) { #>
-			<option value="{{ choice.value }}" <# if ( choice.value === data.value ) { #> selected="selected" <# } #>>{{ choice.label }}</option>
+			<option value="{{ choice.value }}" <# if ( choice.value === data.value ) { #> selected="selected" <# } #>> <# if ( choice.class ) { #>&nbsp;&nbsp;&nbsp;<# } #>{{ choice.label }}</option>
 		<# } ) #>
 
 	</select>
@@ -115,7 +121,7 @@ class ButterBean_Control_Doc_Parent extends ButterBean_Control {
 		<span class="butterbean-description">{{{ data.description }}}</span>
 	<# } #>
 
-</label>
+</div>
 <?php
-}
+	}
 }
