@@ -24,6 +24,7 @@ function doc_register_blog_cpts() {
 		'excerpt',
 		'post-formats',
 		'theme-layouts',
+		'archive',
 	);
 
 	register_extended_post_type( 'school_post',
