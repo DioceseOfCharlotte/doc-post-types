@@ -15,7 +15,7 @@ function doc_content_template( $template ) {
 		return $template; }
 
 	// If the post type isn't a document, bail.
-	if ( get_post_type( get_the_ID() ) !== 'document' || ! members_can_current_user_view_post() || is_search() ) {
+	if ( get_post_type( get_the_ID() ) !== 'document' || is_search() ) {
 		return $template;
 	}
 
