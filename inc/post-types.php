@@ -36,6 +36,7 @@ function doc_register_post_types() {
 		'supports'             => array( 'title', 'archive' ),
 		'capability_type'     => 'doc_document',
 		'map_meta_cap'        => true,
+		'show_in_rest'          => true,
 
 		/* Capabilities. */
 		'capabilities' => array(
@@ -95,7 +96,7 @@ function doc_register_post_types() {
 	        ),
 	    ),
 
-    ) );
+	) );
 
 		register_extended_post_type( 'archive_post',
 			array(
@@ -109,6 +110,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'archive_post',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'archive_post' ),
 			)
 		);
@@ -131,6 +133,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'bishop',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'bishop' ),
 			),
 			array(
@@ -158,6 +161,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'deacon',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'deacon' ),
 			),
 			array(
@@ -185,6 +189,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'development',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'development' ),
 			),
 			array(
@@ -212,6 +217,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'education',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'education' ),
 			),
 			array(
@@ -239,6 +245,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'finance',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'finance' ),
 			),
 			array(
@@ -266,6 +273,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'hispanic_ministry',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'hispanic_ministry' ),
 			),
 			array(
@@ -293,6 +301,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'housing',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'housing' ),
 			),
 			array(
@@ -320,6 +329,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'human_resources',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'human_resources' ),
 			),
 			array(
@@ -347,6 +357,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'info_tech',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'info_tech' ),
 			),
 			array(
@@ -374,6 +385,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'liturgy',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'liturgy' ),
 			),
 			array(
@@ -401,6 +413,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'macs',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'macs' ),
 			),
 			array(
@@ -428,6 +441,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'multicultural',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'multicultural' ),
 			),
 			array(
@@ -455,6 +469,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'planning',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'planning' ),
 			),
 			array(
@@ -482,6 +497,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'property',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'property' ),
 			),
 			array(
@@ -509,6 +525,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'schools_office',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'schools_office' ),
 			),
 			array(
@@ -536,6 +553,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'tribunal',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'tribunal' ),
 			),
 			array(
@@ -563,6 +581,7 @@ function doc_register_post_types() {
 			'supports'            => $supports,
 			'capability_type'     => 'vocation',
 			'map_meta_cap'        => true,
+			'show_in_rest'      	=> true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'vocation' ),
 			),
 			array(
@@ -584,6 +603,7 @@ function doc_register_post_types() {
 			'supports'             => array( 'title', 'author', 'archive' ),
 			'capability_type'      => 'statistics_report',
 			'map_meta_cap'         => true,
+			'show_in_rest'      	=> true,
 			'capabilities'         => doc_posts_plugin()->doc_get_capabilities( 'statistics_report' ),
 			)
 		);
