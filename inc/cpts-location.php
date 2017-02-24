@@ -42,6 +42,7 @@ function doc_register_location_cpts() {
 			'capability_type'     => 'department',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'department' ),
+			'show_in_rest'        => true,
 		)
 	);
 
@@ -70,6 +71,7 @@ function doc_register_location_cpts() {
 			'capability_type'     => 'parish',
 			'map_meta_cap'        => true,
 			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'parish' ),
+			'show_in_rest'          => true,
 		),
 		array(
 	        'singular' => 'Parish',
@@ -96,6 +98,7 @@ function doc_register_location_cpts() {
 
 			/* Capabilities. */
 			'capabilities' => doc_posts_plugin()->doc_get_capabilities( 'school' ),
+			'show_in_rest'          => true,
 	    )
 	);
 

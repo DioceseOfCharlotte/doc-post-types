@@ -151,90 +151,90 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				);
 
 				// Parishes
-				if ( 'parish' === $post_type ) {
+			if ( 'parish' === $post_type ) {
 
-					if ( current_user_can( 'manage_options' ) ) {
-						$manager->register_control(
-							'doc_parish_id',
-							array(
-								'type'        => 'text',
-								'section'     => 'doc_contact_fields',
-								'label'       => 'Parish ID',
-							)
-						);
-						$manager->register_setting(
-							'doc_parish_id',
-							array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
-						);
-					}
-
-					$manager->register_section(
-						'doc_mass_fields',
-						array(
-							'label' => 'Mass',
-							'icon'  => 'dashicons-clock',
-						)
-					);
-
+				if ( current_user_can( 'manage_options' ) ) {
 					$manager->register_control(
-						'doc_mass_schedule',
+						'doc_parish_id',
 						array(
-							'type'        => 'textarea',
-							'section'     => 'doc_mass_fields',
-							'label'       => 'Mass Schedule',
-							'description' => 'Example description.',
+							'type'        => 'text',
+							'section'     => 'doc_contact_fields',
+							'label'       => 'Parish ID',
 						)
 					);
-
 					$manager->register_setting(
-						'doc_mass_schedule',
-						array( 'sanitize_callback' => 'wp_kses_post' )
+						'doc_parish_id',
+						array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
 					);
 				}
+
+				$manager->register_section(
+					'doc_mass_fields',
+					array(
+					'label' => 'Mass',
+					'icon'  => 'dashicons-clock',
+					)
+				);
+
+				$manager->register_control(
+					'doc_mass_schedule',
+					array(
+					'type'        => 'textarea',
+					'section'     => 'doc_mass_fields',
+					'label'       => 'Mass Schedule',
+					'description' => 'Example description.',
+					)
+				);
+
+				$manager->register_setting(
+					'doc_mass_schedule',
+					array( 'sanitize_callback' => 'wp_kses_post' )
+				);
+			}// End if().
 
 				// Schools
-				if ( 'school' === $post_type ) {
+			if ( 'school' === $post_type ) {
 
-					$manager->register_section(
-						'doc_grade_level_fields',
-						array(
-							'label' => 'Grade Levels',
-							'icon'  => 'dashicons-chart-bar',
-						)
-					);
+				$manager->register_section(
+					'doc_grade_level_fields',
+					array(
+					'label' => 'Grade Levels',
+					'icon'  => 'dashicons-chart-bar',
+					)
+				);
 
-					$manager->register_control(
-						'doc_grade_level',
-						array(
-							'type'        => 'checkboxes',
-							'section'     => 'doc_grade_level_fields',
-							'label'       => 'Grades',
-							'description' => 'Select all that apply.',
-							'choices'     => array(
-								'0-pk' => 'Pre-K',
-								'0-tk' => 'Transitional-K',
-								'0-k' => 'Kindergarten',
-								'1' => '1st',
-								'2' => '2nd',
-								'3' => '3rd',
-								'4' => '4th',
-								'5' => '5th',
-								'6' => '6th',
-								'7' => '7th',
-								'8' => '8th',
-								'9' => '9th',
-								'10' => '10th',
-								'11' => '11th',
-								'12' => '12th',
-							),
-						)
-					);
+				$manager->register_control(
+					'doc_grade_level',
+					array(
+					'type'        => 'checkboxes',
+					'section'     => 'doc_grade_level_fields',
+					'label'       => 'Grades',
+					'description' => 'Select all that apply.',
+					'choices'     => array(
+						'0-pk' => 'Pre-K',
+						'0-tk' => 'Transitional-K',
+						'0-k' => 'Kindergarten',
+						'1' => '1st',
+						'2' => '2nd',
+						'3' => '3rd',
+						'4' => '4th',
+						'5' => '5th',
+						'6' => '6th',
+						'7' => '7th',
+						'8' => '8th',
+						'9' => '9th',
+						'10' => '10th',
+						'11' => '11th',
+						'12' => '12th',
+					),
+					)
+				);
 
-					$manager->register_setting(
-						'doc_grade_level',
-						array( 'type' => 'array', 'sanitize_callback' => 'sanitize_key' )
-					);
-				}
+				$manager->register_setting(
+					'doc_grade_level',
+					array( 'type' => 'array', 'sanitize_callback' => 'sanitize_key' )
+				);
+			}// End if().
 
 				$manager->register_section(
 					'doc_post_colors',
@@ -323,4 +323,4 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 		private function __construct() {}
 	}
 	Doc_Meta::get_instance();
-}
+}// End if().

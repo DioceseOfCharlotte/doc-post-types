@@ -3,9 +3,8 @@
 add_filter( 'hybrid_content_template', 'doc_content_template' );
 add_action( 'pre_get_posts', 'doc_custom_queries', 1 );
 add_filter( 'post_mime_types', 'modify_post_mime_types' );
-add_action( 'omnisearch_add_providers', 'doc_omnisearch_providers' );
-add_filter( 'user_contactmethods', 'doc_user_parish_id' );
-
+// add_action( 'omnisearch_add_providers', 'doc_omnisearch_providers' );
+// add_filter( 'user_contactmethods', 'doc_user_parish_id' );
 
 /**
  * Add templates to hybrid_get_content_template()
@@ -138,7 +137,7 @@ function doc_home_tiles() {
 	return array_merge( $cpts, doc_department_cpts() );
 }
 
-//Jetpack_Omnisearch
+// Jetpack_Omnisearch
 function doc_omnisearch_providers() {
 	if ( ! class_exists( 'Jetpack_Omnisearch_Posts' ) ) {
 		return;
