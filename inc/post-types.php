@@ -98,7 +98,7 @@ function doc_register_post_types() {
 
 	) );
 
-		register_extended_post_type( 'archive_post',
+		register_extended_post_type( 'aa_ministries',
 			array(
 			'admin_cols' => array(
 				'featured_image' => array(
@@ -106,14 +106,42 @@ function doc_register_post_types() {
 					'featured_image' => 'abe-icon',
 				),
 			),
-			'menu_icon'           => 'dashicons-archive',
+			'admin_filters' => array(
+		        'component' => array(
+		            'title'    => 'All block types',
+		            'meta_key' => 'arch_component',
+		        ),
+			),
+			'menu_icon'           => 'dashicons-share-alt',
 			'supports'            => $supports,
-			'capability_type'     => 'archive_post',
+			'capability_type'     => 'aa_ministries',
 			'map_meta_cap'        => true,
 			'show_in_rest'      	=> true,
-			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'archive_post' ),
+			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'aa_ministries' ),
+			),
+			array(
+	        'singular' => 'AA Ministries Post',
+	        'plural'   => 'AA Ministries Posts',
+	        'slug'     => 'aa-ministries',
 			)
 		);
+
+			register_extended_post_type( 'archive_post',
+				array(
+				'admin_cols' => array(
+					'featured_image' => array(
+						'title'          => 'Image',
+						'featured_image' => 'abe-icon',
+					),
+				),
+				'menu_icon'           => 'dashicons-archive',
+				'supports'            => $supports,
+				'capability_type'     => 'archive_post',
+				'map_meta_cap'        => true,
+				'show_in_rest'      	=> true,
+				'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'archive_post' ),
+				)
+			);
 
 		register_extended_post_type( 'bishop',
 			array(

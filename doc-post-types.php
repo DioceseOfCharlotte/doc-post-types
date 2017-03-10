@@ -85,6 +85,7 @@ final class Doc_Posts_Plugin {
 			'department',
 			'parish',
 			'school',
+			'aa_ministries',
 			'archive_post',
 			'bishop',
 			'deacon',
