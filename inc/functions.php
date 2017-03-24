@@ -3,7 +3,6 @@
 add_filter( 'hybrid_content_template', 'doc_content_template' );
 add_action( 'pre_get_posts', 'doc_custom_queries', 1 );
 add_filter( 'post_mime_types', 'modify_post_mime_types' );
-// add_action( 'omnisearch_add_providers', 'doc_omnisearch_providers' );
 // add_filter( 'user_contactmethods', 'doc_user_parish_id' );
 
 /**
@@ -135,43 +134,6 @@ function doc_home_tiles() {
 	   'cpt_archive',
 	);
 	return array_merge( $cpts, doc_department_cpts() );
-}
-
-// Jetpack_Omnisearch
-function doc_omnisearch_providers() {
-	if ( ! class_exists( 'Jetpack_Omnisearch_Posts' ) ) {
-		return;
-	}
-
-	$cpt_names = array(
-		'school',
-		'parish',
-		'department',
-		'document',
-		'archive_post',
-		'bishop',
-		'schools_office',
-		'deacon',
-		'development',
-		'education',
-		'finance',
-		'hispanic_ministry',
-		'housing',
-		'human_resources',
-		'info_tech',
-		'liturgy',
-		'macs',
-		'multicultural',
-		'planning',
-		'property',
-		'tribunal',
-		'vocation',
-		'statistics_report',
-	);
-
-	foreach ( $cpt_names as $name ) {
-		new Jetpack_Omnisearch_Posts( "{$name}" );
-	}
 }
 
 function doc_mime_icon( $icon, $mime, $post_id ) {
