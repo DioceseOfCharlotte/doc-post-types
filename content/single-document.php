@@ -13,7 +13,7 @@
 			<?php $doc = get_post_meta( get_the_ID(), 'dpt_document_id', true ); ?>
 			<?php $doc_link = wp_get_attachment_url( $doc ); ?>
 
-			<?php if ( members_can_current_user_view_post( get_the_ID() ) ) : ?>
+			<?php if ( function_exists( 'members_can_current_user_view_post' ) && members_can_current_user_view_post( get_the_ID() ) ) : ?>
 
 				<?php if ( $doc ) :  ?>
 
@@ -22,7 +22,7 @@
 
 				<?php if ( doc_is_file( 'pdf' ) ) { ?>
 				<object class="doc-embed" data="<?php echo $doc_link ?>#pagemode=bookmarks" type="application/pdf" width="100%" height="600px">
-					<iframe src="<?php echo $doc_link ?>#pagemode=bookmarks" width="100%" height="100%" style="border: none;">
+					<iframe src="https://docs.google.com/viewer?url=<?php echo $doc_link ?>&amp;hl=en_US&amp;embedded=true" width="100%" height="600px" style="border: none;">
 						This browser does not support PDFs. Please download the PDF to view it:
 					</iframe>
 				</object>
