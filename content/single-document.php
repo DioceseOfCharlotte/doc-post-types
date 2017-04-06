@@ -8,10 +8,7 @@
 
 <article <?php hybrid_attr( 'post' ); ?>>
 
-	<?php tha_entry_top(); ?>
-
 		<div <?php hybrid_attr( 'entry-content' ); ?>>
-			<?php tha_entry_content_before(); ?>
 			<?php the_excerpt(); ?>
 			<?php $doc = get_post_meta( get_the_ID(), 'dpt_document_id', true ); ?>
 			<?php $doc_link = wp_get_attachment_url( $doc ); ?>
@@ -49,14 +46,8 @@
 				<?php endif; ?>
 
 			<?php endif; ?>
-
-			<?php tha_entry_content_after(); ?>
 		</div>
 
 		<?php get_template_part( 'components/entry', 'footer' ); ?>
-
-		<?php comments_template( '', true ); ?>
-
-	<?php tha_entry_bottom(); ?>
 
 </article>
