@@ -101,10 +101,18 @@ function doc_register_post_types() {
 		register_extended_post_type( 'aa_ministries',
 			array(
 			'admin_cols' => array(
+				'block_type' => array(
+					'title'       => 'Type',
+					'meta_key'    => 'arch_component',
+				),
 				'featured_image' => array(
 					'title'          => 'Image',
 					'featured_image' => 'abe-icon',
 				),
+				'published' => array(
+		            'title'       => 'Published',
+					'post_field' => 'post_date',
+		        ),
 			),
 			'admin_filters' => array(
 		        'component' => array(
@@ -145,12 +153,20 @@ function doc_register_post_types() {
 
 		register_extended_post_type( 'bishop',
 			array(
-			'admin_cols' => array(
-				'featured_image' => array(
-					'title'          => 'Image',
-					'featured_image' => 'abe-icon',
+				'admin_cols' => array(
+					'block_type' => array(
+						'title'       => 'Type',
+						'meta_key'    => 'arch_component',
+					),
+					'featured_image' => array(
+						'title'          => 'Image',
+						'featured_image' => 'abe-icon',
+					),
+					'published' => array(
+			            'title'       => 'Published',
+						'post_field' => 'post_date',
+			        ),
 				),
-			),
 			'admin_filters' => array(
 		        'component' => array(
 		            'title'    => 'All block types',
