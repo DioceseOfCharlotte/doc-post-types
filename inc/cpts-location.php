@@ -24,6 +24,7 @@ function doc_register_location_cpts() {
 		'page-attributes',
 		'theme-layouts',
 		'archive',
+		'jetpack_sitemap_post_types',
 	);
 
 	register_extended_post_type( 'department',
