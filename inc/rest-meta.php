@@ -3,8 +3,15 @@
  * Expose custom metadata to the wp-api.
  */
 
+add_filter( 'rest_api_allowed_post_types', 'doc_jetpack_post_types');
 add_action( 'rest_api_init', 'doc_add_to_rest' );
 add_filter( 'gravityflow_webhook_args', 'doc_filter_gravityflow_webhook_args', 10, 3 );
+
+function doc_jetpack_post_types( $allowed_post_types ) {
+	$allowed_post_types[] = doc_posts_plugin()->cpt_names;
+
+    return $allowed_post_types;
+}
 
 function doc_parish_rest_fields() {
 	$fields = array(
