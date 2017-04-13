@@ -26,7 +26,6 @@ function doc_register_post_types() {
 		'page-attributes',
 		'theme-layouts',
 		'archive',
-		'jetpack_sitemap_post_types',
 	);
 
 	register_extended_post_type( 'document',
