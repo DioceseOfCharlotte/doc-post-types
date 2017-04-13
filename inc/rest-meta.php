@@ -8,7 +8,7 @@ add_action( 'rest_api_init', 'doc_add_to_rest' );
 add_filter( 'gravityflow_webhook_args', 'doc_filter_gravityflow_webhook_args', 10, 3 );
 
 function doc_jetpack_post_types( $allowed_post_types ) {
-	$allowed_post_types[] = doc_posts_plugin()->cpt_names;
+	$allowed_post_types = doc_posts_plugin()->cpt_names;
 
     return $allowed_post_types;
 }
@@ -74,7 +74,7 @@ function doc_filter_gravityflow_webhook_args( $args, $entry, $current_step ) {
 
 
 
-add_action( 'gform_admin_pre_render_18', 'add_merge_tags' );
+add_action( 'gform_admin_pre_render_19', 'add_merge_tags' );
 function add_merge_tags( $form ) {
 	?>
 	<script type="text/javascript">
