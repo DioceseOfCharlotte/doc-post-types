@@ -168,13 +168,14 @@ final class Doc_Posts_Plugin {
 	private function includes() {
 		require_once $this->dir_path . 'lib/extended-cpts.php';
 		require_once $this->dir_path . 'lib/extended-taxos.php';
+		require_once $this->dir_path . 'lib/class-gw-advanced-merge-tags.php';
 		require_once $this->dir_path . 'inc/customizer.php';
 		require_once $this->dir_path . 'inc/cpts-location.php';
 		require_once $this->dir_path . 'inc/post-types.php';
 		require_once $this->dir_path . 'inc/cpts-blog.php';
 		require_once $this->dir_path . 'inc/taxonomies.php';
 		require_once $this->dir_path . 'inc/metaboxes.php';
-		//require_once $this->dir_path . 'inc/rest-meta.php';
+		require_once $this->dir_path . 'inc/rest-meta.php';
 		require_once $this->dir_path . 'inc/documents-meta.php';
 		require_once $this->dir_path . 'inc/functions.php';
 	}
