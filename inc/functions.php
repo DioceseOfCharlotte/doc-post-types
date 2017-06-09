@@ -13,11 +13,7 @@ function doc_content_template( $template ) {
 		return $template; }
 
 	// If the post type isn't a document, bail.
-	if ( get_post_type( get_the_ID() ) !== 'document' || is_search() ) {
-		return $template;
-	}
-
-	if ( is_single( get_the_ID() ) ) {
+	if ( get_post_type( get_the_ID() ) === 'document' && is_single( get_the_ID() ) ) {
 
 		$template = trailingslashit( doc_posts_plugin()->dir_path ) . 'content/single-document.php';
 		$has_template = locate_template( array( 'content/single-document.php' ) );

@@ -3,7 +3,7 @@
  * Extended custom taxonomies for WordPress.
  *
  * @package   ExtendedTaxos
- * @version   2.0.4
+ * @version   2.0.5
  * @author    John Blackbourn <https://johnblackbourn.com>
  * @link      https://github.com/johnbillion/extended-taxos
  * @copyright 2012-2017 John Blackbourn
@@ -297,6 +297,7 @@ class Extended_Taxonomy_Admin {
 		'dashboard_glance'  => false, # Custom arg
 		'checked_ontop'     => null,  # Custom arg
 		'admin_cols'        => null,  # Custom arg
+		'required'          => false, # Custom arg
 	);
 
 	public $taxo;
@@ -716,6 +717,7 @@ class Extended_Taxonomy_Admin {
 						'name'              => "tax_input[{$taxonomy}]",
 						'taxonomy'          => $taxonomy,
 						'walker'            => $walker,
+						'required'          => $this->args['required'],
 					) );
 
 					break;

@@ -18,7 +18,7 @@ function doc_register_location_cpts() {
 	$supports = array(
 		'title',
 		'editor',
-		'author',
+		//'author',
 		'thumbnail',
 		'excerpt',
 		'page-attributes',

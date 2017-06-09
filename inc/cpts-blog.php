@@ -19,7 +19,7 @@ function doc_register_blog_cpts() {
 	$supports = array(
 		'title',
 		'editor',
-		'author',
+		//'author',
 		'thumbnail',
 		'excerpt',
 		'post-formats',
