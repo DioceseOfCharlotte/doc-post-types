@@ -6,7 +6,7 @@
 add_filter( 'rest_api_allowed_post_types', 'doc_jetpack_post_types' );
 add_action( 'init', 'doc_register_parish_meta' );
 add_action( 'rest_api_init', 'doc_add_to_rest' );
-add_filter( 'gravityflow_webhook_args', 'doc_filter_gravityflow_webhook_args', 10, 3 );
+
 
 function doc_jetpack_post_types( $allowed_post_types ) {
 	$allowed_post_types = doc_posts_plugin()->cpt_names;
@@ -59,35 +59,4 @@ function parish_update_field( $value, $post, $field_name ) {
 	}
 	$value = esc_html( $value );
 	return update_post_meta( $post->ID, $field_name, wp_slash( $value ) );
-}
-
-// Allow the webhook to be modified before it's sent.
-function doc_filter_gravityflow_webhook_args( $args, $entry, $current_step ) {
-
-	$username = 'admin';
-	$password = 'password';
-	$args['headers'] = array(
-		'Authorization' => 'Basic ' . base64_encode( $username . ':' . $password ),
-	);
-
-	return $args;
-}
-
-
-
-
-add_action( 'gform_admin_pre_render', 'add_merge_tags' );
-function add_merge_tags( $form ) {
-	?>
-	<script type="text/javascript">
-	gform.addFilter('gform_merge_tags', 'add_merge_tags');
-	function add_merge_tags(mergeTags, elementId, hideAllFields, excludeFieldTypes, isPrepop, option){
-		mergeTags["custom"].tags.push({ tag: '{post_meta:id=get(doc_pid)&meta_key=CUSTOM-FIELD}', label: 'Parish Meta' });
-
-		return mergeTags;
-	}
-	</script>
-	<?php
-	// return the form object from the php hook
-	return $form;
 }

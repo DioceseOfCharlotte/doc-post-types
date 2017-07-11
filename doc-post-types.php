@@ -176,6 +176,7 @@ final class Doc_Posts_Plugin {
 		require_once $this->dir_path . 'inc/taxonomies.php';
 		require_once $this->dir_path . 'inc/metaboxes.php';
 		require_once $this->dir_path . 'inc/rest-meta.php';
+		require_once $this->dir_path . 'inc/parish-flow.php';
 		require_once $this->dir_path . 'inc/documents-meta.php';
 		require_once $this->dir_path . 'inc/functions.php';
 	}
