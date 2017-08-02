@@ -22,11 +22,12 @@ function add_merge_tags( $form ) {
 // Allow the webhook to be modified before it's sent.
 function doc_filter_gravityflow_webhook_args( $args, $entry, $current_step ) {
 
-	$username = 'admin';
-	$password = 'password';
+	$username = get_theme_mod( 'meh_rest_name', '' );
+	$password = get_theme_mod( 'meh_rest_pass', '' );
 	$args['headers'] = array(
 		'Authorization' => 'Basic ' . base64_encode( $username . ':' . $password ),
 	);
 
 	return $args;
+
 }
