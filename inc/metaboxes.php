@@ -168,6 +168,21 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					);
 				}
 
+				$manager->register_control(
+					'doc_parish_staff',
+					array(
+					'type'        => 'textarea',
+					'section'     => 'doc_contact_fields',
+					'label'       => 'Parish Staff',
+					'description' => 'Format:<br>Title: Name<br>Title: Name',
+					)
+				);
+
+				$manager->register_setting(
+					'doc_parish_staff',
+					array( 'sanitize_callback' => 'wp_kses_post' )
+				);
+
 				$manager->register_section(
 					'doc_mass_fields',
 					array(
@@ -190,6 +205,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					'doc_mass_schedule',
 					array( 'sanitize_callback' => 'wp_kses_post' )
 				);
+
 			}// End if().
 
 				// Schools
