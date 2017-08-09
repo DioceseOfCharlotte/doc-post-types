@@ -54,11 +54,22 @@ function get_users_parish_id() {
 	return $users_parish_id;
 }
 
-function get_parish_id() {
-	$post_id = get_the_ID();
+function get_parish_id( $post_id = 0 ) {
+	$post_id   = empty( $post_id ) ? get_the_ID() : $post_id;
 	$parish_id = get_post_meta( $post_id, 'doc_parish_id', true );
 
 	return $parish_id;
+}
+
+function get_parish_post( $parish_id ) {
+	$args = array(
+		'post_type'      => 'parish',
+		'meta_key'         => 'doc_parish_id',
+		'meta_value'       => $parish_id,
+	);
+	$parish_post = get_posts( $args );
+
+	return $parish_post[0]->ID;
 }
 
 function user_can_update_parish() {
@@ -74,15 +85,18 @@ function user_can_update_parish() {
 	return current_user_can( 'parish_update_form' );
 }
 
+function meh_shortcode_field( $atts ) {
+	extract( shortcode_atts(
+		array(
+			'post_id' => NULL,
+		), $atts));
 
-add_shortcode('meh_field', 'meh_shortcode_field');
-function meh_shortcode_field($atts){
-     extract(shortcode_atts(array(
-                  'post_id' => NULL,
-               ), $atts));
-  if(!isset($atts[0])) return;
-       $field = esc_attr($atts[0]);
-       global $post;
-       $post_id = (NULL === $post_id) ? $post->ID : $post_id;
-       return get_post_meta($post_id, $field, true);
+	if ( ! isset( $atts[0] ) )
+		return;
+
+	$field = esc_attr( $atts[0] );
+	global $post;
+	$post_id = ( NULL === $post_id) ? $post->ID : $post_id;
+	return get_post_meta( $post_id, $field, true );
 }
+add_shortcode( 'meh_field', 'meh_shortcode_field' );
