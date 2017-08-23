@@ -32,6 +32,22 @@ function doc_filter_gravityflow_webhook_args( $args, $entry, $current_step ) {
 
 }
 
+// User Parish ID.
+function doc_user_parish_post_field( $user_contact_method ) {
+
+	if ( ! current_user_can( 'edit_users' ) ) {
+		return;
+	}
+
+	$user_contact_method['doc_department'] = __( 'Department Post', 'doc' );
+	$user_contact_method['doc_school'] = __( 'School Post', 'doc' );
+	$user_contact_method['doc_parish'] = __( 'Parish Post', 'doc' );
+
+	return $user_contact_method;
+
+}
+add_filter( 'user_contactmethods', 'doc_user_parish_post_field' );
+
 
 // User Parish ID.
 function doc_user_parish_id_field( $user_contact_method ) {
@@ -47,9 +63,31 @@ function doc_user_parish_id_field( $user_contact_method ) {
 }
 add_filter( 'user_contactmethods', 'doc_user_parish_id_field' );
 
+function get_users_parish_post( $user_id = 0 ) {
+	$user_id = empty( $user_id ) ? get_current_user_id() : $user_id;
+	$users_parish_post = get_user_meta( $user_id, 'doc_parish', true );
+
+	return $users_parish_post;
+}
+
+function get_users_school_post( $user_id = 0 ) {
+	$user_id = empty( $user_id ) ? get_current_user_id() : $user_id;
+	$users_school_post = get_user_meta( $user_id, 'doc_school', true );
+
+	return $users_school_post;
+}
+
+function get_users_department_post( $user_id = 0 ) {
+	$user_id = empty( $user_id ) ? get_current_user_id() : $user_id;
+	$users_department_post = get_user_meta( $user_id, 'doc_department', true );
+
+	return $users_department_post;
+}
+
 function get_users_parish_id() {
 	$user_id = get_current_user_id();
-	$users_parish_id = get_user_meta( $user_id, 'doc_user_parish_id', true );
+	$users_parish_post = get_user_meta( $user_id, 'doc_parish', true );
+	$users_parish_id = get_post_meta( $users_parish_post, 'doc_parish_id', true );
 
 	return $users_parish_id;
 }
@@ -100,3 +138,32 @@ function meh_shortcode_field( $atts ) {
 	return get_post_meta( $post_id, $field, true );
 }
 add_shortcode( 'meh_field', 'meh_shortcode_field' );
+
+
+
+
+
+
+add_filter( 'gform_field_value_list_two', 'itsg_prefill_list_two' );
+
+function itsg_prefill_list_two( $value ) {
+    $list_array = array(
+        array(
+            'Value' => 'Option 1',
+            'Rating' => 'Good'
+        ),
+        array(
+			'Value' => 'Option 2',
+            'Rating' => 'Good'
+        ),
+        array(
+			'Value' => 'Option 3',
+            'Rating' => 'Good'
+        ),
+        array(
+			'Value' => 'Option 4',
+            'Rating' => 'Good'
+        ),
+    );
+    return $list_array;
+}
