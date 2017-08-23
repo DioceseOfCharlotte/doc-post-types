@@ -25,6 +25,7 @@ function doc_parish_rest_fields() {
 		'doc_city',
 		'doc_state',
 		'doc_zip',
+		'staff_member',
 	);
 	return $fields;
 }
