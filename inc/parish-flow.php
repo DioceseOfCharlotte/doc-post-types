@@ -33,7 +33,7 @@ function doc_filter_gravityflow_webhook_args( $args, $entry, $current_step ) {
 }
 
 // User Parish ID.
-function doc_user_parish_post_field( $user_contact_method ) {
+function doc_user_place_post_field( $user_contact_method ) {
 
 	if ( ! current_user_can( 'edit_users' ) ) {
 		return;
@@ -46,7 +46,7 @@ function doc_user_parish_post_field( $user_contact_method ) {
 	return $user_contact_method;
 
 }
-add_filter( 'user_contactmethods', 'doc_user_parish_post_field' );
+add_filter( 'user_contactmethods', 'doc_user_place_post_field' );
 
 
 // User Parish ID.
@@ -63,13 +63,17 @@ function doc_user_parish_id_field( $user_contact_method ) {
 }
 add_filter( 'user_contactmethods', 'doc_user_parish_id_field' );
 
+// Get the parish assigned to the user.
 function get_users_parish_post( $user_id = 0 ) {
 	$user_id = empty( $user_id ) ? get_current_user_id() : $user_id;
 	$users_parish_post = get_user_meta( $user_id, 'doc_parish', true );
 
-	return $users_parish_post;
+	if ( ! empty( $users_parish_post ) ) {
+		return $users_parish_post;
+	}
 }
 
+// Get the school assigned to the user.
 function get_users_school_post( $user_id = 0 ) {
 	$user_id = empty( $user_id ) ? get_current_user_id() : $user_id;
 	$users_school_post = get_user_meta( $user_id, 'doc_school', true );
@@ -77,6 +81,7 @@ function get_users_school_post( $user_id = 0 ) {
 	return $users_school_post;
 }
 
+// Get the department assigned to the user.
 function get_users_department_post( $user_id = 0 ) {
 	$user_id = empty( $user_id ) ? get_current_user_id() : $user_id;
 	$users_department_post = get_user_meta( $user_id, 'doc_department', true );
@@ -84,60 +89,54 @@ function get_users_department_post( $user_id = 0 ) {
 	return $users_department_post;
 }
 
-function get_users_parish_id() {
-	$user_id = get_current_user_id();
+// Convert a user's Post ID to the Parish ID.
+function get_users_parish_id( $user_id = 0 ) {
+	$user_id = empty( $user_id ) ? get_current_user_id() : $user_id;
 	$users_parish_post = get_user_meta( $user_id, 'doc_parish', true );
 	$users_parish_id = get_post_meta( $users_parish_post, 'doc_parish_id', true );
 
-	return $users_parish_id;
+	if ( ! empty( $users_parish_id ) ) {
+		return $users_parish_id;
+	}
 }
 
+// Get the Parish ID from a Post ID.
 function get_parish_id( $post_id = 0 ) {
 	$post_id   = empty( $post_id ) ? get_the_ID() : $post_id;
 	$parish_id = get_post_meta( $post_id, 'doc_parish_id', true );
 
-	return $parish_id;
+	if ( ! empty( $parish_id ) ) {
+		return $parish_id;
+	}
 }
 
+// Get the Post ID from a Parish ID.
 function get_parish_post( $parish_id ) {
 	$args = array(
 		'post_type'      => 'parish',
-		'meta_key'         => 'doc_parish_id',
-		'meta_value'       => $parish_id,
+		'meta_key'       => 'doc_parish_id',
+		'meta_value'     => $parish_id,
 	);
 	$parish_post = get_posts( $args );
 
 	return $parish_post[0]->ID;
 }
 
-function user_can_update_parish() {
+// Can the user submit an update for a Parish.
+function user_can_update_parish(  $post_id = 0 ) {
+
+	$post_id   = empty( $post_id ) ? get_the_ID() : $post_id;
 
 	if ( current_user_can( 'edit_parishs' ) ) {
 		return true;
 	}
 
-	if ( get_users_parish_id() !== get_parish_id() ) {
+	if ( get_users_parish_post() !== $post_id ) {
 		return false;
 	}
 
 	return current_user_can( 'parish_update_form' );
 }
-
-function meh_shortcode_field( $atts ) {
-	extract( shortcode_atts(
-		array(
-			'post_id' => NULL,
-		), $atts));
-
-	if ( ! isset( $atts[0] ) )
-		return;
-
-	$field = esc_attr( $atts[0] );
-	global $post;
-	$post_id = ( NULL === $post_id) ? $post->ID : $post_id;
-	return get_post_meta( $post_id, $field, true );
-}
-add_shortcode( 'meh_field', 'meh_shortcode_field' );
 
 
 
