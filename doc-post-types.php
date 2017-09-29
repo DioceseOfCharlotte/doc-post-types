@@ -166,8 +166,7 @@ final class Doc_Posts_Plugin {
 	 * @return void
 	 */
 	private function includes() {
-		require_once $this->dir_path . 'lib/extended-cpts.php';
-		require_once $this->dir_path . 'lib/extended-taxos.php';
+		require_once $this->dir_path . 'lib/extended-cpts/extended-cpts.php';
 		require_once $this->dir_path . 'lib/class-gw-advanced-merge-tags.php';
 		require_once $this->dir_path . 'inc/customizer.php';
 		require_once $this->dir_path . 'inc/cpts-location.php';

@@ -2,7 +2,9 @@
 
 add_action( 'gform_admin_pre_render', 'add_merge_tags' );
 add_filter( 'gravityflow_webhook_args', 'doc_filter_gravityflow_webhook_args', 10, 3 );
+add_action( 'widgets_init', 'doc_cpt_widgets', 5 );
 
+$user_id = get_current_user_id();
 
 function add_merge_tags( $form ) {
 	?>
@@ -64,8 +66,8 @@ function doc_user_parish_id_field( $user_contact_method ) {
 add_filter( 'user_contactmethods', 'doc_user_parish_id_field' );
 
 // Get the parish assigned to the user.
-function get_users_parish_post( $user_id = 0 ) {
-	$user_id = empty( $user_id ) ? get_current_user_id() : $user_id;
+function get_users_parish_post() {
+	$user_id = get_current_user_id();
 	$users_parish_post = get_user_meta( $user_id, 'doc_parish', true );
 
 	if ( ! empty( $users_parish_post ) ) {
@@ -74,23 +76,23 @@ function get_users_parish_post( $user_id = 0 ) {
 }
 
 // Get the school assigned to the user.
-function get_users_school_post( $user_id = 0 ) {
-	$user_id = empty( $user_id ) ? get_current_user_id() : $user_id;
+function get_users_school_post() {
+	$user_id = get_current_user_id();
 	$users_school_post = get_user_meta( $user_id, 'doc_school', true );
 
 	return $users_school_post;
 }
 
 // Get the department assigned to the user.
-function get_users_department_post( $user_id = 0 ) {
-	$user_id = empty( $user_id ) ? get_current_user_id() : $user_id;
+function get_users_department_post() {
+	$user_id = get_current_user_id();
 	$users_department_post = get_user_meta( $user_id, 'doc_department', true );
 
 	return $users_department_post;
 }
 
 // Convert a user's Post ID to the Parish ID.
-function get_users_parish_id( $user_id = 0 ) {
+function get_users_parish_id( $user_id ) {
 	$user_id = empty( $user_id ) ? get_current_user_id() : $user_id;
 	$users_parish_post = get_user_meta( $user_id, 'doc_parish', true );
 	$users_parish_id = get_post_meta( $users_parish_post, 'doc_parish_id', true );
@@ -101,7 +103,7 @@ function get_users_parish_id( $user_id = 0 ) {
 }
 
 // Get the Parish ID from a Post ID.
-function get_parish_id( $post_id = 0 ) {
+function get_parish_id( $post_id ) {
 	$post_id   = empty( $post_id ) ? get_the_ID() : $post_id;
 	$parish_id = get_post_meta( $post_id, 'doc_parish_id', true );
 
@@ -123,46 +125,77 @@ function get_parish_post( $parish_id ) {
 }
 
 // Can the user submit an update for a Parish.
-function user_can_update_parish(  $post_id = 0 ) {
+function user_can_update_parish( $user_id, $post_id = '' ) {
+	if ( ! $user_id )
+		$user_id = get_current_user_id();
 
-	$post_id   = empty( $post_id ) ? get_the_ID() : $post_id;
+	if ( ! $post_id )
+		$post_id = get_the_ID();
+
+	$users_parish_post = absint( get_user_meta( $user_id, 'doc_parish', true ) );
 
 	if ( current_user_can( 'edit_parishs' ) ) {
 		return true;
 	}
 
-	if ( get_users_parish_post() !== $post_id ) {
+	if ( $users_parish_post !== $post_id ) {
 		return false;
 	}
 
 	return current_user_can( 'parish_update_form' );
 }
 
+// Add Shortcode
+function can_update_parish_shortcode( $atts, $content = null ) {
+	$user_id = get_current_user_id();
+	$post_id = get_the_ID();
 
+	return ! user_can_update_parish( $user_id, $post_id ) || is_null( $content ) ? '' : do_shortcode( $content );
 
+}
+add_shortcode( 'can_update_parish', 'can_update_parish_shortcode' );
 
+// Add Shortcode
+function edit_parish_link_shortcode( $atts, $content = null ) {
+	$user_id = get_current_user_id();
+	$post_id = get_the_ID();
 
+	$atts = shortcode_atts(
+		array(
+			'icon' => 'edit',
+			'page' => 'parish-info',
+		),
+		$atts,
+		'edit_parish_link'
+	);
 
-add_filter( 'gform_field_value_list_two', 'itsg_prefill_list_two' );
+	$icon = strtolower( $atts['icon'] );
+	$page = strtolower( $atts['page'] );
 
-function itsg_prefill_list_two( $value ) {
-    $list_array = array(
-        array(
-            'Value' => 'Option 1',
-            'Rating' => 'Good'
-        ),
-        array(
-			'Value' => 'Option 2',
-            'Rating' => 'Good'
-        ),
-        array(
-			'Value' => 'Option 3',
-            'Rating' => 'Good'
-        ),
-        array(
-			'Value' => 'Option 4',
-            'Rating' => 'Good'
-        ),
-    );
-    return $list_array;
+	$link = '';
+	$link .= '<a class="btn" href="' . esc_url( site_url( '/' ) ) . $page . '/?doc_pid=' . get_the_ID() . '" target="_blank" rel="noopener">';
+	$link .= abe_get_svg( $icon, 'sm' ) . ' ' . $content;
+	$link .= '</a>';
+
+	return ! user_can_update_parish( $user_id, $post_id ) || is_null( $content ) ? '' : $link;
+
+}
+add_shortcode( 'edit_parish_link', 'edit_parish_link_shortcode' );
+
+/**
+ * Registers sidebars.
+ *
+ * @access public
+ * @return void
+ */
+function doc_cpt_widgets() {
+	register_sidebar( array(
+		'id'            => 'parish',
+		'name'          => esc_html__( 'Parish', 'abraham' ),
+		'description'   => esc_html__( 'Add widgets to each Parish page.', 'doc' ),
+		'before_widget' => '<section id="%1$s" class="widget u-mb u-bg-frost-1 u-br %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title u-h3 u-text-display u-pt0 u-opacity">',
+		'after_title'   => '</h2>',
+	) );
 }
