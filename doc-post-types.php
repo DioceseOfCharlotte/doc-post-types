@@ -3,7 +3,7 @@
 Plugin Name: DOC Post Types
 Plugin URI: https://github.com/DioceseOfCharlotte/doc-post-types
 Description: DOC Content Types for WordPress.
-Version: 0.6.5
+Version: 0.7.0
 Author: Marty Helmick
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -176,6 +176,7 @@ final class Doc_Posts_Plugin {
 		require_once $this->dir_path . 'inc/metaboxes.php';
 		require_once $this->dir_path . 'inc/rest-meta.php';
 		require_once $this->dir_path . 'inc/parish-flow.php';
+		require_once $this->dir_path . 'inc/gf-parish-data.php';
 		require_once $this->dir_path . 'inc/documents-meta.php';
 		require_once $this->dir_path . 'inc/functions.php';
 	}
