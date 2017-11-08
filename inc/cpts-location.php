@@ -26,30 +26,32 @@ function doc_register_location_cpts() {
 		'archive',
 	);
 
-	register_extended_post_type( 'department',
+	register_extended_post_type(
+		'department',
 		array(
-			'admin_cols' => array(
+			'admin_cols'      => array(
 				'featured_image' => array(
 					'title'          => 'Logo',
 					'featured_image' => 'abe-icon',
 				),
-				'agency' => array(
+				'agency'         => array(
 					'taxonomy' => 'agency',
 				),
 			),
-			'menu_icon'           => 'dashicons-groups',
-			'supports'            => $supports,
-			'capability_type'     => 'department',
-			'map_meta_cap'        => true,
-			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'department' ),
-			'show_in_rest'        => true,
+			'menu_icon'       => 'dashicons-groups',
+			'supports'        => $supports,
+			'capability_type' => 'department',
+			'map_meta_cap'    => true,
+			'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'department' ),
+			'show_in_rest'    => true,
 		)
 	);
 
-	register_extended_post_type( 'parish',
+	register_extended_post_type(
+		'parish',
 		array(
-			'admin_cols' => array(
-				'city' => array(
+			'admin_cols'      => array(
+				'city'           => array(
 					'title'    => 'City',
 					'meta_key' => 'doc_city',
 				),
@@ -57,49 +59,50 @@ function doc_register_location_cpts() {
 					'title'          => 'Image',
 					'featured_image' => 'abe-icon',
 				),
-				'vicariate' => array(
-				    'title'    => 'Vicariate',
-				    'taxonomy' => 'vicariate',
+				'vicariate'      => array(
+					'title'    => 'Vicariate',
+					'taxonomy' => 'vicariate',
 				),
-				'parish_id' => array(
-				    'title'    => 'Parish ID',
-				    'meta_key' => 'doc_parish_id',
+				'parish_id'      => array(
+					'title'    => 'Parish ID',
+					'meta_key' => 'doc_parish_id',
 				),
 			),
-			'menu_icon'           => 'dashicons-book-alt',
-			'supports' 			        => $supports,
-			'capability_type'     => 'parish',
-			'map_meta_cap'        => true,
-			'capabilities'        => doc_posts_plugin()->doc_get_capabilities( 'parish' ),
-			'show_in_rest'          => true,
+			'menu_icon'       => 'dashicons-book-alt',
+			'supports'        => $supports,
+			'capability_type' => 'parish',
+			'map_meta_cap'    => true,
+			'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'parish' ),
+			'show_in_rest'    => true,
 		),
 		array(
-	        'singular' => 'Parish',
-	        'plural'   => 'Parishes',
-	        'slug'     => 'parishes',
-	    )
+			'singular' => 'Parish',
+			'plural'   => 'Parishes',
+			'slug'     => 'parishes',
+		)
 	);
 
-	register_extended_post_type( 'school',
+	register_extended_post_type(
+		'school',
 		array(
-		'admin_cols' => array(
+			'admin_cols'      => array(
 				'featured_image' => array(
-				    'title'          => 'Logo',
-				    'featured_image' => 'abe-icon',
+					'title'          => 'Logo',
+					'featured_image' => 'abe-icon',
 				),
-				'school_system' => array(
-				    'taxonomy' => 'school_system',
+				'school_system'  => array(
+					'taxonomy' => 'school_system',
 				),
 			),
-			'menu_icon'           => 'dashicons-welcome-learn-more',
-			'supports'            => $supports,
-			'capability_type'     => 'school',
-			'map_meta_cap'        => true,
+			'menu_icon'       => 'dashicons-welcome-learn-more',
+			'supports'        => $supports,
+			'capability_type' => 'school',
+			'map_meta_cap'    => true,
 
 			/* Capabilities. */
-			'capabilities' => doc_posts_plugin()->doc_get_capabilities( 'school' ),
-			'show_in_rest'          => true,
-	    )
+			'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'school' ),
+			'show_in_rest'    => true,
+		)
 	);
 
 }

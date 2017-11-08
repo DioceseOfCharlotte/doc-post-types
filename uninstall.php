@@ -36,25 +36,26 @@ if ( ! is_null( $role ) ) {
 		$role->remove_cap( 'edit_doc_documents' );
 		$role->remove_cap( 'manage_doc_documents' );
 
-		remove_role( $name, "{$name} Administrator",
+		remove_role(
+			$name, "{$name} Administrator",
 			array(
-				'read' => true,
-				'create_doc_documents' => true, // documents
-				'edit_doc_documents' => true, // documents
-				'manage_doc_documents' => true, // documents
-				'restrict_content' => true, // members
-				'upload_files' => true,
-				"create_{$name}s" => true,
-				"edit_{$name}s" => true,
-				"edit_others_{$name}s" => true,
-				"publish_{$name}s" => true,
-				"read_private_{$name}s" => true,
-				"delete_{$name}s" => true,
-				"delete_private_{$name}s" => true,
+				'read'                      => true,
+				'create_doc_documents'      => true, // documents
+				'edit_doc_documents'        => true, // documents
+				'manage_doc_documents'      => true, // documents
+				'restrict_content'          => true, // members
+				'upload_files'              => true,
+				"create_{$name}s"           => true,
+				"edit_{$name}s"             => true,
+				"edit_others_{$name}s"      => true,
+				"publish_{$name}s"          => true,
+				"read_private_{$name}s"     => true,
+				"delete_{$name}s"           => true,
+				"delete_private_{$name}s"   => true,
 				"delete_published_{$name}s" => true,
-				"delete_others_{$name}s" => true,
-				"edit_private_{$name}s" => true,
-				"edit_published_{$name}s" => true,
+				"delete_others_{$name}s"    => true,
+				"edit_private_{$name}s"     => true,
+				"edit_published_{$name}s"   => true,
 			)
 		);
 	}

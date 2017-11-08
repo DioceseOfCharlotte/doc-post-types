@@ -48,7 +48,7 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 					'label'     => 'Document',
 					'post_type' => 'document',
 					'context'   => 'normal',
-					'priority' 	=> 'high',
+					'priority'  => 'high',
 				)
 			);
 
@@ -59,8 +59,8 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 			$manager->register_section(
 				'dpt_document_id_section',
 				array(
-					'label'    => 'Attached Document',
-					'icon' => 'dashicons-format-aside',
+					'label' => 'Attached Document',
+					'icon'  => 'dashicons-format-aside',
 				)
 			);
 
@@ -70,9 +70,9 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 					$manager,
 					'dpt_document_id',
 					array(
-						'type'        	=> 'document',
-						'section'     	=> 'dpt_document_id_section',
-						'label'       	=> '',
+						'type'    => 'document',
+						'section' => 'dpt_document_id_section',
+						'label'   => '',
 					)
 				)
 			);
@@ -81,7 +81,7 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 			$manager->register_setting(
 				'dpt_document_id',
 				array(
-					array( 'sanitize_callback' => 'absint' )
+					array( 'sanitize_callback' => 'absint' ),
 				)
 			);
 
@@ -89,8 +89,8 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 			$manager->register_section(
 				'dpt_document_v_section',
 				array(
-					'label'    => 'Version',
-					'icon' => 'dashicons-tag',
+					'label' => 'Version',
+					'icon'  => 'dashicons-tag',
 				)
 			);
 
@@ -98,9 +98,9 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 			$manager->register_control(
 				'document-version',
 				array(
-					'type'    => 'text',
-					'section' => 'dpt_document_v_section',
-					'label'   => '',
+					'type'        => 'text',
+					'section'     => 'dpt_document_v_section',
+					'label'       => '',
 					'description' => 'date, revision, language, etc. <em>(optional)</em>',
 				)
 			);
@@ -117,8 +117,8 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 			$manager->register_section(
 				'dpt_document_parent_section',
 				array(
-					'label'    => 'Parent Document',
-					'icon' => 'dashicons-networking',
+					'label' => 'Parent Document',
+					'icon'  => 'dashicons-networking',
 				)
 			);
 
@@ -127,13 +127,13 @@ if ( ! class_exists( 'DPT_Documents_Meta' ) ) {
 			$manager->register_control(
 				new ButterBean_Control_Doc_Parent(
 					$manager,
-				'document-parent',
-				array(
-					'type'    => 'doc-parent',
-					'section' => 'dpt_document_parent_section',
-					'label'   => 'Is this file an appendix?',
-					'description' => 'Choose the Document to append to.',
-				)
+					'document-parent',
+					array(
+						'type'        => 'doc-parent',
+						'section'     => 'dpt_document_parent_section',
+						'label'       => 'Is this file an appendix?',
+						'description' => 'Choose the Document to append to.',
+					)
 				)
 			);
 		}

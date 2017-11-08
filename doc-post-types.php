@@ -82,33 +82,33 @@ final class Doc_Posts_Plugin {
 	 * @var    string
 	 */
 	public $cpt_names = array(
-			'department',
-			'parish',
-			'school',
-			'aa_ministries',
-			'archive_post',
-			'bishop',
-			'deacon',
-			'development',
-			'development_post',
-			'education',
-			'finance',
-			'hispanic_ministry',
-			'housing',
-			'human_resources',
-			'hr_post',
-			'info_tech',
-			'liturgy',
-			'macs',
-			'multicultural',
-			'planning',
-			'property',
-			'schools_office',
-			'school_post',
-			'tribunal',
-			'vocation',
-			'statistics_report',
-		);
+		'department',
+		'parish',
+		'school',
+		'aa_ministries',
+		'archive_post',
+		'bishop',
+		'deacon',
+		'development',
+		'development_post',
+		'education',
+		'finance',
+		'hispanic_ministry',
+		'housing',
+		'human_resources',
+		'hr_post',
+		'info_tech',
+		'liturgy',
+		'macs',
+		'multicultural',
+		'planning',
+		'property',
+		'schools_office',
+		'school_post',
+		'tribunal',
+		'vocation',
+		'statistics_report',
+	);
 
 	/**
 	 * Returns the instance.
@@ -153,7 +153,7 @@ final class Doc_Posts_Plugin {
 		// Plugin assets URIs.
 		$this->css_uri = trailingslashit( $this->dir_uri . 'assets/styles' );
 		$this->js_uri  = trailingslashit( $this->dir_uri . 'assets/scripts' );
-		$this->img_uri  = trailingslashit( $this->dir_uri . 'assets/images' );
+		$this->img_uri = trailingslashit( $this->dir_uri . 'assets/images' );
 
 		$this->maps_api = get_theme_mod( 'google_maps_api' );
 	}
@@ -262,26 +262,27 @@ final class Doc_Posts_Plugin {
 	public function add_roles() {
 
 		foreach ( $this->cpt_names as $name ) {
-			add_role( $name, "{$name} Administrator",
+			add_role(
+				$name, "{$name} Administrator",
 				array(
-					'read' => true,
-					'create_doc_documents' => true, // documents
-					'edit_doc_documents' => true, // documents
-					'manage_doc_documents' => true, // documents
-					'restrict_content' => true, // members
-					'level_1' => true, // for the author dropdown
-					'upload_files' => true,
-					"create_{$name}s" => true,
-					"edit_{$name}s" => true,
-					"edit_others_{$name}s" => true,
-					"publish_{$name}s" => true,
-					"read_private_{$name}s" => true,
-					"delete_{$name}s" => true,
-					"delete_private_{$name}s" => true,
+					'read'                      => true,
+					'create_doc_documents'      => true, // documents
+					'edit_doc_documents'        => true, // documents
+					'manage_doc_documents'      => true, // documents
+					'restrict_content'          => true, // members
+					'level_1'                   => true, // for the author dropdown
+					'upload_files'              => true,
+					"create_{$name}s"           => true,
+					"edit_{$name}s"             => true,
+					"edit_others_{$name}s"      => true,
+					"publish_{$name}s"          => true,
+					"read_private_{$name}s"     => true,
+					"delete_{$name}s"           => true,
+					"delete_private_{$name}s"   => true,
 					"delete_published_{$name}s" => true,
-					"delete_others_{$name}s" => true,
-					"edit_private_{$name}s" => true,
-					"edit_published_{$name}s" => true,
+					"delete_others_{$name}s"    => true,
+					"edit_private_{$name}s"     => true,
+					"edit_published_{$name}s"   => true,
 				)
 			);
 		}

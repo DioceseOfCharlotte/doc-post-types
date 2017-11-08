@@ -3,12 +3,13 @@ declare(strict_types=1);
 
 /**
  * Extended custom post types for WordPress.
- * 4.0.2
+ *
  * @package   ExtendedCPTs
  * @author    John Blackbourn <https://johnblackbourn.com>
  * @link      https://github.com/johnbillion/extended-cpts
  * @copyright 2012-2017 John Blackbourn
  * @license   GPL v2 or later
+ * @version   4.2.0
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

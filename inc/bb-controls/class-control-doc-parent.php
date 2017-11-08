@@ -88,7 +88,13 @@ class ButterBean_Control_Doc_Parent extends ButterBean_Control {
 			)
 		);
 
-		$this->json['choices'] = array( array( 'value' => 0, 'class' => '', 'label' => '— Select —' ) );
+		$this->json['choices'] = array(
+			array(
+				'value' => 0,
+				'class' => '',
+				'label' => '— Select —',
+			),
+		);
 
 		foreach ( $posts as $post ) {
 			$is_child = '';
@@ -97,7 +103,11 @@ class ButterBean_Control_Doc_Parent extends ButterBean_Control {
 				$is_child = true;
 			}
 
-			$this->json['choices'][] = array( 'value' => $post->ID, 'class' => $is_child, 'label' => get_the_title( $post ) ); }
+			$this->json['choices'][] = array(
+				'value' => $post->ID,
+				'class' => $is_child,
+				'label' => get_the_title( $post ),
+			); }
 	}
 
 	public function get_template() {

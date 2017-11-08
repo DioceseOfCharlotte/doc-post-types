@@ -27,7 +27,7 @@ function doc_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'google_maps_api',
 		array(
-			'default' => '',
+			'default'           => '',
 			'sanitize_callback' => 'sanitize_text_field',
 			'transport'         => 'postMessage',
 		)
@@ -36,10 +36,10 @@ function doc_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'google_maps_api',
 		array(
-			'label'       		=> esc_html__( 'Google Maps JS API', 'doc' ),
-			'description' 		=> esc_html__( 'YOUR_API_KEY', 'doc' ),
-			'section'     		=> 'meh_api_section',
-			'type'        		=> 'text',
+			'label'       => esc_html__( 'Google Maps JS API', 'doc' ),
+			'description' => esc_html__( 'YOUR_API_KEY', 'doc' ),
+			'section'     => 'meh_api_section',
+			'type'        => 'text',
 		)
 	);
 
@@ -56,11 +56,11 @@ function doc_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'meh_rest_name',
 		array(
-			'label'       		=> esc_html__( 'Rest Username', 'doc' ),
-			'description' 		=> '',
-			'priority'          => 80,
-			'section'     		=> 'meh_api_section',
-			'type'        		=> 'text',
+			'label'       => esc_html__( 'Rest Username', 'doc' ),
+			'description' => '',
+			'priority'    => 80,
+			'section'     => 'meh_api_section',
+			'type'        => 'text',
 		)
 	);
 
@@ -78,11 +78,11 @@ function doc_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'meh_rest_pass',
 		array(
-			'label'         	=> esc_html__( 'Rest Password', 'doc' ),
-			'description' 		=> '',
-			'priority'          => 90,
-			'section'     		=> 'meh_api_section',
-			'type'        		=> 'password',
+			'label'       => esc_html__( 'Rest Password', 'doc' ),
+			'description' => '',
+			'priority'    => 90,
+			'section'     => 'meh_api_section',
+			'type'        => 'password',
 		)
 	);
 }

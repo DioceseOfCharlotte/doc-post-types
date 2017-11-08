@@ -33,11 +33,11 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 		public function register( $butterbean, $post_type ) {
 
 			$doc_po = array(
-			   'department',
-			   'parish',
-			   'school',
-			   'cpt_archive',
-		   	);
+				'department',
+				'parish',
+				'school',
+				'cpt_archive',
+			);
 
 			if ( ! in_array( $post_type, $doc_po, true ) ) {
 				return; }
@@ -48,27 +48,27 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				$butterbean->register_manager(
 					'doc_contact_info',
 					array(
-					'label'     => 'Doc Info',
-					'post_type' => $doc_po,
-					'context'   => 'normal',
-					'priority'  => 'high',
+						'label'     => 'Doc Info',
+						'post_type' => $doc_po,
+						'context'   => 'normal',
+						'priority'  => 'high',
 					)
 				);
 
-				$manager  = $butterbean->get_manager( 'doc_contact_info' );
+				$manager = $butterbean->get_manager( 'doc_contact_info' );
 				/* === Register Sections === */
 				$manager->register_section(
 					'doc_contact_fields',
 					array(
-					'label' => 'Contact',
-					'icon'  => 'dashicons-format-status',
+						'label' => 'Contact',
+						'icon'  => 'dashicons-format-status',
 					)
 				);
 				$manager->register_section(
 					'doc_location_fields',
 					array(
-					'label' => 'Location',
-					'icon'  => 'dashicons-location-alt',
+						'label' => 'Location',
+						'icon'  => 'dashicons-location-alt',
 					)
 				);
 
@@ -79,14 +79,14 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 						$manager,
 						'doc_contact',
 						array(
-						'type'        => 'contact',
-						'section'     => 'doc_contact_fields',
-						'settings' => array(
-							'phone' 	=> 'doc_phone_number',
-							'fax'  		=> 'doc_fax',
-							'email'  	=> 'doc_email',
-							'website' 	=> 'doc_website',
-						),
+							'type'     => 'contact',
+							'section'  => 'doc_contact_fields',
+							'settings' => array(
+								'phone'   => 'doc_phone_number',
+								'fax'     => 'doc_fax',
+								'email'   => 'doc_email',
+								'website' => 'doc_website',
+							),
 						)
 					)
 				);
@@ -96,15 +96,15 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 						$manager,
 						'doc_address',
 						array(
-						'type'        => 'address',
-						'section'     => 'doc_location_fields',
-						'settings' => array(
-						'street' 	=> 'doc_street',
-						'city'  	=> 'doc_city',
-						'state'  	=> 'doc_state',
-						'zip_code' 	=> 'doc_zip',
-						'lat_lon' 	=> 'geo_coordinates',
-						),
+							'type'     => 'address',
+							'section'  => 'doc_location_fields',
+							'settings' => array(
+								'street'   => 'doc_street',
+								'city'     => 'doc_city',
+								'state'    => 'doc_state',
+								'zip_code' => 'doc_zip',
+								'lat_lon'  => 'geo_coordinates',
+							),
 						)
 					)
 				);
@@ -157,9 +157,9 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					$manager->register_control(
 						'doc_parish_id',
 						array(
-							'type'        => 'text',
-							'section'     => 'doc_contact_fields',
-							'label'       => 'Parish ID',
+							'type'    => 'text',
+							'section' => 'doc_contact_fields',
+							'label'   => 'Parish ID',
 						)
 					);
 					$manager->register_setting(
@@ -171,10 +171,10 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				$manager->register_control(
 					'doc_parish_staff',
 					array(
-					'type'        => 'textarea',
-					'section'     => 'doc_contact_fields',
-					'label'       => 'Parish Staff',
-					'description' => 'Format:<br>Title: Name<br>Title: Name',
+						'type'        => 'textarea',
+						'section'     => 'doc_contact_fields',
+						'label'       => 'Parish Staff',
+						'description' => 'Format:<br>Title: Name<br>Title: Name',
 					)
 				);
 
@@ -186,18 +186,18 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				$manager->register_section(
 					'doc_mass_fields',
 					array(
-					'label' => 'Mass',
-					'icon'  => 'dashicons-clock',
+						'label' => 'Mass',
+						'icon'  => 'dashicons-clock',
 					)
 				);
 
 				$manager->register_control(
 					'doc_mass_schedule',
 					array(
-					'type'        => 'textarea',
-					'section'     => 'doc_mass_fields',
-					'label'       => 'Mass Schedule',
-					'description' => 'Example description.',
+						'type'        => 'textarea',
+						'section'     => 'doc_mass_fields',
+						'label'       => 'Mass Schedule',
+						'description' => 'Example description.',
 					)
 				);
 
@@ -214,69 +214,72 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				$manager->register_section(
 					'doc_grade_level_fields',
 					array(
-					'label' => 'Grade Levels',
-					'icon'  => 'dashicons-chart-bar',
+						'label' => 'Grade Levels',
+						'icon'  => 'dashicons-chart-bar',
 					)
 				);
 
 				$manager->register_control(
 					'doc_grade_level',
 					array(
-					'type'        => 'checkboxes',
-					'section'     => 'doc_grade_level_fields',
-					'label'       => 'Grades',
-					'description' => 'Select all that apply.',
-					'choices'     => array(
-						'0-pk' => 'Pre-K',
-						'0-tk' => 'Transitional-K',
-						'0-k' => 'Kindergarten',
-						'1' => '1st',
-						'2' => '2nd',
-						'3' => '3rd',
-						'4' => '4th',
-						'5' => '5th',
-						'6' => '6th',
-						'7' => '7th',
-						'8' => '8th',
-						'9' => '9th',
-						'10' => '10th',
-						'11' => '11th',
-						'12' => '12th',
-					),
+						'type'        => 'checkboxes',
+						'section'     => 'doc_grade_level_fields',
+						'label'       => 'Grades',
+						'description' => 'Select all that apply.',
+						'choices'     => array(
+							'0-pk' => 'Pre-K',
+							'0-tk' => 'Transitional-K',
+							'0-k'  => 'Kindergarten',
+							'1'    => '1st',
+							'2'    => '2nd',
+							'3'    => '3rd',
+							'4'    => '4th',
+							'5'    => '5th',
+							'6'    => '6th',
+							'7'    => '7th',
+							'8'    => '8th',
+							'9'    => '9th',
+							'10'   => '10th',
+							'11'   => '11th',
+							'12'   => '12th',
+						),
 					)
 				);
 
 				$manager->register_setting(
 					'doc_grade_level',
-					array( 'type' => 'array', 'sanitize_callback' => 'sanitize_key' )
+					array(
+						'type'              => 'array',
+						'sanitize_callback' => 'sanitize_key',
+					)
 				);
 			}// End if().
 
 				$manager->register_section(
 					'doc_post_colors',
 					array(
-					'label' => 'Colors',
-					'icon'  => 'dashicons-art',
+						'label' => 'Colors',
+						'icon'  => 'dashicons-art',
 					)
 				);
 
 				$manager->register_control(
 					'doc_page_primary_color',
 					array(
-					'type'        => 'color',
-					'section'     => 'doc_post_colors',
-					'label'       => 'Primary color',
-					'options' => array( 'palettes' => array( '#34495E', '#2980b9', '#39CCCC', '#16a085', '#FFC107', '#F44336' ) ),
+						'type'    => 'color',
+						'section' => 'doc_post_colors',
+						'label'   => 'Primary color',
+						'options' => array( 'palettes' => array( '#34495E', '#2980b9', '#39CCCC', '#16a085', '#FFC107', '#F44336' ) ),
 					)
 				);
 
 				$manager->register_control(
 					'doc_page_secondary_color',
 					array(
-					'type'        => 'color',
-					'section'     => 'doc_post_colors',
-					'label'       => 'Secondary color',
-					'options' => array( 'palettes' => array( '#34495E', '#2980b9', '#39CCCC', '#16a085', '#FFC107', '#F44336' ) ),
+						'type'    => 'color',
+						'section' => 'doc_post_colors',
+						'label'   => 'Secondary color',
+						'options' => array( 'palettes' => array( '#34495E', '#2980b9', '#39CCCC', '#16a085', '#FFC107', '#F44336' ) ),
 					)
 				);
 
@@ -294,17 +297,17 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				$manager->register_section(
 					'header_fields',
 					array(
-					'label' => 'Header',
-					'icon'  => 'dashicons-star-filled',
+						'label' => 'Header',
+						'icon'  => 'dashicons-star-filled',
 					)
 				);
 
 				$manager->register_control(
 					'header_image',
 					array(
-					'type'        => 'image',
-					'section'     => 'header_fields',
-					'label'       => 'Header Image',
+						'type'    => 'image',
+						'section' => 'header_fields',
+						'label'   => 'Header Image',
 					)
 				);
 

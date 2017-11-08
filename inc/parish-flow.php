@@ -78,7 +78,7 @@ function get_users_parish_post() {
 
 // Get the mission assigned to the user.
 function get_users_mission_post() {
-	$user_id           = get_current_user_id();
+	$user_id            = get_current_user_id();
 	$users_mission_post = get_user_meta( $user_id, 'doc_mission', true );
 
 	if ( ! empty( $users_mission_post ) ) {

@@ -15,7 +15,7 @@ function doc_content_template( $template ) {
 	// If the post type isn't a document, bail.
 	if ( get_post_type( get_the_ID() ) === 'document' && is_single( get_the_ID() ) ) {
 
-		$template = trailingslashit( doc_posts_plugin()->dir_path ) . 'content/single-document.php';
+		$template     = trailingslashit( doc_posts_plugin()->dir_path ) . 'content/single-document.php';
 		$has_template = locate_template( array( 'content/single-document.php' ) );
 
 		if ( $has_template ) {
@@ -69,22 +69,22 @@ function doc_custom_queries( $query ) {
 
 	if ( is_post_type_archive( 'document' ) ) {
 		$query->set( 'order', 'ASC' );
-	  	$query->set( 'orderby', 'title' );
+		$query->set( 'orderby', 'title' );
 	}
 
 	if ( is_tax( 'agency' ) ) {
-		$post_type = $query->get( 'post_type' );
-		$meta_query = $query->get( 'meta_query' );
-		$post_type = doc_home_tiles();
+		$post_type    = $query->get( 'post_type' );
+		$meta_query   = $query->get( 'meta_query' );
+		$post_type    = doc_home_tiles();
 		$meta_query[] = array(
-			'key'       => 'doc_alias_checkbox',
-			'value'     => 'on',
-			'compare'   => 'NOT EXISTS',
+			'key'     => 'doc_alias_checkbox',
+			'value'   => 'on',
+			'compare' => 'NOT EXISTS',
 		);
 		$query->set( 'meta_query', $meta_query );
 		$query->set( 'post_type', $post_type );
 		$query->set( 'order', 'ASC' );
-	  	$query->set( 'orderby', 'title' );
+		$query->set( 'orderby', 'title' );
 
 	} elseif ( is_post_type_archive( doc_place_cpts() ) ) {
 			$query->set( 'order', 'ASC' );
@@ -110,24 +110,24 @@ function modify_post_mime_types( $post_mime_types ) {
  * Post Groups.
  */
 function doc_department_cpts() {
-	$cpts = array( 'archive_post','bishop', 'deacon', 'development', 'education', 'finance', 'human_resources', 'hispanic_ministry', 'housing', 'info_tech', 'liturgy', 'macs', 'multicultural', 'planning', 'property', 'schools_office', 'tribunal', 'vocation' );
+	$cpts = array( 'archive_post', 'bishop', 'deacon', 'development', 'education', 'finance', 'human_resources', 'hispanic_ministry', 'housing', 'info_tech', 'liturgy', 'macs', 'multicultural', 'planning', 'property', 'schools_office', 'tribunal', 'vocation' );
 	return $cpts;
 }
 
 function doc_place_cpts() {
 	$cpts = array(
-	   'department',
-	   'parish',
-	   'school',
-	   'cpt_archive',
+		'department',
+		'parish',
+		'school',
+		'cpt_archive',
 	);
 	return $cpts;
 }
 
 function doc_home_tiles() {
 	$cpts = array(
-	   'department',
-	   'cpt_archive',
+		'department',
+		'cpt_archive',
 	);
 	return array_merge( $cpts, doc_department_cpts() );
 }
@@ -151,8 +151,8 @@ add_filter( 'wp_mime_type_icon', 'doc_mime_icon', 10, 3 );
 
 function doc_is_file( $type ) {
 	$attachment_id = get_post_meta( get_the_ID(), 'dpt_document_id', true );
-	$file = get_attached_file( $attachment_id );
-	$filetype = wp_check_filetype( $file );
+	$file          = get_attached_file( $attachment_id );
+	$filetype      = wp_check_filetype( $file );
 
 	if ( $type === 'pdf' ) {
 		return $filetype['ext'] == 'pdf';

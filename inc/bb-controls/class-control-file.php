@@ -34,11 +34,11 @@ class ButterBean_Control_File extends ButterBean_Control {
 	 * @param  array   $args
 	 * @return void
 	 */
-	public $upload = 'Add document';
-	public $set = 'Set as document';
-	public $choose = 'Choose document';
-	public $change = 'Change document';
-	public $remove = '';
+	public $upload      = 'Add document';
+	public $set         = 'Set as document';
+	public $choose      = 'Choose document';
+	public $change      = 'Change document';
+	public $remove      = '';
 	public $placeholder = 'Add document';
 
 	/**
@@ -63,11 +63,11 @@ class ButterBean_Control_File extends ButterBean_Control {
 	public function to_json() {
 		parent::to_json();
 
-		$this->json['upload'] = $this->upload;
-		$this->json['set'] = $this->set;
-		$this->json['choose'] = $this->choose;
-		$this->json['change'] = $this->change;
-		$this->json['remove'] = $this->remove;
+		$this->json['upload']      = $this->upload;
+		$this->json['set']         = $this->set;
+		$this->json['choose']      = $this->choose;
+		$this->json['change']      = $this->change;
+		$this->json['remove']      = $this->remove;
 		$this->json['placeholder'] = $this->placeholder;
 
 		$this->json['value'] = $this->get_value();
@@ -75,17 +75,17 @@ class ButterBean_Control_File extends ButterBean_Control {
 		$value = $this->get_value();
 		//$file = $alt = '';
 		$doc_mime = '';
-		$doc_url = '';
+		$doc_url  = '';
 		$doc_icon = '';
-		$doc_ext = '';
+		$doc_ext  = '';
 		$doc_name = '';
 
 		if ( $value ) {
 			$doc_mime = get_post_mime_type( $value );
 			//$doc_icon = wp_get_attachment_image_url( $value, $size = NULL, $icon = true );
-			$doc_url = wp_get_attachment_image_url( $value );
+			$doc_url  = wp_get_attachment_image_url( $value );
 			$doc_icon = wp_mime_type_icon( $doc_mime );
-			$doc_ext = wp_check_filetype( get_attached_file( $value ) );
+			$doc_ext  = wp_check_filetype( get_attached_file( $value ) );
 			//$doc_name = get_the_title( $value );
 			$doc_name = wp_basename( get_attached_file( $value ) );
 		}
@@ -93,7 +93,7 @@ class ButterBean_Control_File extends ButterBean_Control {
 		$this->json['doc_icon'] = $doc_icon ? esc_url( $doc_icon ) : '';
 		$this->json['doc_name'] = $doc_name ? esc_attr( $doc_name ) : '';
 		$this->json['doc_mime'] = $doc_mime ? esc_attr( $doc_mime ) : '';
-		$this->json['doc_ext'] = $doc_ext ? $doc_ext['ext'] : '';
+		$this->json['doc_ext']  = $doc_ext ? $doc_ext['ext'] : '';
 	}
 
 	public function get_template() {

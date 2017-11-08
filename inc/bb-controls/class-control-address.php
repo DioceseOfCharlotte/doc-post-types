@@ -88,7 +88,7 @@ class ButterBean_Control_Address extends ButterBean_Control {
 		<div class="row u-p1">
 
 			<iframe width="100%" height="350" frameborder="0" style="border:0"
-src="https://www.google.com/maps/embed/v1/streetview?location={{ data.lat_lon.value }}&key=<?php echo doc_posts_plugin()->maps_api ?>"></iframe>
+src="https://www.google.com/maps/embed/v1/streetview?location={{ data.lat_lon.value }}&key=<?php echo doc_posts_plugin()->maps_api; ?>"></iframe>
 
 			<div class="u-1of1 u-p1">
 				<label>
@@ -97,5 +97,6 @@ src="https://www.google.com/maps/embed/v1/streetview?location={{ data.lat_lon.va
 				</label>
 			</div>
 		</div>
-		<?php }
+		<?php
+	}
 }
