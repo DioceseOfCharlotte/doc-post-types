@@ -166,3 +166,16 @@ function doc_is_file( $type ) {
 		return in_array( $filetype['ext'], array( 'doc', 'docx' ) );
 	}
 }
+
+// Add Shortcode
+function vicariates_shortcode() {
+
+	$vicariates = wp_list_categories( array(
+		'taxonomy' => 'vicariate',
+		'title_li' => ' ',
+	) );
+
+	return $vicariates;
+
+}
+add_shortcode( 'vicariate-list', 'vicariates_shortcode' );
