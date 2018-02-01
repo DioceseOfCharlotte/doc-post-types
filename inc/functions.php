@@ -172,7 +172,7 @@ function vicariates_shortcode() {
 
 	$vicariates = wp_list_categories( array(
 		'taxonomy' => 'vicariate',
-		'title_li' => ' ',
+		'title_li' => 'Vicariates',
 	) );
 
 	return $vicariates;
