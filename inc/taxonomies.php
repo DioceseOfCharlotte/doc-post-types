@@ -122,3 +122,63 @@ function doc_register_taxonomies() {
 		)
 	);
 }
+
+class Vicariate_VF_Meta {
+
+	public function __construct() {
+
+		if ( is_admin() ) {
+
+			add_action( 'vicariate_add_form_fields', array( $this, 'create_screen_fields' ), 10, 1 );
+			add_action( 'vicariate_edit_form_fields', array( $this, 'edit_screen_fields' ), 10, 2 );
+
+			add_action( 'created_vicariate', array( $this, 'save_data' ), 10, 1 );
+			add_action( 'edited_vicariate', array( $this, 'save_data' ), 10, 1 );
+
+		}
+
+	}
+
+	public function create_screen_fields( $taxonomy ) {
+
+		// Set default values.
+		$doc_vicar_forane = '';
+
+		// Form fields.
+		echo '<div class="form-field term-doc_vicar_forane-wrap">';
+		echo '	<label for="doc_vicar_forane">' . __( 'Vicar Forane', 'doc' ) . '</label>';
+		echo '	<input type="text" id="doc_vicar_forane" name="doc_vicar_forane" value="' . esc_attr( $doc_vicar_forane ) . '">';
+		echo '</div>';
+
+	}
+
+	public function edit_screen_fields( $term, $taxonomy ) {
+
+		// Retrieve an existing value from the database.
+		$doc_vicar_forane = get_term_meta( $term->term_id, 'doc_vicar_forane', true );
+
+		// Form fields.
+		echo '<tr class="form-field term-doc_vicar_forane-wrap">';
+		echo '<th scope="row">';
+		echo '	<label for="doc_vicar_forane">' . __( 'Vicar Forane', 'doc' ) . '</label>';
+		echo '</th>';
+		echo '<td>';
+		echo '	<input type="text" id="doc_vicar_forane" name="doc_vicar_forane" value="' . esc_attr( $doc_vicar_forane ) . '">';
+		echo '</td>';
+		echo '</tr>';
+
+	}
+
+	public function save_data( $term_id ) {
+
+		// Sanitize user input.
+		$new_doc_vicar_forane = isset( $_POST['doc_vicar_forane'] ) ? sanitize_text_field( $_POST['doc_vicar_forane'] ) : '';
+
+		// Update the meta field in the database.
+		update_term_meta( $term_id, 'doc_vicar_forane', $new_doc_vicar_forane );
+
+	}
+
+}
+
+new Vicariate_VF_Meta;
