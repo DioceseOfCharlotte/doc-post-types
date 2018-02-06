@@ -109,6 +109,24 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 					)
 				);
 
+				$manager->register_control(
+					new ButterBean_Control_Address(
+						$manager,
+						'doc_mail_address',
+						array(
+							'type'     => 'address',
+							'section'  => 'doc_location_fields',
+							'prefix'   => 'Mail',
+							'settings' => array(
+								'street'   => 'doc_mail_street',
+								'city'     => 'doc_mail_city',
+								'state'    => 'doc_mail_state',
+								'zip_code' => 'doc_mail_zip',
+							),
+						)
+					)
+				);
+
 				/* === Register Settings === */
 
 				$manager->register_setting(
@@ -148,6 +166,23 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				$manager->register_setting(
 					'geo_coordinates',
 					array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
+				);
+
+				$manager->register_setting(
+					'doc_mail_street',
+					array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
+				);
+				$manager->register_setting(
+					'doc_mail_city',
+					array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
+				);
+				$manager->register_setting(
+					'doc_mail_state',
+					array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
+				);
+				$manager->register_setting(
+					'doc_mail_zip',
+					array( 'sanitize_callback' => 'absint' )
 				);
 
 				// Parishes

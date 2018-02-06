@@ -9,8 +9,13 @@ class ButterBean_Control_Address extends ButterBean_Control {
 
 	public $type = 'address';
 
+	public $prefix = '';
+
+
 	public function to_json() {
 		parent::to_json();
+
+		$this->json['prefix'] = $this->prefix;
 
 		$this->json['street'] = array(
 			'label'      => 'Street',
@@ -43,22 +48,12 @@ class ButterBean_Control_Address extends ButterBean_Control {
 		);
 	}
 
-	public function get_template() {
-		wp_enqueue_script( 'gplaces' ); ?>
+	public function get_template() { ?>
 
-		<div class="u-1of1 u-p1">
-			<?php if ( get_theme_mod( 'google_maps_api' ) ) : ?>
-				<p class="form-group">
-					<input id="autocomplete" class="widefat" placeholder="Begin typing your address" onFocus="geolocate()" type="text"></input>
-				</p>
-			<?php else : ?>
-				<p><code><span class="dashicons dashicons-info"></span> To use the address autofill and geolocation features, enter your Google Maps API key in the "Owner Info and APIs" Customizer control.</code></p>
-			<?php endif; ?>
-		</div>
 		<div class="row">
 			<div class="u-1of1 u-p1">
 				<label>
-					<span class="butterbean-label">{{ data.street.label }}</span>
+					<span class="butterbean-label">{{ data.prefix }} {{ data.street.label }}</span>
 					<input id="address1" type="text" placeholder="1123 South Church Street" autocomplete="shipping street-address" class="u-1of1" value="{{ data.street.value }}" name="{{ data.street.field_name }}" />
 				</label>
 			</div>
@@ -67,29 +62,26 @@ class ButterBean_Control_Address extends ButterBean_Control {
 		<div class="row u-flex u-flex-wrap u-flex-jb">
 			<div class="u-1of1 u-p1 u-1of2-md">
 				<label>
-					<span class="butterbean-label">{{ data.city.label }}</span>
+					<span class="butterbean-label">{{ data.prefix }} {{ data.city.label }}</span>
 					<input id="locality" type="text" class="u-1of1" placeholder="Charlotte" autocomplete="shipping address-level2" value="{{ data.city.value }}" name="{{ data.city.field_name }}" />
 				</label>
 			</div>
-			<div class="u-1of1 u-p1 u-1of4-md">
+			<div class="u-1of1 u-p1 u-1of5-md">
 				<label>
-					<span class="butterbean-label">{{ data.state.label }}</span>
+					<span class="butterbean-label">{{ data.prefix }} {{ data.state.label }}</span>
 					<input id="administrative_area_level_1" type="text" class="u-1of1 u-caps" placeholder="NC" maxlength="2" autocomplete="shipping address-level1" value="{{ data.state.value }}" name="{{ data.state.field_name }}" />
 				</label>
 			</div>
-			<div class="u-1of1 u-p1 u-1of4-md">
+			<div class="u-1of1 u-p1 u-1of5-md">
 				<label>
-					<span class="butterbean-label">{{ data.zip.label }}</span>
+					<span class="butterbean-label">{{ data.prefix }} {{ data.zip.label }}</span>
 					<input id="postal_code" type="text" pattern="[0-9]*" class="u-1of1" maxlength="5" placeholder="28203" autocomplete="shipping postal-code" value="{{ data.zip.value }}" name="{{ data.zip.field_name }}" />
 				</label>
 			</div>
 		</div>
 
+		<# if ( data.settings.lat_lon ) { #>
 		<div class="row u-p1">
-
-			<iframe width="100%" height="350" frameborder="0" style="border:0"
-src="https://www.google.com/maps/embed/v1/streetview?location={{ data.lat_lon.value }}&key=<?php echo doc_posts_plugin()->maps_api; ?>"></iframe>
-
 			<div class="u-1of1 u-p1">
 				<label>
 					<span class="butterbean-label">{{ data.lat_lon.label }}</span>
@@ -97,6 +89,7 @@ src="https://www.google.com/maps/embed/v1/streetview?location={{ data.lat_lon.va
 				</label>
 			</div>
 		</div>
+		<# } #>
 		<?php
 	}
 }
