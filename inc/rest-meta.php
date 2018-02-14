@@ -3,12 +3,13 @@
  * Expose custom metadata to the wp-api.
  */
 
+add_filter( 'jetpack_sitemap_post_types', 'doc_jetpack_post_types' );
 add_filter( 'rest_api_allowed_post_types', 'doc_jetpack_post_types' );
 add_action( 'init', 'doc_register_parish_meta' );
 add_action( 'rest_api_init', 'doc_add_to_rest' );
 
 
-function doc_jetpack_post_types( $allowed_post_types ) {
+function doc_jetpack_post_types( $allowed_post_types = '' ) {
 	$allowed_post_types = doc_posts_plugin()->cpt_names;
 
 	return $allowed_post_types;
