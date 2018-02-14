@@ -7,7 +7,16 @@ add_filter( 'jetpack_sitemap_post_types', 'doc_jetpack_post_types' );
 add_filter( 'rest_api_allowed_post_types', 'doc_jetpack_post_types' );
 add_action( 'init', 'doc_register_parish_meta' );
 add_action( 'rest_api_init', 'doc_add_to_rest' );
+add_filter( 'jetpack_seo_custom_titles', 'doc_no_jetpack_seo_archives' );
 
+/**
+ * Expose custom metadata to the wp-api.
+ */
+function doc_no_jetpack_seo_archives( $options ) {
+	if ( ! is_single( get_the_ID() ) && ! is_front_page() ) {
+		return false;
+	}
+}
 
 function doc_jetpack_post_types( $allowed_post_types = '' ) {
 	$allowed_post_types = doc_posts_plugin()->cpt_names;
