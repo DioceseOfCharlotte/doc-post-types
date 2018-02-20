@@ -64,6 +64,15 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 						'icon'  => 'dashicons-format-status',
 					)
 				);
+
+				$manager->register_section(
+					'doc_staff_fields',
+					array(
+						'label' => 'Staff',
+						'icon'  => 'dashicons-groups',
+					)
+				);
+
 				$manager->register_section(
 					'doc_location_fields',
 					array(
@@ -122,6 +131,7 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 								'city'     => 'doc_mail_city',
 								'state'    => 'doc_mail_state',
 								'zip_code' => 'doc_mail_zip',
+								'lat_lon'  => '',
 							),
 						)
 					)
@@ -160,7 +170,11 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				);
 				$manager->register_setting(
 					'doc_zip',
-					array( 'sanitize_callback' => 'absint' )
+					array(
+						'sanitize_callback' => function( $value, $setting ) {
+							return $value ? absint( $value ) : '';
+						},
+					)
 				);
 
 				$manager->register_setting(
@@ -182,7 +196,11 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				);
 				$manager->register_setting(
 					'doc_mail_zip',
-					array( 'sanitize_callback' => 'absint' )
+					array(
+						'sanitize_callback' => function( $value, $setting ) {
+							return $value ? absint( $value ) : '';
+						},
+					)
 				);
 
 				// Parishes
@@ -204,18 +222,74 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 				}
 
 				$manager->register_control(
-					'doc_parish_staff',
+					'staff_member',
 					array(
 						'type'        => 'textarea',
-						'section'     => 'doc_contact_fields',
+						'section'     => 'doc_staff_fields',
 						'label'       => 'Parish Staff',
 						'description' => 'Format:<br>Title: Name<br>Title: Name',
 					)
 				);
 
 				$manager->register_setting(
-					'doc_parish_staff',
+					'staff_member',
 					array( 'sanitize_callback' => 'wp_kses_post' )
+				);
+
+				$manager->register_control(
+					'doc_dre',
+					array(
+						'type'    => 'text',
+						'section' => 'doc_staff_fields',
+						'label'   => 'Director of Religious Education',
+					)
+				);
+
+				$manager->register_setting(
+					'doc_dre',
+					array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
+				);
+
+				$manager->register_control(
+					'doc_ym',
+					array(
+						'type'    => 'text',
+						'section' => 'doc_staff_fields',
+						'label'   => 'Youth Minister',
+					)
+				);
+
+				$manager->register_setting(
+					'doc_ym',
+					array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
+				);
+
+				$manager->register_control(
+					'doc_pcc',
+					array(
+						'type'    => 'text',
+						'section' => 'doc_staff_fields',
+						'label'   => 'Pastoral Council Chair',
+					)
+				);
+
+				$manager->register_setting(
+					'doc_pcc',
+					array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
+				);
+
+				$manager->register_control(
+					'doc_fcc',
+					array(
+						'type'    => 'text',
+						'section' => 'doc_staff_fields',
+						'label'   => 'Finance Council Chair',
+					)
+				);
+
+				$manager->register_setting(
+					'doc_fcc',
+					array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
 				);
 
 				$manager->register_section(
@@ -348,7 +422,11 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 
 				$manager->register_setting(
 					'header_image',
-					array( 'sanitize_callback' => 'absint' )
+					array(
+						'sanitize_callback' => function( $value, $setting ) {
+							return $value ? absint( $value ) : '';
+						},
+					)
 				);
 		}
 
