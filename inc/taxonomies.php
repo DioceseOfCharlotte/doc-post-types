@@ -98,6 +98,19 @@ function doc_register_taxonomies() {
 	);
 
 	register_extended_taxonomy(
+		'parish_accessibility', 'parish', array(
+			'meta_box'     => 'radio',
+
+			'capabilities' => array(
+				'manage_terms' => 'manage_options',
+				'edit_terms'   => 'manage_options',
+				'delete_terms' => 'manage_options',
+				'assign_terms' => 'manage_options',
+			),
+		)
+	);
+
+	register_extended_taxonomy(
 		'agency', doc_home_tiles(),
 		array(
 			'meta_box' => 'radio',
