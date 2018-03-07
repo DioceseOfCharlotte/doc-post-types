@@ -107,6 +107,11 @@ function doc_register_taxonomies() {
 				'delete_terms' => 'manage_options',
 				'assign_terms' => 'manage_options',
 			),
+		),
+		array(
+			'singular' => 'Parish Accessibility',
+			'plural'   => 'Parish Accessibility',
+			'slug'     => 'parish-accessibility',
 		)
 	);
 
