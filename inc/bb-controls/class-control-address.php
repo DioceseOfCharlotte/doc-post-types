@@ -42,7 +42,7 @@ class ButterBean_Control_Address extends ButterBean_Control {
 		);
 
 		$this->json['lat_lon'] = array(
-			'label'      => 'Coordinates',
+			'label'      => 'Map Coordinates',
 			'value'      => $this->get_value( 'lat_lon' ),
 			'field_name' => $this->get_field_name( 'lat_lon' ),
 		);
@@ -82,7 +82,7 @@ class ButterBean_Control_Address extends ButterBean_Control {
 
 		<# if ( data.settings.lat_lon ) { #>
 		<div class="row u-p1">
-			<div class="u-1of1 u-p1">
+			<div class="u-1of1 u-p1 u-1of2-md">
 				<label>
 					<span class="butterbean-label">{{ data.lat_lon.label }}</span>
 					<input id="geolocation" name="{{ data.lat_lon.field_name }}" type="text" placeholder="geo-coordinates" class="u-1of1" value="{{ data.lat_lon.value }}">

@@ -64,7 +64,7 @@ class ButterBean_Control_Contact extends ButterBean_Control {
 			<p class="u-1of2-md">
 				<label>
 					<span class="butterbean-label">{{ data.website.label }}</span>
-					<input type="url" class="u-1of1" placeholder="http://website.com" value="{{ data.website.value }}" name="{{ data.website.field_name }}" />
+					<input type="url" class="u-1of1" placeholder="https://website.com" value="{{ data.website.value }}" name="{{ data.website.field_name }}" />
 				</label>
 			</p>
 		</div>
