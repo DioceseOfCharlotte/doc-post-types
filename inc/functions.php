@@ -73,10 +73,10 @@ function doc_custom_queries( $query ) {
 	}
 
 	if ( is_tax( 'agency' ) ) {
-		$post_type    = $query->get( 'post_type' );
-		$meta_query   = $query->get( 'meta_query' );
-		$post_type    = doc_home_tiles();
-		$meta_query[] = array(
+		$post_type  = $query->get( 'post_type' );
+		$meta_query = $query->get( 'meta_query' );
+		$post_type  = doc_home_tiles();
+		$meta_query = array(
 			'key'     => 'doc_alias_checkbox',
 			'value'   => 'on',
 			'compare' => 'NOT EXISTS',

@@ -219,6 +219,19 @@ if ( ! class_exists( 'Doc_Meta' ) ) {
 						'doc_parish_id',
 						array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
 					);
+
+					$manager->register_control(
+						'doc_city_served',
+						array(
+							'type'    => 'text',
+							'section' => 'doc_location_fields',
+							'label'   => 'City Served',
+						)
+					);
+					$manager->register_setting(
+						'doc_city_served',
+						array( 'sanitize_callback' => 'wp_filter_nohtml_kses' )
+					);
 				}
 
 				$manager->register_control(
