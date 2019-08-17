@@ -132,21 +132,21 @@ function doc_home_tiles() {
 	return array_merge( $cpts, doc_department_cpts() );
 }
 
-function doc_mime_icon( $icon, $mime, $post_id ) {
-	$mime_dir = doc_posts_plugin()->img_uri . 'mimetypes/';
+// function doc_mime_icon( $icon, $mime, $post_id ) {
+// 	$mime_dir = doc_posts_plugin()->img_uri . 'mimetypes/';
 
-	if ( 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' == $mime || 'application/vnd.ms-excel' == $mime ) {
-		$icon = $mime_dir . 'spreadsheet.svg'; }
+// 	if ( 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' == $mime || 'application/vnd.ms-excel' == $mime ) {
+// 		$icon = $mime_dir . 'spreadsheet.svg'; }
 
-	if ( 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' == $mime || 'application/msword' == $mime ) {
-		$icon = $mime_dir . 'doc.svg'; }
+// 	if ( 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' == $mime || 'application/msword' == $mime ) {
+// 		$icon = $mime_dir . 'doc.svg'; }
 
-	if ( 'application/pdf' == $mime ) {
-		$icon = $mime_dir . 'pdf.svg'; }
+// 	if ( 'application/pdf' == $mime ) {
+// 		$icon = $mime_dir . 'pdf.svg'; }
 
-		return $icon;
-}
-add_filter( 'wp_mime_type_icon', 'doc_mime_icon', 10, 3 );
+// 		return $icon;
+// }
+// add_filter( 'wp_mime_type_icon', 'doc_mime_icon', 10, 3 );
 
 
 function doc_is_file( $type ) {
