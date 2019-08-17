@@ -37,7 +37,8 @@ if ( ! is_null( $role ) ) {
 		$role->remove_cap( 'manage_doc_documents' );
 
 		remove_role(
-			$name, "{$name} Administrator",
+			$name,
+			"{$name} Administrator",
 			array(
 				'read'                      => true,
 				'create_doc_documents'      => true, // documents

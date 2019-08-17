@@ -43,7 +43,9 @@ function doc_parish_rest_fields() {
 function doc_register_parish_meta() {
 	foreach ( doc_parish_rest_fields() as $field_name ) {
 		register_meta(
-			'parish', $field_name, [
+			'parish',
+			$field_name,
+			[
 				'show_in_rest' => true,
 			]
 		);
@@ -53,7 +55,8 @@ function doc_register_parish_meta() {
 function doc_add_to_rest() {
 	foreach ( doc_parish_rest_fields() as $field_name ) {
 		register_rest_field(
-			'parish', $field_name,
+			'parish',
+			$field_name,
 			array(
 				'get_callback'    => 'parish_get_field',
 				'update_callback' => 'parish_update_field',

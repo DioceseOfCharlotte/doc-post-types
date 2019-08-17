@@ -263,7 +263,8 @@ final class Doc_Posts_Plugin {
 
 		foreach ( $this->cpt_names as $name ) {
 			add_role(
-				$name, "{$name} Administrator",
+				$name,
+				"{$name} Administrator",
 				array(
 					'read'                      => true,
 					'create_doc_documents'      => true, // documents

@@ -5,7 +5,7 @@
  * @package  RCDOC
  */
 
-add_action( 'init', 'doc_register_blog_cpts' );
+// add_action( 'init', 'doc_register_blog_cpts' );
 
 
 /**
@@ -47,7 +47,8 @@ function doc_register_blog_cpts() {
 	);
 
 	register_extended_taxonomy(
-		'post_school', 'school_post',
+		'post_school',
+		'school_post',
 		array(
 			'meta_box'     => 'radio',
 			'capabilities' => array(

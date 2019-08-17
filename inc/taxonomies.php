@@ -17,7 +17,9 @@ add_action( 'init', 'doc_register_taxonomies' );
 function doc_register_taxonomies() {
 
 	register_extended_taxonomy(
-		'document_department', 'document', array(
+		'document_department',
+		'document',
+		array(
 			'meta_box'     => 'radio',
 
 			'capabilities' => array(
@@ -35,7 +37,9 @@ function doc_register_taxonomies() {
 	);
 
 	register_extended_taxonomy(
-		'document_category', 'document', array(
+		'document_category',
+		'document',
+		array(
 			//'meta_box' => 'radio',
 
 			'capabilities' => array(
@@ -53,7 +57,9 @@ function doc_register_taxonomies() {
 	);
 
 	register_extended_taxonomy(
-		'document_tag', 'document', array(
+		'document_tag',
+		'document',
+		array(
 			'hierarchical' => false,
 			'capabilities' => array(
 				'manage_terms' => 'manage_options',
@@ -72,7 +78,9 @@ function doc_register_taxonomies() {
 	// register_taxonomy_for_object_type( 'category', 'finance' );
 
 	register_extended_taxonomy(
-		'school_system', 'school', array(
+		'school_system',
+		'school',
+		array(
 			'meta_box'     => 'radio',
 
 			'capabilities' => array(
@@ -85,7 +93,9 @@ function doc_register_taxonomies() {
 	);
 
 	register_extended_taxonomy(
-		'vicariate', 'parish', array(
+		'vicariate',
+		'parish',
+		array(
 			'meta_box'     => 'radio',
 
 			'capabilities' => array(
@@ -98,7 +108,9 @@ function doc_register_taxonomies() {
 	);
 
 	register_extended_taxonomy(
-		'parish_accessibility', 'parish', array(
+		'parish_accessibility',
+		'parish',
+		array(
 			'meta_box'     => 'radio',
 
 			'capabilities' => array(
@@ -116,7 +128,8 @@ function doc_register_taxonomies() {
 	);
 
 	register_extended_taxonomy(
-		'agency', doc_home_tiles(),
+		'agency',
+		doc_home_tiles(),
 		array(
 			'meta_box' => 'radio',
 		),
@@ -128,7 +141,9 @@ function doc_register_taxonomies() {
 	);
 
 	register_extended_taxonomy(
-		'statistics_type', 'statistics_report', array(
+		'statistics_type',
+		'statistics_report',
+		array(
 			'meta_box'     => 'radio',
 
 			'capabilities' => array(

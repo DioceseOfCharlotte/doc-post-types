@@ -38,7 +38,7 @@ class ButterBean_Control_Contact extends ButterBean_Control {
 	}
 
 	public function get_template() {
-	?>
+		?>
 
 		<div class="row u-flex u-flex-wrap u-flex-jb">
 			<p class="u-1of2">
@@ -68,6 +68,6 @@ class ButterBean_Control_Contact extends ButterBean_Control {
 				</label>
 			</p>
 		</div>
-	<?php
+		<?php
 	}
 }

@@ -32,15 +32,16 @@ function doc_register_post_types() {
 		'document',
 		array(
 
-			'enter_title_here' => 'Enter document title here',
-			'menu_icon'        => 'dashicons-media-document',
-			'supports'         => array( 'title', 'archive' ),
-			'capability_type'  => 'doc_document',
-			'map_meta_cap'     => true,
-			'show_in_rest'     => true,
+			'enter_title_here'   => 'Enter document title here',
+			'menu_icon'          => 'dashicons-media-document',
+			'supports'           => array( 'title', 'archive' ),
+			'capability_type'    => 'doc_document',
+			'map_meta_cap'       => true,
+			'show_in_rest'       => true,
+			'dashboard_activity' => true,
 
 			/* Capabilities. */
-			'capabilities'     => array(
+			'capabilities'       => array(
 				'edit_post'              => 'edit_doc_document',
 				'read_post'              => 'read_doc_document',
 				'delete_post'            => 'delete_doc_document',
@@ -65,12 +66,12 @@ function doc_register_post_types() {
 			),
 
 			# Show all posts on the post type archive:
-			'archive'          => array(
+			'archive'            => array(
 				'nopaging' => true,
 			),
 
 			# Add some custom columns to the admin screen:
-			'admin_cols'       => array(
+			'admin_cols'         => array(
 				'document-version'    => array(
 					'title'    => 'Version',
 					'meta_key' => 'document-version',
@@ -88,7 +89,7 @@ function doc_register_post_types() {
 			),
 
 			# Add a dropdown filter to the admin screen:
-			'admin_filters'    => array(
+			'admin_filters'      => array(
 				'document_department' => array(
 					'taxonomy' => 'document_department',
 				),
@@ -103,7 +104,7 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'aa_ministries',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'block_type'     => array(
 						'title'    => 'Type',
 						'meta_key' => 'arch_component',
@@ -117,18 +118,19 @@ function doc_register_post_types() {
 						'post_field' => 'post_date',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-share-alt',
-				'supports'        => $supports,
-				'capability_type' => 'aa_ministries',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'aa_ministries' ),
+				'menu_icon'          => 'dashicons-share-alt',
+				'supports'           => $supports,
+				'capability_type'    => 'aa_ministries',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'aa_ministries' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'AA Ministries Post',
@@ -140,25 +142,26 @@ function doc_register_post_types() {
 			register_extended_post_type(
 				'archive_post',
 				array(
-					'admin_cols'      => array(
+					'admin_cols'         => array(
 						'featured_image' => array(
 							'title'          => 'Image',
 							'featured_image' => 'abe-icon',
 						),
 					),
-					'menu_icon'       => 'dashicons-archive',
-					'supports'        => $supports,
-					'capability_type' => 'archive_post',
-					'map_meta_cap'    => true,
-					'show_in_rest'    => true,
-					'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'archive_post' ),
+					'menu_icon'          => 'dashicons-archive',
+					'supports'           => $supports,
+					'capability_type'    => 'archive_post',
+					'map_meta_cap'       => true,
+					'show_in_rest'       => true,
+					'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'archive_post' ),
+					'dashboard_activity' => true,
 				)
 			);
 
 		register_extended_post_type(
 			'bishop',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'block_type'     => array(
 						'title'    => 'Type',
 						'meta_key' => 'arch_component',
@@ -172,18 +175,19 @@ function doc_register_post_types() {
 						'post_field' => 'post_date',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-shield',
-				'supports'        => $supports,
-				'capability_type' => 'bishop',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'bishop' ),
+				'menu_icon'          => 'dashicons-shield',
+				'supports'           => $supports,
+				'capability_type'    => 'bishop',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'bishop' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Bishop',
@@ -195,24 +199,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'deacon',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-shield-alt',
-				'supports'        => $supports,
-				'capability_type' => 'deacon',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'deacon' ),
+				'menu_icon'          => 'dashicons-shield-alt',
+				'supports'           => $supports,
+				'capability_type'    => 'deacon',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'deacon' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Deacon',
@@ -224,24 +229,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'development',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-chart-bar',
-				'supports'        => $supports,
-				'capability_type' => 'development',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'development' ),
+				'menu_icon'          => 'dashicons-chart-bar',
+				'supports'           => $supports,
+				'capability_type'    => 'development',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'development' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Development post',
@@ -253,24 +259,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'education',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-image-filter',
-				'supports'        => $supports,
-				'capability_type' => 'education',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'education' ),
+				'menu_icon'          => 'dashicons-image-filter',
+				'supports'           => $supports,
+				'capability_type'    => 'education',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'education' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Education post',
@@ -282,24 +289,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'finance',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-portfolio',
-				'supports'        => $supports,
-				'capability_type' => 'finance',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'finance' ),
+				'menu_icon'          => 'dashicons-portfolio',
+				'supports'           => $supports,
+				'capability_type'    => 'finance',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'finance' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Finance post',
@@ -311,24 +319,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'hispanic_ministry',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-share-alt',
-				'supports'        => $supports,
-				'capability_type' => 'hispanic_ministry',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'hispanic_ministry' ),
+				'menu_icon'          => 'dashicons-share-alt',
+				'supports'           => $supports,
+				'capability_type'    => 'hispanic_ministry',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'hispanic_ministry' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Hispanic Ministry post',
@@ -340,24 +349,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'housing',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-admin-multisite',
-				'supports'        => $supports,
-				'capability_type' => 'housing',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'housing' ),
+				'menu_icon'          => 'dashicons-admin-multisite',
+				'supports'           => $supports,
+				'capability_type'    => 'housing',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'housing' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Housing post',
@@ -369,24 +379,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'human_resources',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-universal-access-alt',
-				'supports'        => $supports,
-				'capability_type' => 'human_resources',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'human_resources' ),
+				'menu_icon'          => 'dashicons-universal-access-alt',
+				'supports'           => $supports,
+				'capability_type'    => 'human_resources',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'human_resources' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'HR post',
@@ -398,24 +409,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'info_tech',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-desktop',
-				'supports'        => $supports,
-				'capability_type' => 'info_tech',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'info_tech' ),
+				'menu_icon'          => 'dashicons-desktop',
+				'supports'           => $supports,
+				'capability_type'    => 'info_tech',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'info_tech' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'IT post',
@@ -427,24 +439,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'liturgy',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-book',
-				'supports'        => $supports,
-				'capability_type' => 'liturgy',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'liturgy' ),
+				'menu_icon'          => 'dashicons-book',
+				'supports'           => $supports,
+				'capability_type'    => 'liturgy',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'liturgy' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Liturgy & Worship post',
@@ -456,24 +469,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'macs',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-awards',
-				'supports'        => $supports,
-				'capability_type' => 'macs',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'macs' ),
+				'menu_icon'          => 'dashicons-awards',
+				'supports'           => $supports,
+				'capability_type'    => 'macs',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'macs' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'MACS post',
@@ -485,24 +499,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'multicultural',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-translation',
-				'supports'        => $supports,
-				'capability_type' => 'multicultural',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'multicultural' ),
+				'menu_icon'          => 'dashicons-translation',
+				'supports'           => $supports,
+				'capability_type'    => 'multicultural',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'multicultural' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Multicultural post',
@@ -514,24 +529,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'planning',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-networking',
-				'supports'        => $supports,
-				'capability_type' => 'planning',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'planning' ),
+				'menu_icon'          => 'dashicons-networking',
+				'supports'           => $supports,
+				'capability_type'    => 'planning',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'planning' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Planning post',
@@ -543,24 +559,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'property',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-building',
-				'supports'        => $supports,
-				'capability_type' => 'property',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'property' ),
+				'menu_icon'          => 'dashicons-building',
+				'supports'           => $supports,
+				'capability_type'    => 'property',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'property' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Properties post',
@@ -572,24 +589,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'schools_office',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-flag',
-				'supports'        => $supports,
-				'capability_type' => 'schools_office',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'schools_office' ),
+				'menu_icon'          => 'dashicons-flag',
+				'supports'           => $supports,
+				'capability_type'    => 'schools_office',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'schools_office' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Schools Office',
@@ -601,24 +619,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'tribunal',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-analytics',
-				'supports'        => $supports,
-				'capability_type' => 'tribunal',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'tribunal' ),
+				'menu_icon'          => 'dashicons-analytics',
+				'supports'           => $supports,
+				'capability_type'    => 'tribunal',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'tribunal' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Tribunal post',
@@ -630,24 +649,25 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'vocation',
 			array(
-				'admin_cols'      => array(
+				'admin_cols'         => array(
 					'featured_image' => array(
 						'title'          => 'Image',
 						'featured_image' => 'abe-icon',
 					),
 				),
-				'admin_filters'   => array(
+				'admin_filters'      => array(
 					'component' => array(
 						'title'    => 'All block types',
 						'meta_key' => 'arch_component',
 					),
 				),
-				'menu_icon'       => 'dashicons-businessman',
-				'supports'        => $supports,
-				'capability_type' => 'vocation',
-				'map_meta_cap'    => true,
-				'show_in_rest'    => true,
-				'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'vocation' ),
+				'menu_icon'          => 'dashicons-businessman',
+				'supports'           => $supports,
+				'capability_type'    => 'vocation',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'vocation' ),
+				'dashboard_activity' => true,
 			),
 			array(
 				'singular' => 'Vocations post',
@@ -659,18 +679,19 @@ function doc_register_post_types() {
 		register_extended_post_type(
 			'statistics_report',
 			array(
-				'admin_cols'       => array(
+				'admin_cols'         => array(
 					'statistics_type' => array(
 						'taxonomy' => 'statistics_type',
 					),
 				),
-				'enter_title_here' => 'Enter report title here',
-				'menu_icon'        => 'dashicons-chart-pie',
-				'supports'         => array( 'title', 'author', 'archive' ),
-				'capability_type'  => 'statistics_report',
-				'map_meta_cap'     => true,
-				'show_in_rest'     => true,
-				'capabilities'     => doc_posts_plugin()->doc_get_capabilities( 'statistics_report' ),
+				'enter_title_here'   => 'Enter report title here',
+				'menu_icon'          => 'dashicons-chart-pie',
+				'supports'           => array( 'title', 'author', 'archive' ),
+				'capability_type'    => 'statistics_report',
+				'map_meta_cap'       => true,
+				'show_in_rest'       => true,
+				'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'statistics_report' ),
+				'dashboard_activity' => true,
 			)
 		);
 

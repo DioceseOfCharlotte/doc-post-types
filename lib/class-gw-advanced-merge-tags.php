@@ -66,7 +66,8 @@ class GW_Advanced_Merge_Tags {
 		}
 
 		$this->_args = wp_parse_args(
-			$args, array(
+			$args,
+			array(
 				'save_source_post_id' => false,
 			)
 		);
@@ -260,7 +261,8 @@ class GW_Advanced_Merge_Tags {
 
 		extract(
 			wp_parse_args(
-				$args, array(
+				$args,
+				array(
 					'id'   => false,
 					'prop' => false,
 				)
@@ -283,7 +285,8 @@ class GW_Advanced_Merge_Tags {
 
 		extract(
 			wp_parse_args(
-				$args, array(
+				$args,
+				array(
 					'id'       => false,
 					'meta_key' => false,
 				)
@@ -303,7 +306,8 @@ class GW_Advanced_Merge_Tags {
 
 		extract(
 			wp_parse_args(
-				$args, array(
+				$args,
+				array(
 					'id'    => false,
 					'prop'  => false,
 					'entry' => false,
@@ -342,7 +346,8 @@ class GW_Advanced_Merge_Tags {
 
 		extract(
 			wp_parse_args(
-				$args, array(
+				$args,
+				array(
 					'id'       => false,
 					'meta_key' => false,
 					'entry'    => false,
@@ -382,7 +387,8 @@ class GW_Advanced_Merge_Tags {
 
 		extract(
 			wp_parse_args(
-				$args, array(
+				$args,
+				array(
 					'entry' => false,
 				)
 			)

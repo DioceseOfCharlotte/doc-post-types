@@ -177,7 +177,7 @@ function vicariates_shortcode() {
 		$vicariate = '';
 
 		foreach ( $terms as $term ) {
-			$term_link = get_term_link( $term );
+			$term_link    = get_term_link( $term );
 			$vicar_forane = get_term_meta( $term->term_id, 'doc_vicar_forane', true );
 
 			$vicariate .= '<div class="o-cell u-1of2-md u-inline-block u-m0 u-align-top u-p"><a href="' . esc_url( $term_link ) . '"><h5>' . $term->name . '</h5></a>' . $vicar_forane . '</div>';

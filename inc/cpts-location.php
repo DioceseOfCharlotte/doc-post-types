@@ -29,7 +29,7 @@ function doc_register_location_cpts() {
 	register_extended_post_type(
 		'department',
 		array(
-			'admin_cols'      => array(
+			'admin_cols'         => array(
 				'featured_image' => array(
 					'title'          => 'Logo',
 					'featured_image' => 'abe-icon',
@@ -38,12 +38,13 @@ function doc_register_location_cpts() {
 					'taxonomy' => 'agency',
 				),
 			),
-			'menu_icon'       => 'dashicons-groups',
-			'supports'        => $supports,
-			'capability_type' => 'department',
-			'map_meta_cap'    => true,
-			'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'department' ),
-			'show_in_rest'    => true,
+			'menu_icon'          => 'dashicons-groups',
+			'supports'           => $supports,
+			'capability_type'    => 'department',
+			'map_meta_cap'       => true,
+			'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'department' ),
+			'show_in_rest'       => true,
+			'dashboard_activity' => true,
 		)
 	);
 
@@ -85,7 +86,7 @@ function doc_register_location_cpts() {
 	register_extended_post_type(
 		'school',
 		array(
-			'admin_cols'      => array(
+			'admin_cols'         => array(
 				'featured_image' => array(
 					'title'          => 'Logo',
 					'featured_image' => 'abe-icon',
@@ -94,14 +95,15 @@ function doc_register_location_cpts() {
 					'taxonomy' => 'school_system',
 				),
 			),
-			'menu_icon'       => 'dashicons-welcome-learn-more',
-			'supports'        => $supports,
-			'capability_type' => 'school',
-			'map_meta_cap'    => true,
+			'menu_icon'          => 'dashicons-welcome-learn-more',
+			'supports'           => $supports,
+			'capability_type'    => 'school',
+			'map_meta_cap'       => true,
 
 			/* Capabilities. */
-			'capabilities'    => doc_posts_plugin()->doc_get_capabilities( 'school' ),
-			'show_in_rest'    => true,
+			'capabilities'       => doc_posts_plugin()->doc_get_capabilities( 'school' ),
+			'show_in_rest'       => true,
+			'dashboard_activity' => true,
 		)
 	);
 

@@ -3,33 +3,32 @@
 
 var placeSearch, autocomplete;
 var componentForm = {
-	locality: "long_name",
-	administrative_area_level_1: "short_name",
-	postal_code: "short_name"
+	locality: 'long_name',
+	administrative_area_level_1: 'short_name',
+	postal_code: 'short_name'
 };
 
-function initAutocomplete() {
+function initAutocomplete () {
 	// Create the autocomplete object, restricting the search to geographical
 	// location types.
-	autocomplete = new google.maps.places
-		.Autocomplete(
+	autocomplete = new google.maps.places.Autocomplete(
 		/** @type {!HTMLInputElement} */ (document.getElementById(
-			"autocomplete"
+			'autocomplete'
 		)),
-		{ types: ["geocode"] }
+		{ types: ['geocode'] }
 	);
 
 	// When the user selects an address from the dropdown, populate the address
 	// fields in the form.
-	autocomplete.addListener("place_changed", fillInAddress);
+	autocomplete.addListener('place_changed', fillInAddress);
 }
 
-function fillInAddress() {
+function fillInAddress () {
 	// Get the place details from the autocomplete object.
 	var place = autocomplete.getPlace();
 
 	for (var component in componentForm) {
-		document.getElementById(component).value = "";
+		document.getElementById(component).value = '';
 		document.getElementById(component).disabled = false;
 	}
 
@@ -43,20 +42,20 @@ function fillInAddress() {
 		}
 	}
 
-	document.getElementById("geolocation").value =
-		place.geometry.location.lat() + "," + place.geometry.location.lng();
+	document.getElementById('geolocation').value =
+		place.geometry.location.lat() + ',' + place.geometry.location.lng();
 
-	document.getElementById("address1").value =
-		place.address_components[0]["long_name"] +
-		" " +
-		place.address_components[1]["long_name"];
+	document.getElementById('address1').value =
+		place.address_components[0]['long_name'] +
+		' ' +
+		place.address_components[1]['long_name'];
 }
 
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
-function geolocate() {
+function geolocate () {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
+		navigator.geolocation.getCurrentPosition(function (position) {
 			var geolocation = {
 				lat: position.coords.latitude,
 				lng: position.coords.longitude

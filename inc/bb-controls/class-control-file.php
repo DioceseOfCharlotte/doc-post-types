@@ -97,7 +97,7 @@ class ButterBean_Control_File extends ButterBean_Control {
 	}
 
 	public function get_template() {
-	?>
+		?>
 	<# if ( data.label ) { #>
 		<span class="butterbean-label">{{ data.label }}</span>
 	<# } #>
@@ -132,6 +132,6 @@ class ButterBean_Control_File extends ButterBean_Control {
 					{{ data.placeholder }}
 			</div>
 		<# } #>
-	<?php
+		<?php
 	}
 }

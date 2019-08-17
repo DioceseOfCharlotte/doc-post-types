@@ -9,12 +9,12 @@ $user_id = get_current_user_id();
 function add_merge_tags( $form ) {
 	?>
 	<script type="text/javascript">
-	gform.addFilter('gform_merge_tags', 'add_merge_tags');
-	function add_merge_tags(mergeTags, elementId, hideAllFields, excludeFieldTypes, isPrepop, option){
-		mergeTags["custom"].tags.push({ tag: '{post_meta:id=get(doc_pid)&meta_key=CUSTOM-FIELD}', label: 'Parish Meta' });
+		gform.addFilter('gform_merge_tags', 'add_merge_tags');
+		function add_merge_tags(mergeTags, elementId, hideAllFields, excludeFieldTypes, isPrepop, option){
+			mergeTags["custom"].tags.push({ tag: '{post_meta:id=get(doc_pid)&meta_key=CUSTOM-FIELD}', label: 'Parish Meta' });
 
-		return mergeTags;
-	}
+			return mergeTags;
+		}
 	</script>
 	<?php
 	// return the form object from the php hook

@@ -111,7 +111,7 @@ class ButterBean_Control_Doc_Parent extends ButterBean_Control {
 	}
 
 	public function get_template() {
-?>
+		?>
 
 <div class="form-wrap">
 
@@ -132,6 +132,6 @@ class ButterBean_Control_Doc_Parent extends ButterBean_Control {
 	<# } #>
 
 </div>
-<?php
+		<?php
 	}
 }
