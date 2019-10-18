@@ -150,11 +150,14 @@ function user_can_update_parish( $user_id, $post_id = '' ) {
 		$post_id = get_the_ID();
 	}
 
-	$users_parish_post  = absint( get_user_meta( $user_id, 'doc_parish', true ) );
-	$users_mission_post = absint( get_user_meta( $user_id, 'doc_mission', true ) );
-
 	$can_update = false;
-
+	
+	$updater_parish_post  = absint( get_user_meta( $user_id, 'doc_parish', true ) );
+	$updater_parish_id  = absint( get_user_meta( $user_id, 'doc_user_parish_id', true ) );
+	$users_parish_post = $updater_parish_post ?: get_parish_post( $updater_parish_id );
+	
+	$users_mission_post = absint( get_user_meta( $user_id, 'doc_mission', true ) );
+	
 	if ( $users_parish_post === $post_id ) {
 		$can_update = true;
 	}
