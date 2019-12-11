@@ -16,6 +16,8 @@ add_action( 'init', 'doc_register_taxonomies' );
 
 function doc_register_taxonomies() {
 
+	register_extended_taxonomy( 'post_tag', 'arch' );
+	
 	register_extended_taxonomy(
 		'document_department',
 		'document',
